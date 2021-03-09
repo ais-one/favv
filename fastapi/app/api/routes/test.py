@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends
 import subprocess
 from services.db import get_db
 
-router = APIRouter(tags=["api-test"], prefix="/test")
+router = APIRouter(tags=["api_test"], prefix="/test")
 
 @router.get("/another-spawn")
 async def spawn_test():

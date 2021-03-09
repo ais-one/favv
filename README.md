@@ -1,10 +1,11 @@
 # About FAVV (FastAPI+ViteVue)
 
-FastAPI Python backend (BE) and Vite + VueJS + Ant Design frontend (FE)... for your API and Dashboard needs
+FastAPI Python backend (BE) and Vite + VueJS + Ant Design frontend (FE) template... for your API and Web application needs.
 
 Considerations
-- reusability
-- seperation of concerns and application segregation **inject your own frontend and backend project**
+- code reusability
+- application segregation **inject your own frontend and backend project**
+- ease of template upgrade 
 - ci/cd and container friendly
 
 ## Development - Setup and Run
@@ -54,7 +55,8 @@ Navigate to - http://127.0.0.1:8080
 cd vitevue
 deploy.sh
 cd ../fastapi
-# TBD docker build on the Dockerfile and docker run...
+docker build -t <your-image-name>:<tag> .
+docker run -it <your-image-name>:<tag>
 ```
 
 ---
@@ -82,8 +84,6 @@ cd ../fastapi
 ```
 
 - NOTE: All folders and files prefixed with TBD can be ignored, they are not implemented and used for reference
-- see **favv/fastapi/** folder for BE framework setup and instructions
-- see **favv/vitevue/** folder for FE framework setup and instructions
 
 ## Backend Customization Notes
 

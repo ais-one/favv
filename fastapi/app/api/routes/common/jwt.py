@@ -1,11 +1,12 @@
 from jose import jwt
 from fastapi import APIRouter, HTTPException, Depends
 
-from services.auth import auth_user
+from config import get_settings
+from services.auth import auth_user, create_token
 
 router = APIRouter(
-  prefix="/jwt_test",
-  tags=["api-common-jwt_test"],
+  prefix="/jwt-test",
+  tags=["api_common_jwt-test"],
   # dependencies=[Depends(get_token_header)],
   responses={404: {"description": "Not found"}},
 )
@@ -13,8 +14,8 @@ router = APIRouter(
 @router.get("/fail")
 async def jwt_test_fail():
   try:
-    token = jwt.encode({"key": "value"}, "secret", algorithm="HS256")
-    decoded = jwt.decode(token, "secret111", algorithms=["HS256"])
+    tokens = create_token({ "key": "value" })
+    decoded = jwt.decode(tokens["access_token"], "secret111", algorithms=["HS256"])
   except (jwt.JWTError):
     raise HTTPException(
       status_code=403,
@@ -24,10 +25,10 @@ async def jwt_test_fail():
 
 @router.get("/")
 async def jwt_test():
-  token = jwt.encode({"sub": "aaron"}, "secret", algorithm="HS256")
-  decoded = jwt.decode(token, "secret", algorithms=["HS256"])
-  return { "token": token, "decoded": decoded }
+  tokens = await create_token({ "key": "value" })
+  decoded = jwt.decode(tokens["access_token"], get_settings().JWT_SECRET, algorithms=["HS256"])
+  return { "tokens": tokens, "decoded": decoded }
 
 @router.get("/test-middleware")
-async def jwt_test_middleware(username = Depends(auth_user)):
-  return username
+async def jwt_test_middleware(decoded = Depends(auth_user)):
+  return decoded
