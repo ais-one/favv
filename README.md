@@ -93,7 +93,7 @@ Setting up your custom backend
 # in favv/fastapi/app/
 git clone <your backend project e.g. example_backend>
 
-# add example_backend to: favv/fastapi/.gitignore
+# add example_backend to: favv/.gitignore
 ```
 
 - use **favv/fastapi/app/custom_app/** as reference on your custom backend
@@ -114,7 +114,7 @@ Setting up your custom backend
 # in favv/vitevue/src/
 git clone <your frontend project e.g. example_frontend>
 
-# add example_frontend to: favv/antd-vite/.gitignore
+# add example_frontend to: favv/.gitignore
 ```
 
 - use **favv/vitevue/src/CustomWeb/** as reference on your custom frontend
