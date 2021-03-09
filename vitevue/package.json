@@ -1,0 +1,30 @@
+{
+  "name": "vitevue",
+  "version": "0.4.6",
+  "description": "Vite 2 + Vue 3 + Ant Design",
+  "author": "aaronjxz@gmail.com",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint . --ext .js,.vue",
+    "prettier:check": "prettier --check src/**/*.{js,jsx,json}",
+    "prettier:write": "prettier --write src/**/*.{js,jsx,json}",
+    "dev": "vite",
+    "build": "vite build",
+    "build-production": "vite build --mode production"
+  },
+  "dependencies": {
+    "@ant-design/icons-vue": "^6.0.1",
+    "@antv/data-set": "^0.11.8",
+    "@antv/g2": "^4.1.12",
+    "@antv/g2plot": "^2.3.13",
+    "ant-design-vue": "^2.0.1",
+    "vue": "^3.0.7",
+    "vue-router": "^4.0.4",
+    "vuex": "^4.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.1.5",
+    "@vue/compiler-sfc": "^3.0.7",
+    "vite": "^2.0.5"
+  }
+}

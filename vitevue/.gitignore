@@ -1,0 +1,14 @@
+# build files and packages
+dist
+node_modules
+
+# Log files
+npm-debug.log*
+# apple stuff
+.DS_Store
+# Editor directories and files
+.idea
+.vscode
+
+# environment
+.env.js
