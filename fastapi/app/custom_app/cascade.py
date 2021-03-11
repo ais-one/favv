@@ -36,17 +36,21 @@ def get_continents():
 
 @router_custom_app_cascade.get("/countries")
 def get_coountries_by_continents(continents: str = Query(None)):
-  countries_list = []
+  countriesEastList = []
+  countriesWestList = []
   try:
     continents_list = continents.split(",")
     for continent in continents_list:
       countries = countriesEastMasterList.get(continent)
-      if countries == None:
-        countries = countriesWestMasterList.get(continent)
       if countries != None:
-        countries_list = countries_list + countries
-    # countries_list.sort()
-    return countries_list
+        countriesEastList = countriesEastList + countries
+      countries = countriesWestMasterList.get(continent)
+      if countries != None:
+        countriesWestList = countriesWestList + countries
+    return {
+      "countriesEastList": countriesEastList,
+      "countriesWestList": countriesWestList
+    }
   except Exception as e:
     raise HTTPException(status_code=500, detail=str(e))
 
@@ -56,7 +60,6 @@ def get_states_by_countries(countries: str = Query(None)):
   try:
     countries_list = countries.split(",")
     for country in countries_list:
-      print(country)
       states = westCountryStatesMasterList.get(country)
       if states != None:
         states_list = states_list + states
