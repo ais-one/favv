@@ -42,40 +42,23 @@ export default {
     SettingOutlined,
   },
   setup() {
-    onMounted(async () => {
-      const { data } = await http.post(API_URL + '/api/custom-app/dd/continents', body)
-      // const { data } = await http.post(API_URL + '/api/custom-app/dd/countries', body)
-      // const { data } = await http.post(API_URL + '/api/custom-app/dd/states', body)
+    const formState = reactive({ // form
+      continents: [], // Level 1
+      continentsList: [],
+
+      countriesEast: [], // Level 2
+      countriesEastList: [],
+
+      countriesWest: [], // Level 2
+      countriesWestList: [],
+
+      westCountryStates: [], // Level 3
+      westCountryStatesList: [],
     })
 
-    const formState = reactive({ // form
-      continents: [],
-      continentsList: ['Asia', 'Europe', 'NA', 'SA', 'Africa', 'ME'],
-
-      countriesEast: [],
-      countriesEastList: [],
-      countriesEastMasterList: {
-        'Asia': ['Russia', 'Japan', 'Burma', 'Indonesia', 'Afghanistan'],
-        'Europe': ['Russia', 'Germany', 'France', 'Poland', 'Sweden', 'Italy'],
-        'Africa': ['Egypt', 'Nigeria', 'Kenya', 'Liberia'],
-        'ME': ['Egypt', 'Saudi Arabia', 'Afghanistan'],
-      },
-      countriesWest: [],
-      countriesWestList: [],
-      countriesWestMasterList: {
-        'NA': ['United States', 'Canada'],
-        'SA': ['Brazil', 'Argentina', 'Ecuador'],
-      },
-
-      westCountryStates: [],
-      westCountryStatesList: [],
-      westCountryStatesMasterList: {
-        'United States': ['California', 'New York', 'Ohio', 'Utah', 'Texas'],
-        'Canada': ['Ontario', 'Quebec', 'BC', 'Alberta'],
-        'Brazil': ['B1', 'B2'],
-        'Argentina': ['A1', 'A2', 'A3'],
-        'Ecuador': ['EC1', 'EC2'],
-      },
+    onMounted(async () => {
+      const { data } = await http.get(API_URL + '/api/custom-app/cascade/continents')
+      formState.continentsList = [...data]
     })
 
     const onCheckAllChange = e => {
@@ -88,72 +71,20 @@ export default {
       }
     }
 
-    const blurSelect = () => {
-      // console.log('blurSelect!', toRaw(formState));
-      const key = 'continents'
-      const subs = [
-        { subKey: 'countriesEast', subKeyMasterList: 'countriesEastMasterList', subKeyList: 'countriesEastList' },
-        { subKey: 'countriesWest', subKeyMasterList: 'countriesWestMasterList', subKeyList: 'countriesWestList' },
-        // can add more...
-      ]
-
-      for (let sub of subs) { // all dropdowns affected
-        const { subKey, subKeyMasterList, subKeyList } = sub
-        const keys = {}
-        const list = []
-        const newSelected = []
-
-        for (let _item of formState[key]) { // loop continent from continents
-          if (formState[subKeyMasterList][_item]) {
-            for (let _subItem of formState[subKeyMasterList][_item]) { // loop through every country in a continent
-              if (!keys[_subItem]) {
-                list.push(_subItem)
-                keys[_subItem] = true
-                const found = formState[subKey].find(item => item === _subItem)
-                if (found) newSelected.push(found)
-              }
-            }
-          }
-        }
-        formState[subKey] = [...newSelected]
-        formState[subKeyList] = [...list]
-      }
+    const blurSelect = async () => {
+      // get the countries from continent
+      const { data } = await http.get(API_URL + '/api/custom-app/cascade/countries?continents='+ formState.continents.join(','))
+      formState.countriesEastList = data.countriesEastList // update from filteered masterlist in db
+      formState.countriesWestList = data.countriesWestList // update from filteered masterlist in db
+      formState.countriesWest = formState.countriesWestList.filter(x => formState.countriesWest.includes(x)) // intersection
+      formState.countriesEast = formState.countriesEastList.filter(x => formState.countriesEast.includes(x)) // intersection
       blurSelect2()
     }
 
-    const blurSelect2 = () => {
-      // console.log('blurSelect!', toRaw(formState));
-      const key = 'countriesWest'
-      const subs = [
-        {
-          subKey: 'westCountryStates', subKeyMasterList: 'westCountryStatesMasterList', subKeyList: 'westCountryStatesList'
-        },
-      ]
-
-      for (let sub of subs) { // all dropdowns affected
-        const { subKey, subKeyMasterList, subKeyList } = sub
-
-        const keys = {}
-        const list = []
-        const newSelected = []
-
-        for (let _item of formState[key]) { // loop country from list of countries
-          if (formState[subKeyMasterList][_item]) {
-            // start
-            for (let _subItem of formState[subKeyMasterList][_item]) { // loop through every state in a country
-              if (!keys[_subItem]) {
-                list.push(_subItem)
-                keys[_subItem] = true
-                const found = formState[subKey].find(item => item === _subItem)
-                if (found) newSelected.push(found)
-              }
-            }
-            // end
-          }
-        }
-        formState[subKey] = [...newSelected]
-        formState[subKeyList] = [...list]
-      }
+    const blurSelect2 = async () => {
+      const { data } = await http.get(API_URL + '/api/custom-app/cascade/states?countries='+ formState.countriesWest.join(','))
+      formState.westCountryStatesList = data // update from filteered masterlist in db
+      formState.westCountryStates = formState.westCountryStatesList.filter(x => formState.westCountryStates.includes(x)) // intersection
     }
 
     const onSubmit = async () => {
@@ -167,11 +98,7 @@ export default {
       onSubmit,
       blurSelect,
       blurSelect2,
-      onCheckAllChange,
-      // :tip-formatter="formatter"
-      // const formatter = value => {
-      //   return `${value}%`;
-      // }
+      onCheckAllChange
     }
   },
 }
