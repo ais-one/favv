@@ -6,11 +6,13 @@ from services.db import get_db # reference favv/fastapi/app
 
 from .uploads import router_custom_app_uploads # reference same level
 from .s3 import router_custom_app_s3 # reference same level
+from .cascade import router_custom_app_cascade # reference same level
 
 router_custom_app = APIRouter(prefix="/custom-app")
 
 router_custom_app.include_router(router_custom_app_uploads)
 router_custom_app.include_router(router_custom_app_s3)
+router_custom_app.include_router(router_custom_app_cascade)
 
 @router_custom_app.get("/ext-db", tags=["api_custom_app"])
 async def ext_db():
