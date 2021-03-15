@@ -9,19 +9,22 @@ logger.warn("Logging @ %s", __name__)
 s3 = None
 
 def connect_s3():
-  url = get_settings().S3_ENDPOINT_URL
-  global s3
-  if url != "":
-    s3 = boto3.client(
-      "s3",
-      endpoint_url=get_settings().S3_ENDPOINT_URL,
-      aws_access_key_id=get_settings().S3_ACCESS_ID,
-      aws_secret_access_key=get_settings().S3_SECRET_KEY
-    )
-    print("s3 init")
-  else:
-    s3 = None
-    print("s3 not init")
+  try:
+    url = get_settings().S3_ENDPOINT_URL
+    global s3
+    if url != "":
+      s3 = boto3.client(
+        "s3",
+        endpoint_url=get_settings().S3_ENDPOINT_URL,
+        aws_access_key_id=get_settings().S3_ACCESS_ID,
+        aws_secret_access_key=get_settings().S3_SECRET_KEY
+      )
+      print("s3 Connected")
+    else:
+      s3 = None
+      print("No s3 Config")
+  except:
+      print("s3 Connect Fail")
 
 def get_s3():
   global s3
@@ -32,14 +35,13 @@ def get_s3_bucket_name():
 
 ## Not Used
 def create_bucket(bucket_name):
-    try:
-        res = s3.create_bucket(Bucket=bucket_name)
-    except ClientError as e:
-        print(e)
+  try:
+    res = s3.create_bucket(Bucket=bucket_name)
+  except ClientError as e:
+    print(e)
  
 def delete_bucket(bucket_name):
-    try:
-        res = s3.delete_bucket(Bucket=bucket_name)
-    except ClientError as e:
-        print(e)
-
+  try:
+    res = s3.delete_bucket(Bucket=bucket_name)
+  except ClientError as e:
+    print(e)

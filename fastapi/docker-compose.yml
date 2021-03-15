@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  favv:
+    build: .
+    ports:
+      - "8000:8000"
+  redis:
+    image: "redis:alpine"

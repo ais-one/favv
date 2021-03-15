@@ -25,6 +25,7 @@ class Settings(BaseSettings):
   UPLOAD_FOLDER: str = ""
   MODEL_FOLDER: str = ""
   WEB_BASEPATH: str = "/"
+  REDIS_CONNECTION: str = ""
   class Config:
     env_file = ".env" # .env.development .env.production
 
