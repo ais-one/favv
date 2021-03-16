@@ -7,6 +7,8 @@
 
 ## DONE
 - V0.0.3
+  - 2001-03-16
+    - initial testing for dramatiq task queue
   - 2001-03-15
     - Add docker-compose.yml
     - Add Redis service
