@@ -11,7 +11,9 @@ import string
 class Settings(BaseSettings):
   ENV: str = "development"
   APP: str = "demo"
-  JWT_SECRET: str = "".join(random.choice(string.ascii_letters) for i in range(64))
+  JWT_ALG: str = "HS256"
+  JWT_SECRET: str = "".join(random.choice(string.ascii_letters) for i in range(32))
+  REFRESH_TOKEN_SECRET: str = "".join(random.choice(string.ascii_letters) for i in range(64))
   VERSION: str
   API_PORT=8000
   SQLALCHEMY_DB_URL: str = ""
@@ -23,6 +25,7 @@ class Settings(BaseSettings):
   UPLOAD_FOLDER: str = ""
   MODEL_FOLDER: str = ""
   WEB_BASEPATH: str = "/"
+  REDIS_CONNECTION: str = ""
   class Config:
     env_file = ".env" # .env.development .env.production
 

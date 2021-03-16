@@ -37,15 +37,17 @@ def get_db():
   return db.client()
 
 def connect_db():
-  print("Open DB v2")
-  url = get_settings().SQLALCHEMY_DB_URL # "sqlite:///./dev.sqlite3"
-  if url != "":
-    # SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
-    engine = create_engine(url, connect_args={"check_same_thread": False})
-    db.client = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-    # print("db connect ok")
-  # else:
-    # print("db connect fail")
+  try:
+    url = get_settings().SQLALCHEMY_DB_URL # "sqlite:///./dev.sqlite3"
+    if url != "":
+      # SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
+      engine = create_engine(url, connect_args={"check_same_thread": False})
+      db.client = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+      print("DB Connected")
+    else:
+      print("No DB Config")
+  except:
+    print("DB Connect Fail")
 
 def disconnect_db():
   print("Close DB v2")

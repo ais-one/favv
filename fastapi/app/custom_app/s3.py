@@ -6,14 +6,14 @@ from typing import List
 # this is referencing fastapi/app...
 from services.s3 import get_s3, get_s3_bucket_name
 
-router_sample_app_s3 = APIRouter(
-  tags=["sample-app-s3"],
+router_custom_app_s3 = APIRouter(
+  tags=["custom_app_s3"],
   prefix="/s3"
 )
 
 ## S3 buckets
 
-@router_sample_app_s3.get("/ext-list-s3-buckets")
+@router_custom_app_s3.get("/ext-list-s3-buckets")
 async def ext_list_buckets():
   try:
     s3buckets = None
@@ -29,7 +29,7 @@ async def ext_list_buckets():
   except:
     return { "Error": "List Buckets Error" }
 
-@router_sample_app_s3.get("/ext-list-s3-files")
+@router_custom_app_s3.get("/ext-list-s3-files")
 def ext_list_objects():
   bucket_name=get_s3_bucket_name()
   files=[]
@@ -41,7 +41,7 @@ def ext_list_objects():
   except:
     return { "Error": "List" }
 
-@router_sample_app_s3.post("/ext-upload-s3-file")
+@router_custom_app_s3.post("/ext-upload-s3-file")
 def ext_upload_file(image: UploadFile = File(...)):
   bucket_name=get_s3_bucket_name()
   try:
@@ -53,7 +53,7 @@ def ext_upload_file(image: UploadFile = File(...)):
   except:
     return { "Error": "Upload" }
 
-@router_sample_app_s3.delete("/ext-delete-s3-file")
+@router_custom_app_s3.delete("/ext-delete-s3-file")
 def ext_delete_file(object_key: str = Query(None)):
   bucket_name=get_s3_bucket_name()
   try:
@@ -62,7 +62,7 @@ def ext_delete_file(object_key: str = Query(None)):
   except:
     return { "Error": "Delete" }
 
-@router_sample_app_s3.get("/ext-read-s3-file")
+@router_custom_app_s3.get("/ext-read-s3-file")
 def ext_read_file(object_key: str = Query(None)):
   bucket_name=get_s3_bucket_name()
   try:

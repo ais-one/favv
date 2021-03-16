@@ -1,15 +1,18 @@
-## References
+# References
+
+## Useful Links
 
 - https://github.com/tiangolo/fastapi
 - https://medium.com/python-pandemonium/better-python-dependency-and-package-management-b5d8ea29dff1
 - https://nvie.com/posts/pin-your-packages/
+- https://www.w3schools.com/python/
 
-# Samples
+## Samples
 
 - https://github.com/gsc2001/fastapi-template
 - https://github.com/nsidnev/fastapi-realworld-example-app
 
-# Issues
+## Issues
 
 - Logging
   - https://github.com/tortoise/tortoise-orm/issues/529#issuecomment-762330494

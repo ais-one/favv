@@ -19,6 +19,7 @@ python-dotenv==0.15.0
 python-jose==3.2.0
 python-multipart==0.0.5
 PyYAML==5.4.1
+redis==3.5.3
 rsa==4.7.2
 s3transfer==0.3.4
 six==1.15.0

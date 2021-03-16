@@ -149,6 +149,7 @@ export default {
         formState[subKey] = [...newSelected]
         formState[subKeyList] = [...list]
       }
+      blurSelect2()
     }
 
     const blurSelect2 = () => {
@@ -169,14 +170,18 @@ export default {
         const list = []
         const newSelected = []
 
-        for (let _item of formState[key]) { // loop theme from continents
-          for (let _subItem of formState[subKeyMasterList][_item]) { // loop through every subTheme in a theme
-            if (!keys[_subItem]) {
-              list.push(_subItem)
-              keys[_subItem] = true
-              const found = formState[subKey].find(item => item === _subItem)
-              if (found) newSelected.push(found)
+        for (let _item of formState[key]) { // loop country from list of countries
+          if (formState[subKeyMasterList][_item]) {
+            // start
+            for (let _subItem of formState[subKeyMasterList][_item]) { // loop through every state in a country
+              if (!keys[_subItem]) {
+                list.push(_subItem)
+                keys[_subItem] = true
+                const found = formState[subKey].find(item => item === _subItem)
+                if (found) newSelected.push(found)
+              }
             }
+            // end
           }
         }
         formState[subKey] = [...newSelected]
