@@ -25,7 +25,8 @@ async def get_redis():
   global cache
   return cache
 
-async def redis_set(key: str, value: str):
+# type hinting str, bool, dict, None, (typing) Dict, List?
+async def redis_set(key: str, value: str) -> bool:
   try:
     global cache
     cache.set(key, value)

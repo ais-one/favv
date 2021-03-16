@@ -1,7 +1,11 @@
 ## TODO
+- add dramatiq (using redis)
+  - sample task
+  - list running tasks
 - explore and implement this https://towardsdatascience.com/deploying-ml-models-in-production-with-fastapi-and-celery-7063e539a5db
   - uvicorn workers and background tasks
 - move common and reusable functions to services instead of examples
+- add mongodb
 - usage of frontend state store for sharing of data between frontend pages (example on state store usage)
 - Auth- FE: SSO SAML, BE: JWT
 

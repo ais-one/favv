@@ -22,12 +22,14 @@ from starlette.responses import JSONResponse
 from services.db import connect_db, disconnect_db
 from services.s3 import connect_s3
 from services.redis import connect_redis
+from services.mongodb import connect_mongodb
 
 async def startup_handler():
   print("Start Up...")
   connect_db()
   connect_s3()
   connect_redis()
+  connect_mongodb()
   # db.client = AsyncIOMotorClient(DATABASE_URL, maxPoolSize=MAX_CONNECTIONS_COUNT, minPoolSize=MIN_CONNECTIONS_COUNT)
 
 async def shutdown_handler():

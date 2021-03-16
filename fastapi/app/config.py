@@ -26,6 +26,8 @@ class Settings(BaseSettings):
   MODEL_FOLDER: str = ""
   WEB_BASEPATH: str = "/"
   REDIS_CONNECTION: str = ""
+  MONGODB_URL: str = ""
+  MONGODB_DB: str = ""
   class Config:
     env_file = ".env" # .env.development .env.production
 
