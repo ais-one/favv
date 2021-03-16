@@ -1,7 +1,0 @@
-# your custom backend folder (repo), fastapi/app/.env is filled with your own and untracked
-# e.g. fastapi/app/<custom app>
-
-
-# your custom frontend folder (repo), vitevue/src/.env.js is filled with your own and untracked
-# e.g. vitevue/src/<Custom App>
-

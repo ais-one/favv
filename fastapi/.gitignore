@@ -5,4 +5,9 @@ dev
 __pycache__
 
 # environment
+# fastapi/app/.env is filled with your own and untracked
 .env
+
+# untrack user custom application (it is tracked in their own repo), track example custom application
+*_app
+!custom_app
