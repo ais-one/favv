@@ -1,4 +1,8 @@
 ## TODO
+- add dramatiq (using redis)
+  - sample task
+  - list running tasks
+- allow for multiple services (alchemy mongodb, s3, upload folders)
 - explore and implement this https://towardsdatascience.com/deploying-ml-models-in-production-with-fastapi-and-celery-7063e539a5db
   - uvicorn workers and background tasks
 - move common and reusable functions to services instead of examples
@@ -7,6 +11,9 @@
 
 ## DONE
 - V0.0.3
+  - 2001-03-17
+    - remove favv/.gitignore, not needed, custom code is implicit in now (folders suffix with **_app** for backend, suffix with **Web** for frontend)
+    - add mongodb service
   - 2001-03-16
     - initial testing for dramatiq task queue
   - 2001-03-15

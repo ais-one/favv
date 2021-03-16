@@ -67,11 +67,10 @@ docker run -it <your-image-name>:<tag>
 
 ```md
 + favv
-  + .gitignore **put your custom application folders in here**
   + fastapi/
   | + app/
   | | + .env **backend config**
-  | | + custom_app/ **custom backend code, models, uploads**
+  | | + *_app/ **folder with suffix "_app" are your custom backend code, models, uploads**
   | |   + models/ 
   | |   + uploads/
   | + Dockerfile
@@ -79,7 +78,7 @@ docker run -it <your-image-name>:<tag>
     + src
     | + .env.js **frontend config**
     | + .env.vite.js **frontend build config**
-    | + CustomWeb/ **custom frontend code**
+    | + *Web/ **folder witht suffix "Web" are your custom frontend code**
     + deploy.sh
 ```
 
@@ -91,9 +90,8 @@ Setting up your custom backend
 
 ```bash
 # in favv/fastapi/app/
-git clone <your backend project e.g. example_backend>
-
-# add example_backend to: favv/.gitignore
+# note that project name must end with suffix "_app"
+git clone <your backend project e.g. example_app>
 ```
 
 - use **favv/fastapi/app/custom_app/** as reference on your custom backend
@@ -112,9 +110,8 @@ Setting up your custom backend
 
 ```bash
 # in favv/vitevue/src/
-git clone <your frontend project e.g. example_frontend>
-
-# add example_frontend to: favv/.gitignore
+# note that project name must end with suffix "Web"
+git clone <your frontend project e.g. ExampleWeb>
 ```
 
 - use **favv/vitevue/src/CustomWeb/** as reference on your custom frontend

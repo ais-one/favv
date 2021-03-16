@@ -5,6 +5,8 @@ import subprocess
 from services.db import get_db
 from services.redis import get_redis
 
+from services.mongodb import get_mongodb, bson2dict
+
 router = APIRouter(tags=["api_test"], prefix="/test")
 
 @router.get("/another-spawn")
@@ -47,3 +49,21 @@ async def redis_test_delete(key: str = Query(...)):
     return { "status": "redis deleted" }
   except:
     return { "status": "redis test delete error" }
+
+@router.get("/mongodb-test")
+def mongodb_test():
+  try:
+    db = get_mongodb()
+    collection = db["country"]
+    result = list(collection.find({}).limit(5))
+    result = bson2dict(result)
+    return { "status": "mongodb", "result": result }
+  except:
+    return { "status": "mongodb error" }
+
+# @app.get('/users')
+# async def list_users():
+#     users = []
+#     for user in db.users.find():
+#         users.append(User(**user))
+#     return {'users': users}
