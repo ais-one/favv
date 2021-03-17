@@ -8,6 +8,8 @@ from .uploads import router_custom_app_uploads # reference same level
 from .s3 import router_custom_app_s3 # reference same level
 from .cascade import router_custom_app_cascade # reference same level
 
+import numpy as np
+
 router_custom_app = APIRouter(prefix="/custom-app")
 
 router_custom_app.include_router(router_custom_app_uploads)
@@ -39,3 +41,8 @@ async def ext_spawn():
 # def main():
 #     file_like = open(some_file_path, mode="rb")
 #     return StreamingResponse(file_like, media_type="video/mp4")
+
+@router_custom_app.get("/numpy-test", tags=["api_custom_app"])
+async def numpy_test():
+  a = np.arange(6)
+  return a.tolist()
