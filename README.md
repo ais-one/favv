@@ -74,9 +74,10 @@ docker run -it <your-image-name>:<tag>
   + fastapi/
   | + app/
   | | + .env: backend config
-  | | + <your-custom-backend>_app/: folder with suffix "_app" are your custom backend code, models, uploads
+  | | + <your-custom-backend>_app/: folder with suffix "_app" are your custom backend code, models, uploads (your backend repo)
+  | |   + .gitignore: for your repo
   | |   + base.py: this file name is required, and an FastApi ApiRouter of the name router_<your-custom-backend>_app is needed
-  | |   + .gitignore
+  | |   + requirments.txt: your dependencies
   | |   + models/ 
   | |   + uploads/
   | + Dockerfile
@@ -85,7 +86,7 @@ docker run -it <your-image-name>:<tag>
     | + .env.js: frontend config (set INITIAL_SECURE_PATH, API_URL - to API server, ROUTES here)
     | + .env.vite.js: frontend build config (set DEV_SERVER_PORT, WEB_BASEPATH here)
     | + .gitignore
-    | + <YourCustomFrontend>Web/: folder witht suffix "Web" are your custom frontend code
+    | + <YourCustomFrontend>Web/: folder with suffix "Web" are your custom frontend code (your frontend repo)
     + deploy.sh
 ```
 
