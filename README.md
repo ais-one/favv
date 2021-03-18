@@ -82,8 +82,8 @@ docker run -it <your-image-name>:<tag>
   | + Dockerfile
   + vitevue/
     + src
-    | + .env.js: frontend config
-    | + .env.vite.js: frontend build config
+    | + .env.js: frontend config (set INITIAL_SECURE_PATH, API_URL - to API server, ROUTES here)
+    | + .env.vite.js: frontend build config (set DEV_SERVER_PORT, WEB_BASEPATH here)
     | + .gitignore
     | + <YourCustomFrontend>Web/: folder witht suffix "Web" are your custom frontend code
     + deploy.sh

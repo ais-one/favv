@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import router from './router.js'
+import { INITIAL_SECURE_PATH } from '../config.js'
 
 const mutations = {
   login(state, payload) {
@@ -15,7 +16,7 @@ const actions = {
     // console.log('doLogin', payload)
     if (payload) {
       commit('login', payload)
-      await router.push('/dashboard')
+      await router.push(INITIAL_SECURE_PATH)
     } else {
       commit('login', null)
       await router.push('/signin')

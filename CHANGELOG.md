@@ -14,6 +14,8 @@
 - V0.0.3
   - 2001-03-18
     - seperate requirements.txt for framework and custom app (but still use same venv)
+    - add initial protected route for vitevue
+    - vitevue configurable dev server port number
   - 2001-03-17
     - remove favv/.gitignore, not needed, custom code is implicit in now (folders suffix with **_app** for backend, suffix with **Web** for frontend)
     - add mongodb service
