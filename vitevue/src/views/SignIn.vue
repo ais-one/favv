@@ -15,7 +15,7 @@
 import { ref, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
-import { CALLBACK_URL, CONSTANTS } from '/config.js'
+import { CALLBACK_URL, CONSTANTS, INITIAL_SECURE_PATH } from '/config.js'
 
 export default {
   setup(props, context) {
@@ -44,7 +44,7 @@ export default {
     const login = async () => {
       _setUser()
       loading.value = false
-      router.push('/dashboard')
+      router.push(INITIAL_SECURE_PATH)
     }
 
     return {

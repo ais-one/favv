@@ -15,7 +15,7 @@
 import { ref, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
-import { CONSTANTS } from '/config.js'
+import { CONSTANTS, INITIAL_SECURE_PATH } from '/config.js'
 
 export default {
   setup(props, context) {
@@ -44,8 +44,8 @@ export default {
     const backToLogin = async () => {
       // _setUser()
       // loading.value = false
-      // router.push('/dashboard')
-      router.push('/') //  looks like a job for jwtserver...!
+      // router.push(INITIAL_SECURE_PATH)
+      router.push('/') //  looks like a job for an auth server...!
     }
 
     return {

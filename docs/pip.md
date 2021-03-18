@@ -21,4 +21,9 @@ pip-review --interactive
 
 # update all
 pip-review --auto
+
+pip list --outdated
+pip list --uptodate
+
+pip install --upgrade PACKAGE_NAME
 ```

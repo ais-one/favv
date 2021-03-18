@@ -23,13 +23,17 @@ python -m venv dev # python3 -m venv /path/to/new/virtual/env
 # rename .env.example to .env
 mv ./app/.env.example ./app/.env
 
-# activate it
-./dev/Scripts/activate
+# activate it - use \ for windows
+dev/Scripts/activate
 
-# install python packages
-pip install -r requirements.txt
-# pip install fastapi uvicorn[standard] python-multipart SQLAlchemy passlib[bcrypt] python-jose[cryptography] boto3 ? asyncpg ? mongo
+# pip install fastapi uvicorn[standard] python-multipart SQLAlchemy passlib[bcrypt] python-jose[cryptography] boto3 pymongo redis 
 # pip freeze > requirements.txt # save libraries installed, done after each pip install
+
+# install common packages
+pip install -r requirements.txt
+
+# install custom app packages
+pip install -r app/custom_app/requirements.txt
 
 # running the app
 cd app
@@ -69,16 +73,20 @@ docker run -it <your-image-name>:<tag>
 + favv
   + fastapi/
   | + app/
-  | | + .env **backend config**
-  | | + *_app/ **folder with suffix "_app" are your custom backend code, models, uploads**
+  | | + .env: backend config
+  | | + <your-custom-backend>_app/: folder with suffix "_app" are your custom backend code, models, uploads (your backend repo)
+  | |   + .gitignore: for your repo
+  | |   + base.py: this file name is required, and an FastApi ApiRouter of the name router_<your-custom-backend>_app is needed
+  | |   + requirments.txt: your dependencies
   | |   + models/ 
   | |   + uploads/
   | + Dockerfile
   + vitevue/
     + src
-    | + .env.js **frontend config**
-    | + .env.vite.js **frontend build config**
-    | + *Web/ **folder witht suffix "Web" are your custom frontend code**
+    | + .env.js: frontend config (set INITIAL_SECURE_PATH, API_URL - to API server, ROUTES here)
+    | + .env.vite.js: frontend build config (set DEV_SERVER_PORT, WEB_BASEPATH here)
+    | + .gitignore
+    | + <YourCustomFrontend>Web/: folder with suffix "Web" are your custom frontend code (your frontend repo)
     + deploy.sh
 ```
 

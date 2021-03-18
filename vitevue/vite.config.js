@@ -3,6 +3,8 @@ import vue from '@vitejs/plugin-vue'
 import envVite from './src/.env.vite.js'
 const path = require('path')
 
+// console.log(envVite)
+
 // module.exports = {
 export default {
   base: envVite.WEB_BASEPATH || '/', // set to '/vite' for dev:build, '/' otherwise
@@ -35,6 +37,6 @@ export default {
     }
   },
   server: {
-    port: 8080,
+    port: envVite.DEV_SERVER_PORT || 8080,
   }
 }

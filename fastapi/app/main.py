@@ -67,15 +67,15 @@ print("__name__=" + __name__)
 
 # Use uvicorn to run FastAPI app
 if __name__ == "__main__":
-  print(">>>=aa")
+  print("@ __main__")
   uvicorn.run("main:app", host="127.0.0.1", port=8000, debug=True, reload=True, access_log=False, headers=[("server", "")])
 
 if __name__ == "__mp_main__":
-  print(">>>=bb")
+  print("@ __mp_main__")
 
 # run initialization here...???
 if __name__ == "main":
-  print(">>>=cc")
+  print("@ main")
   logger = logging.getLogger(__name__)
   logger.warn("ENV settings %s", get_settings().ENV)
 

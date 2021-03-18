@@ -10,6 +10,7 @@ export const {
   CONSTANTS = envjs.CONSTANTS,
   API_URL = envjs.API_URL,
   ROUTES = envjs.ROUTES,
+  INITIAL_SECURE_PATH = envjs.INITIAL_SECURE_PATH,
   VERSION,
 
   // from vite.config.js base property
