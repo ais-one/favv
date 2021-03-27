@@ -2,6 +2,9 @@
 - add dramatiq (using redis)
   - sample task
   - list running tasks
+- add rq (using redis)
+  - cannot run on windows
+- add huey
 - allow for multiple services (alchemy mongodb, s3, upload folders)
 - integrate redis and dramatiq into docker-compose.yml? or test network interaction between containers
 - explore and implement this https://towardsdatascience.com/deploying-ml-models-in-production-with-fastapi-and-celery-7063e539a5db
@@ -12,7 +15,9 @@
 
 ## DONE
 - V0.0.3
-  - 2001-03-18
+  - 2021-03-27
+    - wip add huey task queue
+  - 2021-03-18
     - seperate requirements.txt for framework and custom app (but still use same venv)
     - add initial protected route for vitevue
     - vitevue configurable dev server port number

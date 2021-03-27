@@ -1,12 +1,24 @@
 import subprocess
 from fastapi import APIRouter
 
+from redis import Redis
+from rq import Queue
+# from worker import runTask
+
 from services.model import get_model_folder, set_model_path # reference favv/fastapi/app
 from services.db import get_db # reference favv/fastapi/app
 
 from .uploads import router_custom_app_uploads # reference same level
 from .s3 import router_custom_app_s3 # reference same level
 from .cascade import router_custom_app_cascade # reference same level
+
+# from .models.run_model import runTask
+# redis_conn = Redis(host='myproj_redis', port=6379)
+# q = Queue('my_queue', connection=redis_conn)
+
+    # job = q.enqueue(runTask)
+    # size = len(q)
+    # return {'job': size}
 
 import numpy as np
 
