@@ -2,8 +2,6 @@ import subprocess
 from fastapi import APIRouter
 
 from redis import Redis
-from rq import Queue
-# from worker import runTask
 
 from services.model import get_model_folder, set_model_path # reference favv/fastapi/app
 from services.db import get_db # reference favv/fastapi/app
@@ -12,13 +10,8 @@ from .uploads import router_custom_app_uploads # reference same level
 from .s3 import router_custom_app_s3 # reference same level
 from .cascade import router_custom_app_cascade # reference same level
 
-# from .models.run_model import runTask
-# redis_conn = Redis(host='myproj_redis', port=6379)
-# q = Queue('my_queue', connection=redis_conn)
-
-    # job = q.enqueue(runTask)
-    # size = len(q)
-    # return {'job': size}
+# from .models.huey_config import huey
+from .models.tasks import add_numbers
 
 import numpy as np
 
@@ -58,3 +51,10 @@ async def ext_spawn():
 async def numpy_test():
   a = np.arange(6)
   return a.tolist()
+
+@router_custom_app.get("/huey-test", tags=["api_custom_app"])
+async def huey_test():
+  print('Task Huey Demo -- adds two numbers.')
+  res = add_numbers(3, 4)
+  print(res)
+  return { "task_run_id": res.id }
