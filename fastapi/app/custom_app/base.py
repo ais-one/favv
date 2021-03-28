@@ -10,7 +10,9 @@ from .uploads import router_custom_app_uploads # reference same level
 from .s3 import router_custom_app_s3 # reference same level
 from .cascade import router_custom_app_cascade # reference same level
 
-# from .models.huey_config import huey
+# from .models.huey_config import huey - TBD use config...
+from huey import RedisHuey
+huey = RedisHuey('test', blocking=False)
 from .models.tasks import add_numbers
 
 import numpy as np
@@ -52,9 +54,16 @@ async def numpy_test():
   a = np.arange(6)
   return a.tolist()
 
-@router_custom_app.get("/huey-test", tags=["api_custom_app"])
-async def huey_test():
+@router_custom_app.post("/huey-post-test", tags=["api_custom_app"])
+async def huey_post_test():
   print('Task Huey Demo -- adds two numbers.')
   res = add_numbers(3, 4)
   print(res)
   return { "task_run_id": res.id }
+
+@router_custom_app.get("/huey-get-test", tags=["api_custom_app"])
+async def huey_get_test():
+  # pending = huey.pending()
+  # num_pending = len(pending)
+  num_scheduled = huey.__len__()
+  return { "pending tasks": num_scheduled }
