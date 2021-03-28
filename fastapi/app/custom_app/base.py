@@ -10,9 +10,7 @@ from .uploads import router_custom_app_uploads # reference same level
 from .s3 import router_custom_app_s3 # reference same level
 from .cascade import router_custom_app_cascade # reference same level
 
-# from .models.huey_config import huey - TBD use config...
-from huey import RedisHuey
-huey = RedisHuey('test', blocking=False)
+from services.huey_config import huey # task queue
 from .models.tasks import add_numbers
 
 import numpy as np
@@ -65,5 +63,13 @@ async def huey_post_test():
 async def huey_get_test():
   # pending = huey.pending()
   # num_pending = len(pending)
+  # for i in pending:
+  #   print(i.id)
+  #   # print(dir(i))
+  #   # methods = [method_name for method_name in dir(i) if callable(getattr(i, method_name))]
+  #   # r1 = huey.result(id1, blocking=True, preserve=True)
+  #   # r2 = huey.result(id2, blocking=True, preserve=True)
+  #   # print(result)
+  #   # huey.all_results()
   num_scheduled = huey.__len__()
   return { "pending tasks": num_scheduled }
