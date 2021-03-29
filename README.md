@@ -41,11 +41,11 @@ pip install -r app/custom_app/requirements.txt
 ```bash
 cd app
 
-# app
+# fastapi application
 python main.py # OPTION 1 - running using python
 uvicorn main:app --reload --host=0.0.0.0 --port=8000 --access-log --log-level=debug --header server:none # OPTION 2 - running uvicorn
 
-# task queue 
+# huey task queue consumer 
 huey_consumer custom_app.models.tasks.huey
 
 ```

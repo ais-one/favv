@@ -59,41 +59,49 @@ async def huey_post_test():
   print(res)
   return { "task_run_id": res.id }
 
+@router_custom_app.get("/huey-scheduled-test", tags=["api_custom_app"])
+async def huey_scheduled_test():
+  huey = get_huey()
+  try:
+    scheduled = huey.scheduled()
+    num_scheduled = len(scheduled)
+    return { "num_scheduled": num_scheduled }
+  except Exception as e:
+    return { "num_scheduled": str(e) }
+
+@router_custom_app.get("/huey-pending-test", tags=["api_custom_app"])
+async def huey_pending_test():
+  huey = get_huey()
+  try:
+    pending = huey.pending()
+    num_pending = len(pending)
+    return { "num_pending": num_pending }
+  except Exception as e:
+    return { "num_pending": str(e) }
+
 @router_custom_app.get("/huey-get-test", tags=["api_custom_app"])
 async def huey_get_test():
   huey = get_huey()
   result = []
-  try:
-    pending = huey.pending()
-    num_pending = len(pending)
-    print(num_pending)
-  except Exception as e:
-    print(str(e))
-  try:
-    scheduled = huey.scheduled()
-    num_scheduled = len(scheduled)
-  except Exception as e:
-    print(str(e))
-  # print(scheduled)
-  # for i in scheduled:
-  #   print(i.id)
-  #   # print(dir(i))
-  #   # methods = [method_name for method_name in dir(i) if callable(getattr(i, method_name))]
   # list all results
   all = huey.all_results() 
   for i in all:
     id = i.decode("utf-8")
-    # print(id)
-    r1 = huey.result(id, blocking=False, preserve=False) # preserve=False will clear result
-    result.append({
-      "id": id,
-      "result": r1
-    })
+    r1 = huey.result(id, blocking=False, preserve=True) # preserve=False will clear result
+    result.append({ "id": id, "result": r1 })
     # print(dir(i))
-  # # flush results
-  # huey.storage.flush_results()
+    # methods = [method_name for method_name in dir(i) if callable(getattr(i, method_name))]
   in_queue = huey.__len__()
   return {
     "items in queue": in_queue,
     "result": result
+  }
+
+@router_custom_app.delete("/huey-flush-test", tags=["api_custom_app"])
+async def huey_flush():
+  huey = get_huey()
+  # flush results
+  huey.storage.flush_results()
+  return {
+    "results": []
   }

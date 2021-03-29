@@ -9,8 +9,9 @@
 
 ## DONE
 - V0.0.3
-  - 2021-03-28
+  - 2021-03-29
     - add HUEY_REDIS_CONNECTION and HUEY_TASK_QUEUES configurations
+    - improve on task queue examples
   - 2021-03-27
     - wip add huey task queue
   - 2021-03-18
