@@ -23,6 +23,7 @@ from services.db import connect_db, disconnect_db
 from services.s3 import connect_s3
 from services.redis import connect_redis
 from services.mongodb import connect_mongodb
+from services.huey_config import connect_huey
 
 async def startup_handler():
   print("Start Up...")
@@ -30,6 +31,7 @@ async def startup_handler():
   connect_s3()
   connect_redis()
   connect_mongodb()
+  connect_huey()
   # db.client = AsyncIOMotorClient(DATABASE_URL, maxPoolSize=MAX_CONNECTIONS_COUNT, minPoolSize=MIN_CONNECTIONS_COUNT)
 
 async def shutdown_handler():

@@ -34,11 +34,20 @@ pip install -r requirements.txt
 
 # install custom app packages
 pip install -r app/custom_app/requirements.txt
+```
 
-# running the app
+# Run App & Task Quque (requires redis)
+
+```bash
 cd app
+
+# fastapi application
 python main.py # OPTION 1 - running using python
 uvicorn main:app --reload --host=0.0.0.0 --port=8000 --access-log --log-level=debug --header server:none # OPTION 2 - running uvicorn
+
+# huey task queue consumer 
+huey_consumer custom_app.models.tasks.huey
+
 ```
 
 Navigate to - http://127.0.0.1:8000/api-docs
@@ -79,6 +88,7 @@ docker run -it <your-image-name>:<tag>
   | |   + base.py: this file name is required, and an FastApi ApiRouter of the name router_<your-custom-backend>_app is needed
   | |   + requirments.txt: your dependencies
   | |   + models/ 
+  | |     * tasks.py: custom task queue file
   | |   + uploads/
   | + Dockerfile
   + vitevue/

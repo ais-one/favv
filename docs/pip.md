@@ -26,4 +26,9 @@ pip list --outdated
 pip list --uptodate
 
 pip install --upgrade PACKAGE_NAME
+
+# uninstall
+
+pip uninstall <package>
+pip freeze > requirements.txt
 ```

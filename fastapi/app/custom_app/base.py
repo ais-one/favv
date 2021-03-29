@@ -1,12 +1,18 @@
 import subprocess
 from fastapi import APIRouter
 
+from redis import Redis
+
 from services.model import get_model_folder, set_model_path # reference favv/fastapi/app
 from services.db import get_db # reference favv/fastapi/app
 
 from .uploads import router_custom_app_uploads # reference same level
 from .s3 import router_custom_app_s3 # reference same level
 from .cascade import router_custom_app_cascade # reference same level
+
+from services.huey_config import get_huey # task queue
+from custom_app.models.tasks import add_numbers
+# from .models.tasks import add_numbers # An alternative to above
 
 import numpy as np
 
@@ -46,3 +52,57 @@ async def ext_spawn():
 async def numpy_test():
   a = np.arange(6)
   return a.tolist()
+
+@router_custom_app.post("/huey-post-test", tags=["api_custom_app"])
+async def huey_post_test():
+  print('Task Huey Demo -- adds two numbers.')
+  res = add_numbers(3, 4)
+  print(res)
+  return { "task_run_id": res.id }
+
+@router_custom_app.get("/huey-scheduled-test", tags=["api_custom_app"])
+async def huey_scheduled_test():
+  huey = get_huey()
+  try:
+    scheduled = huey.scheduled()
+    num_scheduled = len(scheduled)
+    return { "num_scheduled": num_scheduled }
+  except Exception as e:
+    return { "num_scheduled": str(e) }
+
+@router_custom_app.get("/huey-pending-test", tags=["api_custom_app"])
+async def huey_pending_test():
+  huey = get_huey()
+  try:
+    pending = huey.pending() # currently this keeps failing due to not being able to find task, needs more investigation, but no a show-stopper
+    num_pending = len(pending)
+    return { "num_pending": num_pending }
+  except Exception as e:
+    return { "num_pending": str(e) }
+
+@router_custom_app.get("/huey-get-test", tags=["api_custom_app"])
+async def huey_get_test():
+  huey = get_huey()
+  result = []
+  # list all results
+  all = huey.all_results() 
+  for i in all:
+    id = i.decode("utf-8")
+    r1 = huey.result(id, blocking=False, preserve=True) # preserve=False will clear result
+    result.append({ "id": id, "result": r1 })
+    # print(dir(i))
+    # methods = [method_name for method_name in dir(i) if callable(getattr(i, method_name))]
+  in_queue = huey.__len__()
+  return {
+    "items in queue": in_queue,
+    "result": result
+  }
+
+@router_custom_app.delete("/huey-flush-test", tags=["api_custom_app"])
+async def huey_flush():
+  huey = get_huey()
+  # flush results
+  huey.storage.flush_results()
+  return {
+    "results": []
+  }

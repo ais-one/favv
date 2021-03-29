@@ -1,18 +1,20 @@
 ## TODO
-- add dramatiq (using redis)
-  - sample task
-  - list running tasks
 - allow for multiple services (alchemy mongodb, s3, upload folders)
 - integrate redis and dramatiq into docker-compose.yml? or test network interaction between containers
 - explore and implement this https://towardsdatascience.com/deploying-ml-models-in-production-with-fastapi-and-celery-7063e539a5db
   - uvicorn workers and background tasks
 - move common and reusable functions to services instead of examples
 - usage of frontend state store for sharing of data between frontend pages (example on state store usage)
-- Auth- FE: SSO SAML, BE: JWT
+- Auth-FE: SSO SAML, BE: JWT
 
 ## DONE
 - V0.0.3
-  - 2001-03-18
+  - 2021-03-29
+    - add HUEY_REDIS_CONNECTION and HUEY_TASK_QUEUES configurations
+    - improve on task queue examples
+  - 2021-03-27
+    - wip add huey task queue
+  - 2021-03-18
     - seperate requirements.txt for framework and custom app (but still use same venv)
     - add initial protected route for vitevue
     - vitevue configurable dev server port number
@@ -25,7 +27,6 @@
     - Add docker-compose.yml
     - Add Redis service
   - api version for (cascading muiti-select) (DemoMoreForm.vue)
-
 - V0.0.2
   - 2001-03-09
     - FE: tidy up secure layout
