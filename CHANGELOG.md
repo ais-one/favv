@@ -1,10 +1,4 @@
 ## TODO
-- add dramatiq (using redis)
-  - sample task
-  - list running tasks
-- add rq (using redis)
-  - cannot run on windows
-- add huey
 - allow for multiple services (alchemy mongodb, s3, upload folders)
 - integrate redis and dramatiq into docker-compose.yml? or test network interaction between containers
 - explore and implement this https://towardsdatascience.com/deploying-ml-models-in-production-with-fastapi-and-celery-7063e539a5db
@@ -15,6 +9,8 @@
 
 ## DONE
 - V0.0.3
+  - 2021-03-28
+    - add HUEY_REDIS_CONNECTION and HUEY_TASK_QUEUES configurations
   - 2021-03-27
     - wip add huey task queue
   - 2021-03-18

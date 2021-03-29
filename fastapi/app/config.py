@@ -16,7 +16,7 @@ class Settings(BaseSettings):
   REFRESH_TOKEN_SECRET: str = "".join(random.choice(string.ascii_letters) for i in range(64))
   VERSION: str
   API_PORT=8000
-  SQLALCHEMY_DB_URL: str = ""
+  SQLALCHEMY_DB_URL: str = "" # to be made a list
   CORS_ORIGINS: str = ""
   S3_ENDPOINT_URL: str = ""
   S3_ACCESS_ID: str = ""
@@ -26,8 +26,10 @@ class Settings(BaseSettings):
   MODEL_FOLDER: str = ""
   WEB_BASEPATH: str = "/"
   REDIS_CONNECTION: str = ""
-  MONGODB_URL: str = ""
-  MONGODB_DB: str = ""
+  HUEY_REDIS_CONNECTION: str = ""
+  HUEY_TASK_QUEUES: str = "" # to be made a list
+  MONGODB_URL: str = "" # to be made a list
+  MONGODB_DB: str = "" # to be made a list
   class Config:
     env_file = ".env" # .env.development .env.production
 

@@ -1,6 +1,9 @@
 import os
 from config import get_settings # can use stuff from framework...
-from services.huey_config import huey
+# from services.huey_config import huey
+
+from services.huey_config import connect_huey
+huey = connect_huey()
 
 from time import sleep
 

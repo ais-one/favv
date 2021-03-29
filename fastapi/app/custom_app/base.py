@@ -10,8 +10,8 @@ from .uploads import router_custom_app_uploads # reference same level
 from .s3 import router_custom_app_s3 # reference same level
 from .cascade import router_custom_app_cascade # reference same level
 
-from services.huey_config import huey # task queue
-from .models.tasks import add_numbers
+from services.huey_config import get_huey # task queue
+from custom_app.models.tasks import add_numbers
 
 import numpy as np
 
@@ -61,15 +61,39 @@ async def huey_post_test():
 
 @router_custom_app.get("/huey-get-test", tags=["api_custom_app"])
 async def huey_get_test():
-  # pending = huey.pending()
-  # num_pending = len(pending)
-  # for i in pending:
+  huey = get_huey()
+  result = []
+  try:
+    pending = huey.pending()
+    num_pending = len(pending)
+    print(num_pending)
+  except Exception as e:
+    print(str(e))
+  try:
+    scheduled = huey.scheduled()
+    num_scheduled = len(scheduled)
+  except Exception as e:
+    print(str(e))
+  # print(scheduled)
+  # for i in scheduled:
   #   print(i.id)
   #   # print(dir(i))
   #   # methods = [method_name for method_name in dir(i) if callable(getattr(i, method_name))]
-  #   # r1 = huey.result(id1, blocking=True, preserve=True)
-  #   # r2 = huey.result(id2, blocking=True, preserve=True)
-  #   # print(result)
-  #   # huey.all_results()
-  num_scheduled = huey.__len__()
-  return { "pending tasks": num_scheduled }
+  # list all results
+  all = huey.all_results() 
+  for i in all:
+    id = i.decode("utf-8")
+    # print(id)
+    r1 = huey.result(id, blocking=False, preserve=False) # preserve=False will clear result
+    result.append({
+      "id": id,
+      "result": r1
+    })
+    # print(dir(i))
+  # # flush results
+  # huey.storage.flush_results()
+  in_queue = huey.__len__()
+  return {
+    "items in queue": in_queue,
+    "result": result
+  }
