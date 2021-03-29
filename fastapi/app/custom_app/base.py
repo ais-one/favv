@@ -73,7 +73,7 @@ async def huey_scheduled_test():
 async def huey_pending_test():
   huey = get_huey()
   try:
-    pending = huey.pending()
+    pending = huey.pending() # currently this keeps failing due to not being able to find task, needs more investigation, but no a show-stopper
     num_pending = len(pending)
     return { "num_pending": num_pending }
   except Exception as e:
