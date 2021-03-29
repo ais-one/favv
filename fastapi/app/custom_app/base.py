@@ -12,6 +12,7 @@ from .cascade import router_custom_app_cascade # reference same level
 
 from services.huey_config import get_huey # task queue
 from custom_app.models.tasks import add_numbers
+# from .models.tasks import add_numbers # An alternative to above
 
 import numpy as np
 
