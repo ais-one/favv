@@ -11,14 +11,13 @@ def connect_huey():
   try:
     queue_name = get_settings().HUEY_TASK_QUEUES
     url = get_settings().HUEY_REDIS_CONNECTION
-    print(url)
     if url != "" and queue_name !="":
       huey = RedisHuey(queue_name, url=url, blocking=False)
       print("Huey Connect")
     else:
       print("Huey No Connection ")
-  except:
-    print("Huey Connect Fail")
+  except Exception as e:
+    print("Huey Connect Fail: " + str(e))
   return huey
 
 

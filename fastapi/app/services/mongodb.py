@@ -35,8 +35,8 @@ def connect_mongodb():
       print("MongoDB Connected")
     else:
       print("No MongoDB Config")
-  except:
-    print("MongoDB Connect Fail")
+  except Exception as e:
+    print("MongoDB Connect Fail: " + str(e))
 
 def disconnect_mongodb():
   print("Close MongoDB")

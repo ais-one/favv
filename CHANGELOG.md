@@ -1,9 +1,9 @@
 ## TODO
-- allow for multiple services (alchemy mongodb, s3, upload folders)
-- integrate redis and dramatiq into docker-compose.yml? or test network interaction between containers
+- V0.0.4: add ApiKey to favv
+- V0.0.4: allow for multiple services (alchemy mongodb, s3, upload folders)
+- V0.0.4: test network interaction between containers (for dev)
 - explore and implement this https://towardsdatascience.com/deploying-ml-models-in-production-with-fastapi-and-celery-7063e539a5db
   - uvicorn workers and background tasks
-- move common and reusable functions to services instead of examples
 - usage of frontend state store for sharing of data between frontend pages (example on state store usage)
 - Auth-FE: SSO SAML, BE: JWT
 

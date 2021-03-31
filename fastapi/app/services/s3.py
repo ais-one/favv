@@ -19,12 +19,12 @@ def connect_s3():
         aws_access_key_id=get_settings().S3_ACCESS_ID,
         aws_secret_access_key=get_settings().S3_SECRET_KEY
       )
-      print("s3 Connected")
+      print("S3 Connected")
     else:
       s3 = None
-      print("No s3 Config")
-  except:
-      print("s3 Connect Fail")
+      print("No S3 Config")
+  except Exception as e:
+    print("S3 Connect Fail: " + str(e))
 
 def get_s3():
   global s3

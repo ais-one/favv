@@ -18,8 +18,8 @@ def connect_redis():
         print("Redis Ping Failed")
     else:
       print("No Redis Config")
-  except:
-    print("Redis Connect Fail")
+  except Exception as e:
+    print("Redis Connect Fail: " + str(e))
 
 async def get_redis():
   global cache

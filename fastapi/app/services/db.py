@@ -46,8 +46,8 @@ def connect_db():
       print("DB Connected")
     else:
       print("No DB Config")
-  except:
-    print("DB Connect Fail")
+  except Exception as e:
+    print("DB Connect Fail: " + str(e))
 
 def disconnect_db():
   print("Close DB v2")
