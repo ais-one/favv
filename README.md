@@ -20,8 +20,8 @@ cd fastapi
 # create environment called dev
 python -m venv dev # python3 -m venv /path/to/new/virtual/env
 
-# rename .env.example to .env
-mv ./app/.env.example ./app/.env
+# copy .env.example to .env, adjust your own custom env settings here
+cp ./app/.env.example ./app/.env
 
 # activate it - use \ for windows
 dev/Scripts/activate
@@ -54,9 +54,22 @@ Navigate to - http://127.0.0.1:8000/api-docs
 
 ### Frontend
 
+- VueJS 3
+- Vite 2 [https://github.com/vuejs/vite](https://github.com/vuejs/vite)
+- Ant Design 2
+
 ```bash
-cd vitevue
+# move to the vitevue folder
+cd ../../vitevue
+
+# copy the configs
+cp src/.env.js.example src/.env.js
+cp src/.env.vite.js.example src/.env.vite.js
+
+# install
 npm i
+
+# run UI on UI dev server
 npm run dev
 ```
 
