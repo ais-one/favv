@@ -1,14 +1,21 @@
 ## TODO
+- V0.0.4: make fastapi .env settable for local, docker, etc. environments
+- V0.0.4: add todo list example
 - V0.0.4: add ApiKey to favv
 - V0.0.4: allow for multiple services (alchemy mongodb, s3, upload folders)
-- V0.0.4: test network interaction between containers (for dev)
 - explore and implement this https://towardsdatascience.com/deploying-ml-models-in-production-with-fastapi-and-celery-7063e539a5db
   - uvicorn workers and background tasks
 - usage of frontend state store for sharing of data between frontend pages (example on state store usage)
 - Auth-FE: SSO SAML, BE: JWT
 
+# Upgrade Notes (v0.0.4)
+- check favv/fastapi requirements.txt file, it has been overwritten, keep it that way. copy the **requirements-base.txt.example** file to **requirements-base.txt**
+- for favv/fastapi .env host is **redis** if using docker compose **127.0.0.1** otherwise
+
 ## DONE
 - V0.0.4:
+  - 2021-04-05
+    - V0.0.4: test and document network interaction between containers (docker-compose use case)
   - 2021-04-05
     - run with docker-compose
     - handle requirements.txt of custom app

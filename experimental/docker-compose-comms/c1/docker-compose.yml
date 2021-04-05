@@ -9,7 +9,3 @@ networks:
   default:
     external:
       name: redis_default
-
-# docker network create blah-example
-# docker exec -it compose1_service1_1 ping service2
-# docker exec -it compose2_service2_1 ping service1
