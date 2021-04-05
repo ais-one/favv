@@ -12,4 +12,8 @@ RUN pip install -r requirements.txt
 
 WORKDIR /app
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# run only fastapi
+# CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+# run both fastapi and huey
+CMD uvicorn main:app --host 0.0.0.0 --port 8000 & huey_consumer custom_app.models.tasks.huey
