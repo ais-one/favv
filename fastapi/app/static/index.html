@@ -1,0 +1,130 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+  <title>Website Site List</title>
+  <style>
+  </style>
+</head>
+<body>
+  <div class="section">
+    <div class="container">
+      <div class="columns is-mobile is-centered">
+        <nav class="panel">
+          <p class="panel-heading">Our Websites!</p>
+          <div class="panel-block">
+            <form class="control" id="task-form">
+              <div class="field has-addons">
+                <p class="control is-expanded">
+                  <input id="name" class="input" type="text" placeholder="Enter Site Name" required>
+                </p>
+                <p class="control is-expanded">
+                  <input id="task" class="input" type="url" placeholder="Enter Site URL" required>
+                </p>
+                <p class="control">
+                  <button type="submit" class="button is-primary">Add</button>
+                </p>
+              </div>
+            </form>
+          </div>
+          <div class="collection">
+            <!--
+            <div class="panel-block is-justify-content-space-between">
+              <a class="is-pulled-left">https://bulma.io</a>
+              <a class="is-pulled-right delete-item">Remove</a>             
+            </div>
+            -->
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+const form = document.querySelector('#task-form')
+const taskList = document.querySelector('.collection')
+const taskInput = document.querySelector('#task')
+
+document.addEventListener('DOMContentLoaded', getTasks);
+form.addEventListener('submit', addTask);
+taskList.addEventListener('click', removeTask);
+
+//Get Task from Local Storage
+function getTasks(){
+  let tasks
+  if(localStorage.getItem('tasks') === null) {
+    tasks =[]
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'))
+  }
+  tasks.forEach(function(task) { createListItem(task) })
+}
+
+//Add Task
+function addTask(e){
+  if(taskInput.value === '') return alert('Add a site')
+  createListItem(taskInput.value)
+  storeTaskInLocalStorage(taskInput.value);
+  taskInput.value = ''
+  e.preventDefault()
+}
+
+function createListItem(task) {
+  const taskDiv = document.createElement('div')
+  taskDiv.className = 'panel-block is-justify-content-space-between'
+
+    const titleLink = document.createElement('a')
+    titleLink.className = 'is-pulled-left'
+    titleLink.setAttribute('href', task)
+    titleLink.setAttribute('target', '_blank')
+    titleLink.innerHTML = task
+
+    const removeLink = document.createElement('a')
+    removeLink.className = 'ml-2 button is-danger is-small is-pulled-right delete-item'
+    removeLink.innerHTML = 'Remove'
+
+    taskDiv.append(titleLink)
+    taskDiv.append(removeLink)
+
+    taskList.appendChild(taskDiv)
+}
+
+//Store Task
+function storeTaskInLocalStorage(task){
+  let tasks
+  if(localStorage.getItem('tasks') === null) {
+    tasks =[]
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'))
+  }
+  tasks.push(task)
+  localStorage.setItem('tasks', JSON.stringify(tasks))
+}
+
+//remove task
+function removeTask(e){
+  if (e.target.classList.contains('delete-item')) {
+    if(confirm('Are You Sure?')) {
+      e.target.parentElement.remove()
+      //Remove from Local Storage
+      let tasks
+      if (localStorage.getItem('tasks') === null) {
+        tasks =[]
+      } else {
+        tasks = JSON.parse(localStorage.getItem('tasks'))
+      }
+      tasks.forEach(function(task, index){
+        if(e.target.parentElement.firstChild.textContent === task) {
+          tasks.splice(index, 1)
+        }
+      })
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+  }
+}
+
+  </script>
+</body>
+
+</html>

@@ -8,6 +8,13 @@
 - Auth-FE: SSO SAML, BE: JWT
 
 ## DONE
+- V0.0.4:
+  - 2021-04-05
+    - run with docker-compose
+    - handle requirements.txt of custom app
+    - include redis and huey
+  - 2021-03-31
+    - add website list frontend app
 - V0.0.3
   - 2021-03-29
     - add HUEY_REDIS_CONNECTION and HUEY_TASK_QUEUES configurations

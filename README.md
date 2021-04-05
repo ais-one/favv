@@ -23,6 +23,9 @@ python -m venv dev # python3 -m venv /path/to/new/virtual/env
 # copy .env.example to .env, adjust your own custom env settings here
 cp ./app/.env.example ./app/.env
 
+# copy requirements.txt.example to copy requirements.txt (point to your own custom requirements.txt inside)
+cp ./requirements.txt.example ./requirements.txt
+
 # activate it - use \ for windows
 dev/Scripts/activate
 
@@ -103,7 +106,9 @@ docker run -it <your-image-name>:<tag>
   | |   + models/ 
   | |     * tasks.py: custom task queue file
   | |   + uploads/
-  | + Dockerfile
+  | + Dockerfile: DO NOT TOUCH THIS
+  | + requirements-base.txt: DO NOT TOUCH THIS 
+  | + requirements.txt: Add-in your requirements file in your custom app here...  
   + vitevue/
     + src
     | + .env.js: frontend config (set INITIAL_SECURE_PATH, API_URL - to API server, ROUTES here)
