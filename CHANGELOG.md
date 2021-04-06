@@ -1,5 +1,4 @@
 ## TODO
-- V0.0.4: make fastapi .env settable for local, docker, etc. environments
 - V0.0.4: add todo list example
 - V0.0.4: add ApiKey to favv
 - V0.0.4: allow for multiple services (alchemy mongodb, s3, upload folders)
@@ -14,8 +13,10 @@
 
 ## DONE
 - V0.0.4:
-  - 2021-04-05
-    - V0.0.4: test and document network interaction between containers (docker-compose use case)
+  - 2021-04-07
+    - make fastapi .env handle various states (local, docker, etc. environments)
+  - 2021-04-06
+    - test and document network interaction between containers (docker-compose use case)
   - 2021-04-05
     - run with docker-compose
     - handle requirements.txt of custom app

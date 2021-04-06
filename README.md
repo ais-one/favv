@@ -21,7 +21,9 @@ cd fastapi
 python -m venv dev # python3 -m venv /path/to/new/virtual/env
 
 # copy .env.example to .env, adjust your own custom env settings here
-cp ./app/.env.example ./app/.env
+cp ./app/.env.example ./app/.env # common environment
+cp ./app/.env.local.example ./app/.env.local # for local machine deployment
+cp ./app/.env.docker-compose.example ./app/.env.docker-compose # for docker compose deployment
 
 # copy requirements.txt.example to copy requirements.txt (point to your own custom requirements.txt inside)
 cp ./requirements.txt.example ./requirements.txt
@@ -106,6 +108,8 @@ docker run -it <your-image-name>:<tag>
   | |   + models/ 
   | |     * tasks.py: custom task queue file
   | |   + uploads/
+  | + .env: environment state, custom app name and version
+  | + .env.<your-environment>: environment specific info
   | + Dockerfile: DO NOT TOUCH THIS
   | + requirements-base.txt: DO NOT TOUCH THIS 
   | + requirements.txt: Add-in your requirements file in your custom app here...  
@@ -135,7 +139,9 @@ git clone <your backend project e.g. example_app>
   - working with files in **favv/fastapi/app/custom_app/sample_uploads/** folder
   - running subprocess in **favv/fastapi/app/custom_app/sample_models/** folder
 - set the APP, to the folder name of your custom app in **favv/fastapi/app/.env**
-  - UPLOAD_FOLDER and MODEL_FOLDER is directly inside your custom app folder
+  - specify the VERSION and the ENVIRONMENT state (local, docker-compose, production, <your-environment-name> etc...)
+  - specify APP which is your custom application, UPLOAD_FOLDER and MODEL_FOLDER is directly inside your custom app folder
+  - set uour environment specific information in **favv/fastapi/app/.env.<your-environment-name>**
 - application path is **favv/fastapi/app/** as **main.py** is run from there (either using python or uvicorn)
 - test endpoints in **favv/fastapi/app/api/routes/test.py** will not be available in production environment
 - NOTE: update **favv/fastapi/app/config.py** when **.env** entries change
