@@ -8,13 +8,20 @@ logger.warn("Logging @ %s", __name__)
 import random
 import string
 
-class Settings(BaseSettings):
-  ENV: str = "development"
+class CommonSettings(BaseSettings):
+  ENV: str = "error"
   APP: str = "demo"
+  VERSION: str = "0.0.0"
+  class Config:
+    env_file = ".env"
+
+class EnvSettings(BaseSettings):
+  ENV: str = CommonSettings().ENV
+  APP: str = CommonSettings().APP
+  VERSION: str = CommonSettings().VERSION
   JWT_ALG: str = "HS256"
   JWT_SECRET: str = "".join(random.choice(string.ascii_letters) for i in range(32))
   REFRESH_TOKEN_SECRET: str = "".join(random.choice(string.ascii_letters) for i in range(64))
-  VERSION: str
   API_PORT=8000
   SQLALCHEMY_DB_URL: str = "" # to be made a list
   CORS_ORIGINS: str = ""
@@ -31,9 +38,9 @@ class Settings(BaseSettings):
   MONGODB_URL: str = "" # to be made a list
   MONGODB_DB: str = "" # to be made a list
   class Config:
-    env_file = ".env" # .env.development .env.production
+    env_file = ".env." + CommonSettings().ENV # .env.development .env.production
 
 # settings = Settings()
 @lru_cache()
 def get_settings():
-  return Settings()
+  return EnvSettings()

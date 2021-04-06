@@ -7,6 +7,10 @@ __pycache__
 # environment
 # fastapi/app/.env is filled with your own and untracked
 .env
+.env.*
+!.env.example
+!.env.local.example
+!.env.docker-compose.example
 
 # dependencies
 # fastapi/requirements.txt is filled with your own and untracked
