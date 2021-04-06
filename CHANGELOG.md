@@ -15,6 +15,7 @@
 - V0.0.4:
   - 2021-04-07
     - make fastapi .env handle various states (local, docker, etc. environments)
+    - fix API_PORT bug (was stuck as 8000)
   - 2021-04-06
     - test and document network interaction between containers (docker-compose use case)
   - 2021-04-05
