@@ -27,9 +27,17 @@ cp ./app/.env.docker-compose.example ./app/.env.docker-compose # for docker comp
 
 # copy requirements.txt.example to copy requirements.txt (point to your own custom requirements.txt inside)
 cp ./requirements.txt.example ./requirements.txt
+```
+# activate it for windows
 
-# activate it - use \ for windows
-dev/Scripts/activate
+```
+dev\Scripts\activate
+```
+# activate using linux
+
+```
+source dev/bin/activate 
+```
 
 # pip install fastapi uvicorn[standard] python-multipart SQLAlchemy passlib[bcrypt] python-jose[cryptography] boto3 pymongo redis 
 # pip freeze > requirements.txt # save libraries installed, done after each pip install

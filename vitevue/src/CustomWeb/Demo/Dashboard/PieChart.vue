@@ -9,10 +9,35 @@ import { onMounted } from 'vue'
 import { Chart } from '@antv/g2'
 
 export default {
-  name: 'MultiChart',
+  name: 'PieChart',
   setup() {
 
     onMounted(() => {
+      const data = [
+        { genre: 'Sports', sold: 275 },
+        { genre: 'Strategy', sold: 115 },
+        { genre: 'Action', sold: 120 },
+        { genre: 'Shooter', sold: 350 },
+        { genre: 'Other', sold: 150 },
+      ];
+/*
+      // Step 1: Create a Chart instance.
+      const chart = new Chart({
+        container: 'pc1', // Specify chart container ID
+        width: 600, // Specify chart width
+        height: 300, // Specify chart height
+      });
+
+      // Step 2: Load the data.
+      chart.data(data);
+
+      // Step 3: Declare the grammar of graphics, draw column chart.
+      chart.interval().position('genre*sold');
+
+      // Step 4: Render chart.
+      chart.render();
+*/
+/*
       const otherRatio = 6.67 / 100; // Other 的占比
       const otherOffsetAngle = otherRatio * Math.PI; // other 占的角度的一半
       const data = [
@@ -93,7 +118,7 @@ export default {
         .position('value')
         .color('type', ['#063d8a', '#0b53b0', '#1770d6', '#2593fc', '#47abfc', '#6dc1fc', '#94d6fd', '#bbe7fe'])
         .label('value', {
-          position: 'bottom',
+          position: 'right',
           offsetX: 5,
           offsetY: 10,
           content: (obj) => {
@@ -106,7 +131,6 @@ export default {
         drawLinkArea();
       });
 
-      /* ---------绘制连接区间-----------*/
       function drawLinkArea() {
         const canvas = chart.getCanvas();
         const container = chart.backgroundGroup;
@@ -149,7 +173,7 @@ export default {
         });
         canvas.draw();
       }
-
+*/
     })
 
     return {

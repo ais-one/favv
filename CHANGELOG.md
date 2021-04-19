@@ -1,7 +1,8 @@
 ## TODO
+- test out work on DEV server especially for vitevue
+- V0.0.4: allow for multiple services (alchemy mongodb, s3, upload folders)
 - V0.0.4: add todo list example
 - V0.0.4: add ApiKey to favv
-- V0.0.4: allow for multiple services (alchemy mongodb, s3, upload folders)
 - explore and implement this https://towardsdatascience.com/deploying-ml-models-in-production-with-fastapi-and-celery-7063e539a5db
   - uvicorn workers and background tasks
 - usage of frontend state store for sharing of data between frontend pages (example on state store usage)
@@ -13,6 +14,10 @@
 
 ## DONE
 - V0.0.4:
+  - 2021-04-19
+    - add file uplaod & json data multipart form API upload example
+  - 2021-04-16
+    - add slider with input box example
   - 2021-04-07
     - make fastapi .env handle various states (local, docker, etc. environments)
     - fix API_PORT bug (was stuck as 8000)

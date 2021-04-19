@@ -89,7 +89,7 @@
 
         <a-col class="ds-stat" :span="24">
           <a-page-header title="Faked Quality" />
-          <MultiChart />
+          <!-- <MultiChart /> -->
         </a-col>
         <a-col class="ds-stat" :span="24">
         </a-col>
@@ -130,7 +130,7 @@
 
 <script>
 import { LikeOutlined, ArrowUpOutlined, ArrowDownOutlined, UserOutlined } from '@ant-design/icons-vue'
-import MultiChart from './Dashboard/MultiChart.vue'
+// import MultiChart from './Dashboard/MultiChart.vue'
 import PieChart from './Dashboard/PieChart.vue'
 
 const data = [
@@ -156,7 +156,7 @@ export default {
     UserOutlined,
 
     PieChart,
-    MultiChart
+    // MultiChart
   },
   setup() {
     return {
