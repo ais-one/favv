@@ -9,7 +9,7 @@ import { onMounted } from 'vue'
 import { Chart } from '@antv/g2'
 
 export default {
-  name: 'MultiChart',
+  name: 'PieChart',
   setup() {
 
     onMounted(() => {
@@ -93,7 +93,7 @@ export default {
         .position('value')
         .color('type', ['#063d8a', '#0b53b0', '#1770d6', '#2593fc', '#47abfc', '#6dc1fc', '#94d6fd', '#bbe7fe'])
         .label('value', {
-          position: 'bottom',
+          position: 'right',
           offsetX: 5,
           offsetY: 10,
           content: (obj) => {
@@ -106,7 +106,6 @@ export default {
         drawLinkArea();
       });
 
-      /* ---------绘制连接区间-----------*/
       function drawLinkArea() {
         const canvas = chart.getCanvas();
         const container = chart.backgroundGroup;

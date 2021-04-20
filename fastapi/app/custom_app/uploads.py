@@ -1,8 +1,10 @@
 import shutil
 import os
-from fastapi import APIRouter, File, UploadFile, Query
+from fastapi import APIRouter, File, UploadFile, Query, Form
 from fastapi.responses import FileResponse # from starlette.responses import FileResponse
-from typing import List
+from typing import List, Optional
+
+import json
 
 # this is referencing fastapi/app...
 from services.file import get_upload_folder, set_upload_path, list_files
@@ -73,3 +75,29 @@ async def ext_read_file(filename: str = Query(None)):
 async def ext_download_file(filename: str = Query(None)):
   file_path = set_upload_path(filename)
   return FileResponse(file_path, media_type='application/octet-stream',filename="down-"+filename)
+
+# create more static folders for serving images from fastApi
+# serve static folder from inside custom application
+@router_custom_app_uploads.post("/file-and-json")
+async def file_and_json(
+  myfiles: List[UploadFile] = File(...),
+  mydata: Optional[str] = Form(None)
+  ):
+
+  myfilenames = []
+  for myfile in myfiles:
+    myfilenames.append(myfile.filename)
+    print(myfile.filename)
+  myjson = json.loads(mydata)
+  # print("Type:", type(myjson))
+  # print(myjson)
+  # uploadMethod: str = Form(...),
+  # predictFolderPath: Optional[str] = Form(None),
+  # predictJobName: Optional[str] = Form(''),
+  # predictSelectCnnModel: Optional[List[str]] = Form(None), 
+  # predictSelectYoloModel: Optional[List[str]] = Form(None),
+  # PredictYoloConfidenceThreshold: float = Form(...)):
+  return {
+    "myjson": myjson,
+    "myfilenames": myfilenames
+  }

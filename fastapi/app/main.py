@@ -68,7 +68,7 @@ print("__name__=" + __name__)
 # Use uvicorn to run FastAPI app
 if __name__ == "__main__":
   print("@ __main__")
-  uvicorn.run("main:app", host="127.0.0.1", port=get_settings().API_PORT, debug=True, reload=True, access_log=False, headers=[("server", "")])
+  uvicorn.run("main:app", host="0.0.0.0", port=get_settings().API_PORT, debug=True, reload=True, access_log=False, headers=[("server", "")])
 
 if __name__ == "__mp_main__":
   print("@ __mp_main__")

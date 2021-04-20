@@ -1,7 +1,40 @@
 <template>
   <a-collapse v-model:activeKey="activeKey">
-    <a-collapse-panel key="1" header="Form">
+    <a-collapse-panel key="1" header="Form - Test Upload Files and JSON data">
       <a-form :model="formState" :label-col="labelCol" :wrapper-col="wrapperCol">
+        <a-upload-dragger
+          :file-list="form1.files"
+          :remove="handleRemove"
+          :before-upload="beforeUpload"
+          :multiple="true"
+        >
+          <p class="ant-upload-drag-icon">
+            <inbox-outlined></inbox-outlined>
+          </p>
+          <p class="ant-upload-text">Click or drag file to this area to upload</p>
+          <p class="ant-upload-hint">
+            Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files
+          </p>
+        </a-upload-dragger>
+        <a-form-item label="Text Input">
+          <a-input v-model:value="form1.text" />
+        </a-form-item>
+        <a-form-item label="Number Input">
+          <a-input v-model:value="form1.number" type="number" />
+        </a-form-item>
+        <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
+          <a-button type="primary" @click.native="onSubmit1">Upload</a-button>
+        </a-form-item>
+      </a-form>
+    </a-collapse-panel>
+    <a-collapse-panel key="2" header="Form - Test Various Inputs">
+      <a-form :model="formState" :label-col="labelCol" :wrapper-col="wrapperCol">
+        <a-form-item label="Test Slider">
+          <a-input-group compact>
+            <a-slider style="width: 80%;" :min="1" :max="20" v-model:value="formState.rating" />
+            <a-input style="width: 16%; float: right;" v-model:value="formState.rating" />
+          </a-input-group>
+        </a-form-item>
         <a-form-item label="Activity name">
           <a-input v-model:value="formState.name" />
         </a-form-item>
@@ -46,7 +79,7 @@
         Create Response: {{ submitResult || 'No Response' }}
       </a-form>
     </a-collapse-panel>
-    <a-collapse-panel key="2" header="Transfer" :disabled="false">
+    <a-collapse-panel key="3" header="Transfer" :disabled="false">
       <a-transfer
         :data-source="mockData"
         show-search
@@ -71,11 +104,18 @@
 
 </template>
 <script>
+//           v-model:fileList="form1.files"
+
 import { ref, reactive, toRaw, watch, onMounted } from 'vue'
+import { InboxOutlined } from '@ant-design/icons-vue'
+
 import * as http from '~/http.js'
 import { API_URL } from '/config.js'
 
 export default {
+  components: {
+    InboxOutlined,
+  },
   setup() {
     const submitResult = ref('')
     const mockData = ref([]); // transfer
@@ -116,7 +156,6 @@ export default {
       console.log(val);
     });
 
-
     const formState = reactive({ // form
       name: '',
       region: undefined,
@@ -125,6 +164,7 @@ export default {
       type: [],
       resource: '',
       desc: '',
+      rating: 5,
     })
 
     const onSubmit = async () => {
@@ -141,7 +181,53 @@ export default {
       }
     }
 
+    const form1 = reactive({
+      files: [],
+      text: 'abcd',
+      number: 3
+    })
+    const onSubmit1 = async () => {
+      try {
+        console.log('submit', form1.files)
+
+        // submit the data here
+        const form = new FormData()
+        for (let file of form1.files) {
+          form.append('myfiles', file)
+        }
+        form.append('mydata', JSON.stringify({
+          text: form1.text,
+          number: form1.number
+        }))
+        const { data } = await http.post(API_URL + '/api/custom-app/uploads/file-and-json', form)
+        console.log(data)
+      } catch (e) {
+        console.log('onSubmit1 Error', e.toString())
+      }
+    }
+    const handleRemove = file => {
+      const newFileList = form1.files.filter(f => f.uid !== file.uid) // do not handle if same filename
+      form1.files = newFileList
+    };
+    const beforeUpload = file => {
+      console.log('beforeUpload', file)
+      const found = form1.files.find(f => f.name === file.name)
+      console.log(form1.files)
+      if (!found) {
+        console.log('adding')
+        form1.files = [...form1.files, file]
+      } else {
+        // remove from list?...
+      }
+      return false
+    }
+
     return {
+      form1,
+      onSubmit1,
+      beforeUpload,
+      handleRemove,
+
       submitResult,
       activeKey, // form
 
