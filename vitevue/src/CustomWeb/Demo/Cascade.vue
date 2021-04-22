@@ -1,5 +1,6 @@
 <template>
   <a-form :model="formState" layout="vertical">
+    <h1>Store Counter {{ storeCounter }}</h1>
     <a-form-item label="Region">
       <a-select
         mode="multiple"
@@ -30,12 +31,15 @@
   </a-form>
 </template>
 <script>
-import { ref, reactive, toRaw, watch, onMounted } from 'vue';
+import { ref, reactive, toRaw, watch, onMounted, computed } from 'vue';
+import { useMainStore } from '../store.js'
+
 export default {
   setup() {
     // a-select - allowClear (handle event)
     // TBD select / clear all
 
+    const mainStore = useMainStore()
     onMounted(() => {
     });
 
@@ -85,6 +89,7 @@ export default {
       formState,
       onSubmit,
       blurRegion,
+      storeCounter: computed(() => mainStore.counter),
     }
   },
 }

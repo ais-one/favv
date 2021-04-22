@@ -1,5 +1,9 @@
 <template>
-  <a-form :model="formState" layout="vertical">
+  <a-form
+    layout="vertical"
+    :model="formState"
+    ref="formRef"
+  >
     <a-form-item label="Continents">
       <a-checkbox @change="onCheckAllChange">Select all</a-checkbox>
       <!-- v-model:checked="checkAll" -->
@@ -7,24 +11,24 @@
         <template #clearIcon>
           <setting-outlined />
         </template>
-        <a-select-option v-for="item in formState.continentsList" :key="item">{{ item }}</a-select-option>
+        <a-select-option v-for="item in lists.continentsList" :key="item">{{ item }}</a-select-option>
       </a-select>
     </a-form-item>
 
     <a-form-item label="Countries East Hemisphere">
       <a-select mode="multiple" placeholder="Please select" v-model:value="formState.countriesEast" allowClear>
-        <a-select-option v-for="item in formState.countriesEastList" :key="item">{{ item }}</a-select-option>
+        <a-select-option v-for="item in lists.countriesEastList" :key="item">{{ item }}</a-select-option>
       </a-select>
     </a-form-item>
     <a-form-item label="Countries West Hemisphere">
       <a-select mode="multiple" placeholder="Please select" v-model:value="formState.countriesWest" allowClear @blur="blurSelect2" @deselect="blurSelect2">
-        <a-select-option v-for="item in formState.countriesWestList" :key="item">{{ item }}</a-select-option>
+        <a-select-option v-for="item in lists.countriesWestList" :key="item">{{ item }}</a-select-option>
       </a-select>
     </a-form-item>
 
     <a-form-item label="Country States (West)">
       <a-select mode="multiple" placeholder="Please select" v-model:value="formState.westCountryStates">
-        <a-select-option v-for="item in formState.westCountryStatesList" :key="item">{{ item }}</a-select-option>
+        <a-select-option v-for="item in lists.westCountryStatesList" :key="item">{{ item }}</a-select-option>
       </a-select>
     </a-form-item>
 
@@ -52,6 +56,8 @@
 
     <a-form-item>
       <a-button type="primary" @click="onSubmit">Run</a-button>
+      <!-- <input type="reset" value="reset"> -->
+      <a-button style="margin-left: 8px;" type="primary" @click="onClear">Clear</a-button>
     </a-form-item>
   </a-form>
 </template>
@@ -65,15 +71,10 @@ export default {
   },
   setup() {
     onMounted(async () => { })
-
-    const formState = reactive({ // form
-      forceIncludes: [],
-      forceExcludes: [],
-
-      continents: [],
+    const formRef = ref()
+    const lists = reactive({
       continentsList: ['Asia', 'Europe', 'NA', 'SA', 'Africa', 'ME'],
 
-      countriesEast: [],
       countriesEastList: [],
       countriesEastMasterList: {
         'Asia': ['Russia', 'Japan', 'Burma', 'Indonesia', 'Afghanistan'],
@@ -81,14 +82,13 @@ export default {
         'Africa': ['Egypt', 'Nigeria', 'Kenya', 'Liberia'],
         'ME': ['Egypt', 'Saudi Arabia', 'Afghanistan'],
       },
-      countriesWest: [],
+
       countriesWestList: [],
       countriesWestMasterList: {
         'NA': ['United States', 'Canada'],
         'SA': ['Brazil', 'Argentina', 'Ecuador'],
       },
 
-      westCountryStates: [],
       westCountryStatesList: [],
       westCountryStatesMasterList: {
         'United States': ['California', 'New York', 'Ohio', 'Utah', 'Texas'],
@@ -97,12 +97,19 @@ export default {
         'Argentina': ['A1', 'A2', 'A3'],
         'Ecuador': ['EC1', 'EC2'],
       },
-
+    })
+    const formState = reactive({ // form
+      forceIncludes: [],
+      forceExcludes: [],
+      continents: [],
+      countriesEast: [],
+      countriesWest: [],
+      westCountryStates: [],
     })
 
     const onCheckAllChange = e => {
       if (e.target.checked === true) {
-        formState.continents = [...formState.continentsList]
+        formState.continents = [...lists.continentsList]
         blurSelect() // select all countriesEast / countriesWest
       } else {
         formState.continents = []
@@ -135,8 +142,8 @@ export default {
         const newSelected = []
 
         for (let _item of formState[key]) { // loop continent from continents
-          if (formState[subKeyMasterList][_item]) {
-            for (let _subItem of formState[subKeyMasterList][_item]) { // loop through every country in a continent
+          if (lists[subKeyMasterList][_item]) {
+            for (let _subItem of lists[subKeyMasterList][_item]) { // loop through every country in a continent
               if (!keys[_subItem]) {
                 list.push(_subItem)
                 keys[_subItem] = true
@@ -147,7 +154,7 @@ export default {
           }
         }
         formState[subKey] = [...newSelected]
-        formState[subKeyList] = [...list]
+        lists[subKeyList] = [...list]
       }
       blurSelect2()
     }
@@ -171,9 +178,9 @@ export default {
         const newSelected = []
 
         for (let _item of formState[key]) { // loop country from list of countries
-          if (formState[subKeyMasterList][_item]) {
+          if (lists[subKeyMasterList][_item]) {
             // start
-            for (let _subItem of formState[subKeyMasterList][_item]) { // loop through every state in a country
+            for (let _subItem of lists[subKeyMasterList][_item]) { // loop through every state in a country
               if (!keys[_subItem]) {
                 list.push(_subItem)
                 keys[_subItem] = true
@@ -185,7 +192,7 @@ export default {
           }
         }
         formState[subKey] = [...newSelected]
-        formState[subKeyList] = [...list]
+        lists[subKeyList] = [...list]
       }
     }
 
@@ -224,6 +231,7 @@ export default {
       onCheckAllChangeIncludes,
       onCheckAllChangeExcludes,
       formState,
+      lists,
       onSubmit,
       blurSelect,
       blurSelect2,
@@ -232,6 +240,16 @@ export default {
       // const formatter = value => {
       //   return `${value}%`;
       // }
+      formRef,
+      onClear: () => {
+        // formRef.value.resetFields() //  does not work
+        formState.forceIncludes = []
+        formState.forceExcludes = []
+        formState.continents = []
+        formState.countriesEast = []
+        formState.countriesWest = []
+        formState.westCountryStates = []
+      }
     }
   },
 }

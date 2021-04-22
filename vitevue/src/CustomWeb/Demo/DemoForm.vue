@@ -27,7 +27,7 @@
         </a-form-item>
       </a-form>
     </a-collapse-panel>
-    <a-collapse-panel key="2" header="Form - Test Various Inputs">
+    <a-collapse-panel key="2" :header="`Form - Test Various Inputs (Store Counter: ${storeCounter})`">
       <a-form :model="formState" :label-col="labelCol" :wrapper-col="wrapperCol">
         <a-form-item label="Test Slider">
           <a-input-group compact>
@@ -72,6 +72,9 @@
         <a-form-item label="Activity form">
           <a-input v-model:value="formState.desc" type="textarea" />
         </a-form-item>
+        <a-form-item label="Modify Store Counter">
+          <a-input v-model:value="storeCounter" type="number" />
+        </a-form-item>
         <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
           <a-button type="primary" @click.native="onSubmit">Create</a-button>
           <a-button style="margin-left: 10px">Cancel</a-button>
@@ -104,9 +107,10 @@
 
 </template>
 <script>
-//           v-model:fileList="form1.files"
+// v-model:fileList="form1.files"
+import { useMainStore } from '../store.js'
 
-import { ref, reactive, toRaw, watch, onMounted } from 'vue'
+import { ref, reactive, toRaw, watch, onMounted, computed } from 'vue'
 import { InboxOutlined } from '@ant-design/icons-vue'
 
 import * as http from '~/http.js'
@@ -117,6 +121,7 @@ export default {
     InboxOutlined,
   },
   setup() {
+    const mainStore = useMainStore()
     const submitResult = ref('')
     const mockData = ref([]); // transfer
     const targetKeys = ref([]);
@@ -244,6 +249,11 @@ export default {
       },
       formState,
       onSubmit,
+
+      storeCounter: computed({
+        get: () => mainStore.counter,
+        set: val => mainStore.counter = val
+      })
     }
   }
 }
