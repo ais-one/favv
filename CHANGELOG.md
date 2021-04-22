@@ -1,4 +1,8 @@
 ## TODO
+- V0.0.4: Non-API Table (in progress)
+- V0.0.4: API Table (in progress)
+- clear all inputs on form, img auto adjust
+- fixed charts working
 - test out work on DEV server especially for vitevue
 - V0.0.4: allow for multiple services (alchemy mongodb, s3, upload folders)
 - V0.0.4: add todo list example
@@ -14,6 +18,8 @@
 
 ## DONE
 - V0.0.4:
+  - 2021-04-22
+    - V0.0.4: State Management (using pinia)
   - 2021-04-19
     - add file uplaod & json data multipart form API upload example
   - 2021-04-16
