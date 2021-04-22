@@ -1,15 +1,10 @@
 ## TODO
 - V0.0.4: Non-API Table (in progress)
 - V0.0.4: API Table (in progress)
-- clear all inputs on form, img auto adjust
-- fixed charts working
-- test out work on DEV server especially for vitevue
+- add task db and API
 - V0.0.4: allow for multiple services (alchemy mongodb, s3, upload folders)
 - V0.0.4: add todo list example
 - V0.0.4: add ApiKey to favv
-- explore and implement this https://towardsdatascience.com/deploying-ml-models-in-production-with-fastapi-and-celery-7063e539a5db
-  - uvicorn workers and background tasks
-- usage of frontend state store for sharing of data between frontend pages (example on state store usage)
 - Auth-FE: SSO SAML, BE: JWT
 
 # Upgrade Notes (v0.0.4)
@@ -18,6 +13,8 @@
 
 ## DONE
 - V0.0.4:
+  - 2021-04-23
+   - clear all inputs on form, img auto adjust
   - 2021-04-22
     - V0.0.4: State Management (using pinia)
   - 2021-04-19
