@@ -7,22 +7,24 @@ export const useMainStore = defineStore({
   // a function that returns a fresh state
   state: () => ({
     counter: 5,
+    form: {
+      delivery: true,
+      date1: '2021-04-01'
+    }
   }),
   // optional getters
   getters: {
     doubleCount() {
       return this.counter * 2
     },
-    // use getters in other getters
     doubleCountPlusOne() {
-      return this.doubleCount * 2 + 1
+      return this.doubleCount * 2 + 1 // use getters in other getters
     },
   },
   // optional actions
   actions: {
     reset() {
-      // `this` is the store instance
-      this.counter = 0
+      this.counter = 0 // `this` is the store instance
     },
   },
 })
