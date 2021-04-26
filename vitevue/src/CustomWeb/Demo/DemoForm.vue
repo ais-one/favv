@@ -227,8 +227,7 @@ export default {
     watch(
       () => mainStore.form,
       (currentValue, oldValue) => {
-        console.log(currentValue);
-        console.log(oldValue);
+        console.log('watch', currentValue, oldValue)
       },
       { deep: true }
     )

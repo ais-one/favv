@@ -57,8 +57,12 @@ export default {
     })
 
     onMounted(async () => {
-      const { data } = await http.get(API_URL + '/api/custom-app/cascade/continents')
-      formState.continentsList = [...data]
+      try {
+        const { data } = await http.get(API_URL + '/api/custom-app/cascade/continents')
+        formState.continentsList = [...data]
+      } catch (e) {
+        console.log(e.toString())
+      }
     })
 
     const onCheckAllChange = e => {
