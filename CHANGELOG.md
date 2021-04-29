@@ -1,6 +1,5 @@
 ## TODO
 - show example with store folder and 2 forms store
-- V0.0.4: Non-API Table (in progress)
 - V0.0.4: API Table (in progress)
 - add task db and API
 - V0.0.4: allow for multiple services (alchemy mongodb, s3, upload folders)
@@ -14,6 +13,8 @@
 
 ## DONE
 - V0.0.4:
+  - 2021-04-30
+    - V0.0.4: Non-API Table (filter, sort, page)
   - 2021-04-28
     - update demo chart 1 example where one of the charts is created on the fly and auto adjusted
   - 2021-04-24
