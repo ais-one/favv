@@ -1,4 +1,5 @@
 ## TODO
+- show example with store folder and 2 forms store
 - V0.0.4: Non-API Table (in progress)
 - V0.0.4: API Table (in progress)
 - add task db and API
@@ -13,6 +14,10 @@
 
 ## DONE
 - V0.0.4:
+  - 2021-04-28
+    - update demo chart 1 example where one of the charts is created on the fly and auto adjusted
+  - 2021-04-24
+    - implement object as store, and multiple properties (objects, primitive types), examples
   - 2021-04-23
    - clear all inputs on form, img auto adjust
   - 2021-04-22

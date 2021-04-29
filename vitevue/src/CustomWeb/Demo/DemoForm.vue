@@ -45,16 +45,15 @@
           </a-select>
         </a-form-item>
         <a-form-item label="Activity time">
-          <a-date-picker
-            v-model:value="formState.date1"
-            show-time
-            type="date"
-            placeholder="Pick a date"
-            style="width: 100%"
+          <!-- <a-date-picker
+            v-model:value="formState.date1" show-time type="date" placeholder="Pick a date" style="width: 100%"
+          /> -->
+          <a-input
+            v-model:value="mainStore.form.date1" type="date" placeholder="Pick a date" style="width: 100%"
           />
         </a-form-item>
         <a-form-item label="Instant delivery">
-          <a-switch v-model:checked="formState.delivery" />
+          <a-switch v-model:checked="mainStore.form.delivery" />
         </a-form-item>
         <a-form-item label="Activity type">
           <a-checkbox-group v-model:value="formState.type">
@@ -150,22 +149,20 @@ export default {
 
     const handleChange = (keys, direction, moveKeys) => {
       targetKeys.value = keys;
-      console.log(keys, direction, moveKeys);
-    };
+      // console.log(keys, direction, moveKeys)
+    }
     onMounted(() => {
-      getMock();
-    });
+      getMock()
+    })
 
     const activeKey = ref(['1']); // accordian
-    watch(activeKey, val => {
-      console.log(val);
-    });
+    watch(activeKey, val => console.log(val))
 
     const formState = reactive({ // form
       name: '',
       region: undefined,
-      date1: undefined,
-      delivery: false,
+      // date1: undefined,
+      // delivery: false,
       type: [],
       resource: '',
       desc: '',
@@ -227,6 +224,14 @@ export default {
       return false
     }
 
+    watch(
+      () => mainStore.form,
+      (currentValue, oldValue) => {
+        console.log('watch', currentValue, oldValue)
+      },
+      { deep: true }
+    )
+
     return {
       form1,
       onSubmit1,
@@ -253,7 +258,8 @@ export default {
       storeCounter: computed({
         get: () => mainStore.counter,
         set: val => mainStore.counter = val
-      })
+      }),
+      mainStore
     }
   }
 }
