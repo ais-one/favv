@@ -68,6 +68,9 @@ export default defineComponent({
     })
     const searchInput = ref()
 
+    const slots = { filterDropdown: 'filterDropdown', filterIcon: 'filterIcon', customRender: 'customRender' }
+    const onFilterDropdownVisibleChange = visible => visible && setTimeout(() => searchInput.value.focus(), 0)
+
     const table = reactive({
       scroll: { x: 1200, y: 480 },
       columns: [
@@ -85,16 +88,17 @@ export default defineComponent({
         {
           title: 'Title',
           dataIndex: 'title',
-          slots: { filterDropdown: 'filterDropdown', filterIcon: 'filterIcon', customRender: 'customRender' },
+          sorter: (a, b) => a.title > b.title,
+          slots,
+          onFilterDropdownVisibleChange,
           onFilter: (value, record) => record.title.toString().toLowerCase().includes(value.toLowerCase()),
-          onFilterDropdownVisibleChange: visible => visible && setTimeout(() => searchInput.value.focus(), 0)
         },
         {
           title: 'Body',
           dataIndex: 'body',
-          slots: { filterDropdown: 'filterDropdown', filterIcon: 'filterIcon', customRender: 'customRender' },
+          slots,
+          onFilterDropdownVisibleChange,
           onFilter: (value, record) => record.body.toString().toLowerCase().includes(value.toLowerCase()),
-          onFilterDropdownVisibleChange: visible => visible && setTimeout(() => searchInput.value.focus(), 0)
         },
       ],
       dataSource: []
