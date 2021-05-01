@@ -1,4 +1,5 @@
 ## TODO
+- sort: true, dropdownFilter: true, valerie filter
 - show example with store folder and 2 forms store
 - V0.0.4: API Table (in progress)
 - add task db and API
