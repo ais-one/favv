@@ -14,8 +14,12 @@
 
 ## DONE
 - V0.0.4:
+  - 2021-05-06
+    - Table improvement... add copy csv, download csv
+  - 2021-05-05
+    - Table improvement... add And / Or text search condition and syntax highlight
   - 2021-05-02
-    - sort: true, dropdownFilter: true, valerie filter (non API table)
+    - Table improvement... add table preprocess function - sort: true, dropdownFilter: true, valerie filter (non API table)
   - 2021-04-30
     - V0.0.4: Non-API Table (filter, sort, page)
   - 2021-04-28
