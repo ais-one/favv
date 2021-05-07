@@ -68,7 +68,21 @@ print("__name__=" + __name__)
 # Use uvicorn to run FastAPI app
 if __name__ == "__main__":
   print("@ __main__")
-  uvicorn.run("main:app", host="0.0.0.0", port=get_settings().API_PORT, debug=True, reload=True, access_log=False, headers=[("server", "")])
+  args = {
+    "host": "0.0.0.0",
+    "port": get_settings().API_PORT,
+    "debug": True,
+    "reload": True,
+    "access_log": False,
+    "headers": [("server", "")],
+  }
+  if (get_settings().USE_HTTPS == 1):
+    print("Using HTTPS")
+    args["ssl_keyfile"] = get_settings().HTTPS_KEY_PATH
+    args["ssl_certfile"] = get_settings().HTTPS_CERT_PATH
+  else:
+    print("No HTTPS")
+  uvicorn.run("main:app", **args)
 
 if __name__ == "__mp_main__":
   print("@ __mp_main__")

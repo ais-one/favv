@@ -10,8 +10,8 @@ import random
 import string
 
 class CommonSettings(BaseSettings):
-  ENV: str = "error"
-  APP: str = "demo"
+  ENV: str = "undefined"
+  APP: str = "custom_app"
   VERSION: str = "0.0.0"
   class Config:
     env_file = ".env"
@@ -38,6 +38,9 @@ class EnvSettings(BaseSettings):
   HUEY_TASK_QUEUES: str = "" # to be made a list
   MONGODB_URL: str = "" # to be made a list
   MONGODB_DB: str = "" # to be made a list
+  USE_HTTPS: int = 0
+  HTTPS_CERT_PATH: str = ""
+  HTTPS_KEY_PATH: str = ""
   class Config:
     env_file = ".env." + CommonSettings().ENV # .env.development .env.production
 

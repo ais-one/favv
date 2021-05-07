@@ -1,4 +1,5 @@
 ## TODO
+- add input to select columns to filter by (make it dynamic)
 - V0.0.4: API Table (in progress)
 - show example with store folder and 2 forms store
 - add task db and API
@@ -14,6 +15,8 @@
 
 ## DONE
 - V0.0.4:
+  - 2021-05-07
+    - add https to fast API
   - 2021-05-06
     - Table improvement... add copy csv, download csv
   - 2021-05-05

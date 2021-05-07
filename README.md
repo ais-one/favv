@@ -39,6 +39,9 @@ dev\Scripts\activate
 source dev/bin/activate 
 ```
 
+# Installing python packages
+
+```bash
 # pip install fastapi uvicorn[standard] python-multipart SQLAlchemy passlib[bcrypt] python-jose[cryptography] boto3 pymongo redis 
 # pip freeze > requirements.txt # save libraries installed, done after each pip install
 
@@ -58,12 +61,26 @@ cd app
 python main.py # OPTION 1 - running using python
 uvicorn main:app --reload --host=0.0.0.0 --port=8000 --access-log --log-level=debug --header server:none # OPTION 2 - running uvicorn
 
+# HTTPS
+# if using SSL include the following to uvicorn, also set USE_HTTPS in environment file
+# --ssl-keyfile <path> - SSL key file --ssl-certfile <path> - SSL certificate file
+
 # huey task queue consumer 
 huey_consumer custom_app.models.tasks.huey
 
 ```
 
 Navigate to - http://127.0.0.1:8000/api-docs
+
+# HTTPS
+
+Generate your private key and...
+
+Create a self-signed cert, or get a signed cert
+
+```bash
+openssl req -x509 -newkey rsa:4096 -keyout local.key.pem -out local.cert.pem -days 365 -nodes -subj '/CN=127.0.0.1'
+```
 
 ### Frontend
 
