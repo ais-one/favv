@@ -62,9 +62,7 @@ export default defineComponent({
     SearchOutlined,
   },
   setup() {
-    // TBD download as CSV or copy and paste...
-
-    // Common Properties And Methods
+    // Common Properties And Methods ---------------------------------------------------------------------------------------------------------------------
     const tabActiveKey = ref('2')
     const processTable = (table) => {
       table.columns.forEach(col => {
@@ -161,22 +159,20 @@ export default defineComponent({
     }
 
     const downloadCsv = () => {
-      // TBD convert JSON to csv...
-      // const csv = jsonToCsv(table2.filteredData)
-      downloadData(`c1,c2\naa,bb\ncc,dd\n`, 'test.csv')
+      const csv = jsonToCsv(table2.filteredData)
+      downloadData(csv, 'test.csv')
     }
     const copyPaste = () => {
-      // TBD convert JSON to csv...
-      // const csv = jsonToCsv(table2.filteredData)
+      const csv = jsonToCsv(table2.filteredData)
       const el = document.createElement('textarea')
-      el.value = 'abc def'
+      el.value = csv
       document.body.appendChild(el)
       el.select()
       document.execCommand('copy')
       document.body.removeChild(el)
     }
 
-    // Common Lifecycle Method
+    // Common Lifecycle Method ---------------------------------------------------------------------------------------------------------------------------
     onMounted(async () => {
       filters2.value = table2.columns.filter(item => item.filter).map(item => item.dataIndex)
 

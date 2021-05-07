@@ -1,13 +1,13 @@
 ## TODO
-- add input to select columns to filter by (make it dynamic)
-- V0.0.4: API Table (in progress)
-- show example with store folder and 2 forms store
-- add task db and API
-- V0.0.4: allow for multiple services (alchemy mongodb, s3, upload folders)
-- V0.0.4: add todo list example
-- V0.0.4: add ApiKey to favv
-- Auth-FE: SSO SAML, BE: JWT
-- dark / light mode
+- [vitevue] add input to select columns to filter by (make it dynamic)
+- [fastapi] V0.0.4: API Table (in progress)
+- [fastapi] add task db and API
+- V0.0.4: [fastapi] allow for multiple services (alchemy mongodb, s3, upload folders)
+- V0.0.4: [favv] add todo list example
+- V0.0.4: [fastapi] add ApiKey to favv
+- [favv] Auth-FE: SSO SAML, BE: JWT
+- [vitevue] dark / light mode
+- [favv] websockets
 
 # Upgrade Notes (v0.0.4)
 - check favv/fastapi requirements.txt file, it has been overwritten, keep it that way. copy the **requirements-base.txt.example** file to **requirements-base.txt**
