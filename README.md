@@ -39,18 +39,15 @@ dev\Scripts\activate
 source dev/bin/activate 
 ```
 
-# Installing python packages
+# Installing / Upgrading python packages
 
-```bash
-# pip install fastapi uvicorn[standard] python-multipart SQLAlchemy passlib[bcrypt] python-jose[cryptography] boto3 pymongo redis 
-# pip freeze > requirements.txt # save libraries installed, done after each pip install
+## For framework
 
-# install common packages
-pip install -r requirements.txt
+run **fastapi/install.sh**
 
-# install custom app packages
-pip install -r app/custom_app/requirements.txt
-```
+## For your own applications
+
+run **fastapi/app/<custom_app>/install.sh**
 
 # Run App & Task Quque (requires redis)
 
@@ -136,8 +133,8 @@ docker run -it <your-image-name>:<tag>
   | + .env: environment state, custom app name and version
   | + .env.<your-environment>: environment specific info
   | + Dockerfile: DO NOT TOUCH THIS
-  | + requirements-base.txt: DO NOT TOUCH THIS 
-  | + requirements.txt: Add-in your requirements file in your custom app here...  
+  | + install.sh: DO NOT TOUCH THIS 
+  | + requirements.txt: DO NOT TOUCH THIS
   + vitevue/
     + src
     | + .env.js: frontend config (set INITIAL_SECURE_PATH, API_URL - to API server, ROUTES here)

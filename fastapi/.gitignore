@@ -12,10 +12,6 @@ __pycache__
 !.env.local.example
 !.env.docker-compose.example
 
-# dependencies
-# fastapi/requirements.txt is filled with your own and untracked
-requirements.txt
-
 # untrack user custom application (it is tracked in their own repo), track example custom application
 *_app
 !custom_app

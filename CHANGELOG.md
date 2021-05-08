@@ -15,6 +15,8 @@
 
 ## DONE
 - V0.0.4:
+  - 2021-05-08
+    - management of python package updates for framework and custom app
   - 2021-05-07
     - add https to fast API
   - 2021-05-06
