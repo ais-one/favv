@@ -1,16 +1,20 @@
 ## TODO
-- [vitevue] add input to select columns to filter by (make it dynamic)
-- [fastapi] V0.0.4: API Table (in progress)
-- [fastapi] add task db and API
-- V0.0.4: [fastapi] allow for multiple services (alchemy mongodb, s3, upload folders)
-- V0.0.4: [favv] add todo list example
-- V0.0.4: [fastapi] add ApiKey to favv
-- [favv] Auth-FE: SSO SAML, BE: JWT
-- [vitevue] dark / light mode
-- [favv] websockets
+- V0.0.4
+  - [vitevue] add input to select columns to filter by (make it dynamic)
+  - [fastapi] V0.0.4: API Table (in progress)
+- V0.0.5
+  - [fastapi] allow for multiple services (alchemy mongodb, s3, upload folders)
+  - [fastapi] add task db and API
+  - [favv] add todo list example
+  - [fastapi] add ApiKey to favv
+  - [favv] Auth-FE: SSO SAML, BE: JWT
+-V0.0.6
+  - [vitevue] dark / light mode
+  - [favv] websockets
 
 # Upgrade Notes (v0.0.4)
-- check favv/fastapi requirements.txt file, it has been overwritten, keep it that way. copy the **requirements-base.txt.example** file to **requirements-base.txt**
+- use **fastapi/install.sh** to update python libraries
+- run npm install in **vitevue** to update npm packages
 - for favv/fastapi .env host is **redis** if using docker compose **127.0.0.1** otherwise
 
 ## DONE
