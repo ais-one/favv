@@ -3,8 +3,7 @@
     <div class="table-operations">
       <a-button @click="filterOpen">Filter</a-button>
       <a-button @click="() => formOpen(null)">Create</a-button>
-      <a-button >Delete</a-button>
-      <a-button >Export</a-button>
+      <a-button @click="deleteItems">Delete</a-button>
     </div>
     <a-table
       :columns="table.columns"
@@ -125,7 +124,8 @@
 */
 
 import { reactive, ref, computed, watch, onMounted } from 'vue'
-import { CloseOutlined } from '@ant-design/icons-vue'
+import { CloseOutlined  } from '@ant-design/icons-vue'
+import { notification } from 'ant-design-vue'
 
 const filterTemplate = {
   col: '',
@@ -198,8 +198,11 @@ export default {
       console.log('filterDelete', index) // TBD
     }
 
+    const deleteItems = async () => {
+      console.log('deleteItems', rowSelection.selectedRowKeys)
+    }
 
-    const formMode = ref(false) // add or edit
+    const formMode = ref(false) // false, add or edit
     const formOpen = (item) => {
       // TBD findOne
       table.formData = {}
@@ -220,6 +223,11 @@ export default {
     }
     const formClose = () => formMode.value = false
     const formSubmit = () => {
+      notification.open({
+        message: formMode.value === 'add' ? 'Record Added' : 'Record Updated',
+        description: 'Display submit success or failure here...',
+        duration: 4.5, // seconds
+      })
       formMode.value = false
     }
 
@@ -344,6 +352,7 @@ export default {
       formSubmit,
 
       rowSelection,
+      deleteItems,
     }
   },
 }

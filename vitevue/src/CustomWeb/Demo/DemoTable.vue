@@ -17,33 +17,6 @@
         </a-form>
       </a-tab-pane>
     </a-tabs>
-    <!--
-    <a-form layout="vertical">
-      <a-form-item v-for="(filter, index) of table.filters" :key="index">
-        <a-input-group compact>
-          <a-select  style="width: 125px;" placeholder="Column" v-model:value="filter.col">
-            <a-select-option v-for="col of table.filterCols" :key="col" :value="col">{{col}}</a-select-option>
-          </a-select>
-          <a-select style="width: 75px;" placeholder="Operation" v-model:value="filter.op">
-            <a-select-option v-for="op of table.filterOps" :key="op" :value="op">{{op}}</a-select-option>
-          </a-select>
-          <a-input style="width: 125px;" placeholder="Value" v-model:value="filter.value" />
-          <a-select style="width: 75px;" placeholder="And Or" v-model:value="filter.andOr">
-            <a-select-option v-for="andOr of table.filterAndOr" :key="andOr" :value="andOr">{{andOr}}</a-select-option>
-          </a-select>
-          <a-button type="primary" @click="() => filterDelete(index)"><template #icon><CloseOutlined /></template></a-button>
-        </a-input-group>
-      </a-form-item>
-    </a-form>
-    <a-button :disabled="table.filters.length > 9" style="margin-bottom: 8px;" @click="filterAdd">Add Filter</a-button>
-    <div
-      :style="{
-        position: 'absolute', right: 0, bottom: 0, width: '100%', borderTop: '1px solid #e9e9e9', padding: '10px 16px', background: '#fff', textAlign: 'right', zIndex: 1,
-      }"
-    >
-      <a-button type="primary" @click="filterApply">Apply</a-button>
-    </div>
-    -->
   </a-drawer>
   <a-tabs v-model:activeKey="tabActiveKey">
     <a-tab-pane key="1" tab="Table 1">
@@ -75,18 +48,30 @@
       </a-table>
     </a-tab-pane>
     <a-tab-pane key="2" tab="Table 2">
-      <a-form-item>
-        <a-button @click="formOpen">Filter/Sort</a-button>
-        <a-button @click="downloadCsv">Export CSV</a-button>
-        <a-button @click="copyPaste">Copy CSV</a-button>
-        <a-input-group>
-          <a-select v-model:value="andOr2" style="width: 40%;">
-            <a-select-option value="and">And</a-select-option>
-            <a-select-option value="or">Or</a-select-option>
-          </a-select>
-          <a-input-search placeholder="Search (Seperate by space)" enter-button @search="onSearch2" v-model:value="searchVal2" />
-        </a-input-group>
-      </a-form-item>
+      <a-form layout="inline">
+        <a-form-item>
+          <!-- <a-button @click="formOpen">Filter/Sort</a-button> -->
+          <!-- <a-button @click="downloadCsv">Export CSV</a-button> -->
+          <a-tooltip placement="topLeft" title="Filter/Sort">
+            <a-button @click="formOpen"><template #icon><SettingOutlined /></template></a-button>
+          </a-tooltip>
+          <a-tooltip placement="topLeft" title="Copy CSV">
+            <a-button @click="copyPaste"><template #icon><CopyOutlined /></template></a-button>
+          </a-tooltip>
+          <a-tooltip placement="topLeft" title="Export CSV">
+            <a-button @click="downloadCsv"><template #icon><DownloadOutlined /></template></a-button>
+          </a-tooltip>
+        </a-form-item>
+        <a-form-item>
+          <a-radio-group v-model:value="andOr2">
+            <a-radio-button value="and">And</a-radio-button>
+            <a-radio-button value="or">Or</a-radio-button>
+          </a-radio-group>
+        </a-form-item>
+        <a-form-item>
+          <a-input-search placeholder="Seperate with space" enter-button @search="onSearch2" v-model:value="searchVal2" />
+        </a-form-item>
+      </a-form>
       <a-table :scroll="table2.scroll" :columns="table2.columns" :data-source="table2.filteredData" @change="onChange2" rowKey="id">
         <template #filterDropdown="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }">
         </template>
@@ -109,14 +94,13 @@
 </template>
 
 <script>
-import { defineComponent, onMounted, reactive, ref } from 'vue';
-import { SearchOutlined } from '@ant-design/icons-vue';
+import { defineComponent, onMounted, onUnmounted, reactive, ref } from 'vue';
+import { SearchOutlined, CopyOutlined, DownloadOutlined, SettingOutlined } from '@ant-design/icons-vue';
 import { downloadData, jsonToCsv } from '~/utils.js'
-
 
 export default defineComponent({
   components: {
-    SearchOutlined,
+    SearchOutlined, CopyOutlined, DownloadOutlined, SettingOutlined
   },
   setup() {
     // Common Properties And Methods ---------------------------------------------------------------------------------------------------------------------
@@ -184,8 +168,8 @@ export default defineComponent({
       columns: [
         { title: 'ID', dataIndex: 'id', width: 100, sort: true},
         { title: 'User ID', dataIndex: 'userId', width: 150, sort: false, },
-        { title: 'Title', dataIndex: 'title', filter: true, slots: { filterDropdown: 'filterDropdown', filterIcon: 'filterIcon', customRender: 'customRender' }, sort: false },
-        { title: 'Body', dataIndex: 'body', filter: true, slots: { filterDropdown: 'filterDropdown', filterIcon: 'filterIcon', customRender: 'customRender' }, sort: false },
+        { title: 'Title', dataIndex: 'title', filter: true, sort: false },
+        { title: 'Body', dataIndex: 'body', filter: true, sort: false },
       ],
       dataSource: [],
       filteredData: []
@@ -201,11 +185,9 @@ export default defineComponent({
       sorts: []
     })
 
-    processTable(table2)
+    // processTable(table2)
 
-    const onChange2 = (pagination, filters, sorter) => {
-      // console.log('params2', pagination, filters, sorter)
-    }
+    const onChange2 = (pagination, filters, sorter) => console.log('params2', pagination, filters, sorter)
 
     const onSearch2 = val => {
       if (!val) return table2.filteredData = [...table2.dataSource]
@@ -243,16 +225,7 @@ export default defineComponent({
       document.body.removeChild(el)
     }
 
-    const formOpen = () => {
-      form.filters = []
-      form.sorts = []
-      table2.columns.forEach((col, idx) => {
-        form.filters.push(col.filter)
-        form.sorts.push(col.sort)
-      })
-      form.show = true
-    }
-    const formClose = () => {
+    const setTableConfigs = () => {
       table2.columns.forEach((col, idx) => {
         if (form.filters[idx]) {
           table2.columns[idx].filter = true
@@ -265,12 +238,45 @@ export default defineComponent({
           table2.columns[idx].sort = false
         }
       })
+    }
+    const formOpen = () => {
+      form.filters = []
+      form.sorts = []
+      table2.columns.forEach((col, idx) => {
+        form.filters.push(col.filter)
+        form.sorts.push(col.sort)
+      })
+      form.show = true
+    }
+    const formClose = () => {
+      setTableConfigs()
       processTable(table2)
+      try {
+        localStorage.setItem('demo-table2-cfg', JSON.stringify({
+          sorts: [...form.sorts],
+          filters: [...form.filters],
+        }))
+      } catch (e) {
+        console.log(e.toString())
+      }
       form.show = false
     }
 
     // Common Lifecycle Method ---------------------------------------------------------------------------------------------------------------------------
     onMounted(async () => {
+      try {
+        const cfg = localStorage.getItem('demo-table2-cfg')
+        const parsed = JSON.parse(cfg)
+        if (parsed) {
+          if (parsed.filters && parsed.filters.length) form.filters = [...parsed.filters]
+          if (parsed.sorts && parsed.sorts.length) form.sorts = [...parsed.sorts]
+          setTableConfigs()
+        }
+      } catch (e) {
+        console.log(e.toString())
+      }
+      processTable(table2)
+
       filters2.value = table2.columns.filter(item => item.filter).map(item => item.dataIndex)
 
       let url = `https://jsonplaceholder.typicode.com/posts`
@@ -280,6 +286,9 @@ export default defineComponent({
       table2.dataSource = [...json]
       table2.filteredData = [...json]
       // console.log(json)
+
+    })
+    onUnmounted(()=> {
     })
 
     return {

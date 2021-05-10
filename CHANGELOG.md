@@ -1,7 +1,7 @@
 ## TODO
 - V0.0.4
-  - [vitevue] add input to select columns to filter by (make it dynamic)
-  - [fastapi] V0.0.4: API Table (in progress)
+  - [fastapi] V0.0.4: API Table (in progress), also add notifications
+  - [fastapi] revisit python package management
 - V0.0.5
   - [fastapi] allow for multiple services (alchemy mongodb, s3, upload folders)
   - [fastapi] add task db and API
@@ -19,12 +19,14 @@
 
 ## DONE
 - V0.0.4:
+  - 2021-05-10
+    - add input to select columns to filter by (make it dynamic), make UI nicer, use localStorage
   - 2021-05-08
     - management of python package updates for framework and custom app
   - 2021-05-07
     - add https to fast API
   - 2021-05-06
-    - Table improvement... add copy csv, download csv
+    - Table 2 improvement... add copy csv, download csv
   - 2021-05-05
     - Table improvement... add And / Or text search condition and syntax highlight
   - 2021-05-02
