@@ -1,7 +1,4 @@
 ## TODO
-- V0.0.4
-  - [fastapi] V0.0.4: API Table (in progress), also add notifications
-  - [fastapi] revisit python package management
 - V0.0.5
   - [fastapi] allow for multiple services (alchemy mongodb, s3, upload folders)
   - [fastapi] add task db and API
@@ -12,13 +9,13 @@
   - [vitevue] dark / light mode
   - [favv] websockets
 
-# Upgrade Notes (v0.0.4)
-- use **fastapi/install.sh** to update python libraries
-- run npm install in **vitevue** to update npm packages
-- for favv/fastapi .env host is **redis** if using docker compose **127.0.0.1** otherwise
 
 ## DONE
 - V0.0.4:
+  - 2021-05-12
+    - revisit python package management, update to version V0.0.5
+  - 2021-05-11
+    - API Table, also add notifications
   - 2021-05-10
     - add input to select columns to filter by (make it dynamic), make UI nicer, use localStorage
   - 2021-05-08

@@ -47,7 +47,10 @@ run **fastapi/install.sh**
 
 ## For your own applications
 
-run **fastapi/app/<custom_app>/install.sh**
+Manage packages using **fastapi/app/<custom_app>/requirements.txt**
+
+Or run **fastapi/app/<custom_app>/install.sh**
+
 
 # Run App & Task Quque (requires redis)
 
@@ -188,3 +191,10 @@ git clone <your frontend project e.g. ExampleWeb>
   - paths
     - '~/xxx.js' from **favv/vitevue/src** folder
     - '/xxx.js' from **favv/vitevue** folder
+
+
+# Notes
+
+- use **fastapi/install.sh** to update python libraries
+- run npm install in **vitevue** to update npm packages
+- for favv/fastapi .env host is **redis** if using docker compose **127.0.0.1** otherwise
