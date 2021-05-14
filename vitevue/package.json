@@ -16,11 +16,11 @@
     "@ant-design/icons-vue": "^6.0.1",
     "@antv/data-set": "^0.11.8",
     "@antv/g2": "^4.1.16",
-    "@antv/g2plot": "^2.3.19",
+    "@antv/g2plot": "^2.3.21",
     "ant-design-vue": "^2.1.2",
     "pinia": "^2.0.0-alpha.16",
     "vue": "^3.0.11",
-    "vue-router": "^4.0.6",
+    "vue-router": "^4.0.8",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
