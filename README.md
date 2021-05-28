@@ -119,7 +119,7 @@ docker run -it <your-image-name>:<tag>
 
 # Customization
 
-## Structure
+## Structure - Files / Folders For Customisation Or Use
 
 ```md
 + favv
@@ -161,8 +161,8 @@ git clone <your backend project e.g. example_app>
 
 - use **favv/fastapi/app/custom_app/** as reference on your custom backend
   - on working with your custom endpoints, using db, s3, file services
-  - working with files in **favv/fastapi/app/custom_app/sample_uploads/** folder
-  - running subprocess in **favv/fastapi/app/custom_app/sample_models/** folder
+  - working with files in **favv/fastapi/app/custom_app/uploads/** folder
+  - running subprocess in **favv/fastapi/app/custom_app/models/** folder
 - set the APP, to the folder name of your custom app in **favv/fastapi/app/.env**
   - specify the VERSION and the ENVIRONMENT state (local, docker-compose, production, <your-environment-name> etc...)
   - specify APP which is your custom application, UPLOAD_FOLDER and MODEL_FOLDER is directly inside your custom app folder

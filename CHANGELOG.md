@@ -1,16 +1,23 @@
 ## TODO
 - V0.0.5
+  - [favv] websockets
+  - [vitevue] e2e testing using cypress
   - [fastapi] allow for multiple services (alchemy mongodb, s3, upload folders)
-  - [fastapi] add task db and API
-  - [favv] add todo list example
   - [fastapi] add ApiKey to favv
   - [favv] Auth-FE: SSO SAML, BE: JWT
--V0.0.6
+- V0.0.6
+  - [vitevue] linting and prettier
   - [vitevue] dark / light mode
-  - [favv] websockets
-
+  - [fastapi] add task db and API
+  - [favv] add todo list example
 
 ## DONE
+- V0.0.5:
+  - 2021-05-28
+    - vitevue improve multiple environment configs
+- V0.0.4:
+  - 2021-05-14
+    - vitevue DemoTableApi add filter to find function e.g. col=startDate&op=gte&val=10
 - V0.0.4:
   - 2021-05-12
     - revisit python package management, update to version V0.0.5

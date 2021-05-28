@@ -43,16 +43,6 @@ do
   esac
 done
 
-# echo check the dependencies
-# check_result=`pip check`
-# if [[ $check_result =~ 'No broken requirements found.' ]]; then
-#   echo "pip check pass"
-#   pip freeze > requirements.base.txt.updated
-# else
-#   echo "pip check failed"
-#   echo $check_result
-# fi
-
 echo
 echo done... press enter key to exit
 read # pause exit in windows

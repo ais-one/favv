@@ -32,7 +32,7 @@
             <a-select style="width: 75px;" placeholder="Operation" v-model:value="filter.op">
               <a-select-option v-for="op of table.filterOps" :key="op" :value="op">{{op}}</a-select-option>
             </a-select>
-            <a-input style="width: 125px;" placeholder="Value" v-model:value="filter.value" />
+            <a-input style="width: 125px;" placeholder="Value" v-model:value="filter.val" />
             <a-select style="width: 75px;" placeholder="And Or" v-model:value="filter.andOr">
               <a-select-option v-for="andOr of table.filterAndOr" :key="andOr" :value="andOr">{{andOr}}</a-select-option>
             </a-select>
@@ -262,10 +262,11 @@ export default {
       if (table.loading) return
       table.loading = true
       try {
-        const { field = null, order = null } = table.sorter || {}
-        // console.log('table.sorter', field, order)
-        // sorter field=, order=descend / ascend
-        let url = `https://jsonplaceholder.typicode.com/users?_page=${table.pagination.current}&_limit=${table.pagination.pageSize}`
+        console.log(table.filters)
+        const filters = JSON.stringify(table.filters) // [{col: "username", op: "=", andOr: "and", val: "aaa"}]
+        const { field = null, order = null } = table.sorter || {} // console.log('table.sorter', field, order), field=, order=descend / ascend
+        let url = `https://jsonplaceholder.typicode.com/users?_page=${table.pagination.current}&_limit=${table.pagination.pageSize}&_filters=${filters}`
+        console.log(url)
         if (field && order) {
           url += `&_sort=${field}&_order=${order === 'ascend' ? 'asc' : 'desc'}`
         }
