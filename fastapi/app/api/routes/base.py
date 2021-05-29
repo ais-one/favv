@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Response
 
-# from .test import router as router_test
-from api.routes.test import router as router_test
+from api.routes.test import router as router_test # or... from .test
 from api.routes.common.base import router as router_common
 
 from config import get_settings

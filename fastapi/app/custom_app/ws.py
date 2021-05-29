@@ -1,13 +1,23 @@
-from fastapi import FastAPI, WebSocket
-from fastapi.responses import HTMLResponse
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect
+from services.ws import ConnectionManager
 
-from main import app
+router_custom_app_ws = APIRouter()
 
-app = FastAPI()
+wsManager = ConnectionManager()
 
-@app.websocket("/ws")
-async def websocket_endpoint(websocket: WebSocket):
-  await websocket.accept()
-  while True:
-    data = await websocket.receive_text()
-    await websocket.send_text(f"Message text was: {data}")
+@router_custom_app_ws.websocket("/ws/{client_id}")
+# ws_custom_app = APIRouter()
+# @ws_custom_app.websocket("/ws/{client_id}")
+async def websocket_endpoint(websocket: WebSocket, client_id: int):
+  # await websocket.accept()
+  # await websocket.send_text("hi")
+  # await websocket.close()
+  await wsManager.connect(websocket)
+  try:
+    while True:
+      data = await websocket.receive_text()
+      await wsManager.send_message(f"You wrote: {data}", websocket)
+      await wsManager.broadcast(f"Client #{client_id} says: {data}")
+  except WebSocketDisconnect:
+    wsManager.disconnect(websocket)
+    await wsManager.broadcast(f"Client #{client_id} left the chat")

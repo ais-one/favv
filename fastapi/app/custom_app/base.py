@@ -7,8 +7,9 @@ from services.model import get_model_folder, set_model_path # reference favv/fas
 from services.db import get_db # reference favv/fastapi/app
 
 from .uploads import router_custom_app_uploads # reference same level
-from .s3 import router_custom_app_s3 # reference same level
-from .cascade import router_custom_app_cascade # reference same level
+from .s3 import router_custom_app_s3
+from .cascade import router_custom_app_cascade
+from .ws import router_custom_app_ws
 
 from services.huey_config import get_huey # task queue
 from custom_app.models.tasks import add_numbers
@@ -21,6 +22,7 @@ router_custom_app = APIRouter(prefix="/custom-app")
 router_custom_app.include_router(router_custom_app_uploads)
 router_custom_app.include_router(router_custom_app_s3)
 router_custom_app.include_router(router_custom_app_cascade)
+router_custom_app.include_router(router_custom_app_ws)
 
 @router_custom_app.get("/ext-db", tags=["api_custom_app"])
 async def ext_db():

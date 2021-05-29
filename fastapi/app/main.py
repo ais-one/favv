@@ -1,7 +1,5 @@
 import uvicorn
-
-
-from fastapi import FastAPI, Response, Request, HTTPException, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, Response, Request, HTTPException
 from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
 from services.handlers import http_error_handler, http_422_error_handler, unicorn_exception_handler
 from services.handlers import UnicornException
@@ -11,7 +9,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from api.routes.base import router
-from services.ws import wsManager
 
 import os
 import logging
@@ -59,27 +56,6 @@ app.add_middleware(
 # set up the API
 app.include_router(router, prefix="/api")
 
-aa = True
-if (aa):
-  @app.websocket("/ws/{client_id}")
-  async def websocket_endpoint(websocket: WebSocket, client_id: int):
-    await wsManager.connect(websocket)
-    try:
-      while True:
-        data = await websocket.receive_text()
-        await wsManager.send_message(f"You wrote: {data}", websocket)
-        await wsManager.broadcast(f"Client #{client_id} says: {data}")
-    except WebSocketDisconnect:
-      wsManager.disconnect(websocket)
-      await wsManager.broadcast(f"Client #{client_id} left the chat")
-else:
-  print("No WS")
-# set up the Websockets
-# from spam.ham import eggs, sausage as saus
-# _temp = __import__('spam.ham', globals(), locals(), ['eggs', 'sausage'], 0)
-# eggs = _temp.eggs
-# saus = _temp.sausage
-
 try:
   app.mount(get_settings().WEB_BASEPATH, StaticFiles(directory="static/dist", html=True), name="www")
 except:
@@ -114,4 +90,3 @@ if __name__ == "main":
   print("@ main")
   logger = logging.getLogger(__name__)
   logger.warn("ENV settings %s", get_settings().ENV)
-
