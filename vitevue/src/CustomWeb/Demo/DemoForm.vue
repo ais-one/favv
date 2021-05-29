@@ -102,6 +102,17 @@
         </template>
       </a-transfer>
     </a-collapse-panel>
+    <a-collapse-panel key="4" :header="`Form - Test Web Socket`">
+      <a-form :model="formState" :label-col="labelCol" :wrapper-col="wrapperCol">
+        <a-form-item label="Message To Send">
+          <a-input v-model:value="wsMsg" />
+        </a-form-item>
+        <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
+          <a-button type="primary" @click.native="onWsMsg">Send WS Message</a-button>
+        </a-form-item>
+        WS Rx Message: {{ mainStore.message || 'No WS Message' }}
+      </a-form>
+    </a-collapse-panel>
   </a-collapse>
 
 </template>
@@ -109,11 +120,13 @@
 // v-model:fileList="form1.files"
 import { useMainStore } from '../store.js'
 
-import { ref, reactive, toRaw, watch, onMounted, computed } from 'vue'
+import { ref, reactive, toRaw, watch, onMounted, computed, onBeforeUnmount } from 'vue'
 import { InboxOutlined } from '@ant-design/icons-vue'
 
 import * as http from '~/http.js'
 import { API_URL } from '/config.js'
+
+import { ws } from '~/services.js'
 
 export default {
   components: {
@@ -153,6 +166,13 @@ export default {
     }
     onMounted(() => {
       getMock()
+      ws.setMessage((e) => {
+        console.log('ws onmessage', e.data)
+        mainStore.message = e.data
+      })
+    })
+    onBeforeUnmount(() => {
+      ws.setMessage((e) => console.log('ws onmessage', e.data))
     })
 
     const activeKey = ref(['1']); // accordian
@@ -232,6 +252,11 @@ export default {
       { deep: true }
     )
 
+    const wsMsg = ref('') // websockets
+    const onWsMsg = (e) => {
+      ws.send(wsMsg.value)
+    }
+
     return {
       form1,
       onSubmit1,
@@ -255,11 +280,16 @@ export default {
       formState,
       onSubmit,
 
+      mainStore,
+
       storeCounter: computed({
         get: () => mainStore.counter,
         set: val => mainStore.counter = val
       }),
-      mainStore
+
+      wsMsg,
+      onWsMsg // websockets
+
     }
   }
 }

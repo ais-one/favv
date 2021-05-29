@@ -10,7 +10,8 @@ export const useMainStore = defineStore({
     form: {
       delivery: true,
       date1: '2021-04-01'
-    }
+    },
+    message: "No Message From WS" // for testing websockets  
   }),
   // optional getters
   getters: {

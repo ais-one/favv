@@ -1,6 +1,12 @@
 ## TODO
 - V0.0.5
-  - [favv] websockets
+  - [favv] websockets [WIP]
+    - https://github.com/tiangolo/fastapi/pull/3280
+    - https://github.com/tiangolo/fastapi/pull/2640/files
+    - https://github.com/tiangolo/fastapi/issues/2904
+    - https://github.com/tiangolo/fastapi/issues/2639
+    - https://github.com/tiangolo/fastapi/issues/2904
+  - [vitevue] environment configs
   - [vitevue] e2e testing using cypress
   - [fastapi] allow for multiple services (alchemy mongodb, s3, upload folders)
   - [fastapi] add ApiKey to favv
@@ -13,6 +19,10 @@
 
 ## DONE
 - V0.0.5:
+  - 2021-06-02
+    - make WS configurable [favv]
+  - 2021-05-31
+    - target to include WS [ ]
   - 2021-05-28
     - vitevue improve multiple environment configs
 - V0.0.4:

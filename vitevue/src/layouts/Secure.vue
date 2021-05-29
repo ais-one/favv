@@ -33,11 +33,12 @@
 </template>
 <script>
 
-import { onMounted, onUnmounted, ref, reactive } from 'vue'
+import { onMounted, onUnmounted, onBeforeUnmount, ref, reactive } from 'vue'
 import { useStore } from 'vuex'
 // import { useRouter } from 'vue-router'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
-import { CONSTANTS, ROUTES } from '/config.js'
+import { CONSTANTS, ROUTES, WS_URL } from '/config.js'
+import { ws } from '~/services.js'
 
 export default {
   components: { MenuUnfoldOutlined, MenuFoldOutlined },
@@ -73,8 +74,15 @@ export default {
           })
         }
       })
+      ws.setOptions({ endpoint: `${WS_URL}/${store.state.user}` })
+      ws.connect()
     })
     onUnmounted(() => console.log('SECURE unmounted'))
+
+    onBeforeUnmount(() => {
+      ws.close()
+    })
+
     const logout = async () => await store.dispatch('doLogin', null)
 
     return {

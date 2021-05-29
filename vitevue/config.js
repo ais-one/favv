@@ -9,6 +9,7 @@ export const {
   CALLBACK_URL = envjs.CALLBACK_URL,
   CONSTANTS = envjs.CONSTANTS,
   API_URL = envjs.API_URL,
+  WS_URL = envjs.WS_URL,
   ROUTES = envjs.ROUTES,
   INITIAL_SECURE_PATH = envjs.INITIAL_SECURE_PATH,
   VERSION,

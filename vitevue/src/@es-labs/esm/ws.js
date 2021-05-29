@@ -41,7 +41,7 @@ class Ws {
       this.instance = new WebSocket(this.options.endpoint)
       this.instance.onopen = () => console.log('ws open - connected')
       this.instance.onerror = (err) => {
-        console.log(err.message)
+        console.log(err)
         ws.close()
       }
       this.instance.onmessage = this.options.onmessage
