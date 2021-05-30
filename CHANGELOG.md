@@ -21,13 +21,14 @@
 ## DONE
 - V0.0.5:
   - 2021-06-02
-    - target to make WS configurable [favv]
+    - [favv] target to make WS configurable
   - 2021-05-31
-    - target to include WS [favv]
+    - [favv] target to include WS
   - 2021-05-28
-    - [BREAKING] remove **src/.env.vite.js** and use **.env.[MODE]** (see --mode in package.json)
-    - [BREAKING] move  **src/.env.js** to **src/[VITE_APPNAME]/.env.[MODE].js**
-    - vitevue improve multiple environment configs
+    - [vitevue] improve multiple environment configs
+      - [BREAKING] remove **src/.env.vite.js** and use **.env.[MODE]** (see --mode in package.json)
+      - [BREAKING] move  **src/.env.js** to **src/[VITE_APPNAME]/.env.[MODE].js**
+      - [BREAKING] package.json need to add --mode
 - V0.0.4:
   - 2021-05-14
     - vitevue DemoTableApi add filter to find function e.g. col=startDate&op=gte&val=10

@@ -141,9 +141,9 @@ docker run -it <your-image-name>:<tag>
   + vitevue/
     + src
     | + .env.[MODE]: frontend build config (set DEV_SERVER_PORT, WEB_BASEPATH here)
-    | + .gitignore
     | + <YourCustomFrontend>Web/: folder with suffix "Web" are your custom frontend code (your frontend repo)
     |   + .env.[MODE].js: frontend config (set INITIAL_SECURE_PATH, API_URL - to API server, ROUTES here)
+    |   + .gitignore: for your repo
     + deploy.sh: to build into fastapi static folder for small scale app
 ```
 
@@ -176,7 +176,8 @@ git clone <your backend project e.g. example_app>
 - NOTE: any code outside **favv/fastapi/app** will not auto reload
 
 ## Frontend Customization Notes
-Setting up your custom backend
+
+Setting up your custom frontend
 
 ```bash
 # in favv/vitevue/src/
@@ -184,6 +185,8 @@ Setting up your custom backend
 git clone <your frontend project e.g. ExampleWeb>
 ```
 
+- see **favv/vitevue/.env.localdev.example** for defining custom frontend name and vite.config.js related configurations
+- environment is selected using the --mode property (see package.json)
 - use **favv/vitevue/src/CustomWeb/** as reference on your custom frontend
 - see **favv/vitevue/src/CustomWeb/.env.localdev.js** on the configurations used, especially the ROUTES property
 - ROUTES property
@@ -194,8 +197,6 @@ git clone <your frontend project e.g. ExampleWeb>
   - paths
     - '~/xxx.js' from **favv/vitevue/src** folder
     - '/xxx.js' from **favv/vitevue** folder
-- see **favv/vitevue/.env.localdev.example** for defining custom frontend name and vite.config.js related configurations
-- environment is selected using the --mode property (see package.json)
 
 # Notes
 
