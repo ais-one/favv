@@ -74,13 +74,17 @@ export default {
           })
         }
       })
-      ws.setOptions({ endpoint: `${WS_URL}/${store.state.user}` })
-      ws.connect()
+      if (WS_URL) {
+        ws.setOptions({ endpoint: `${WS_URL}/${store.state.user}` })
+        ws.connect()
+      }
     })
     onUnmounted(() => console.log('SECURE unmounted'))
 
     onBeforeUnmount(() => {
-      ws.close()
+      if (WS_URL) {
+        ws.close()
+      }
     })
 
     const logout = async () => await store.dispatch('doLogin', null)

@@ -1,16 +1,17 @@
 ## TODO
 - V0.0.5
+  - [vitevue] configurable card forms demo
   - [favv] websockets [WIP]
     - https://github.com/tiangolo/fastapi/pull/3280
     - https://github.com/tiangolo/fastapi/pull/2640/files
     - https://github.com/tiangolo/fastapi/issues/2904
     - https://github.com/tiangolo/fastapi/issues/2639
     - https://github.com/tiangolo/fastapi/issues/2904
-  - [vitevue] environment configs
   - [vitevue] e2e testing using cypress
   - [fastapi] allow for multiple services (alchemy mongodb, s3, upload folders)
   - [fastapi] add ApiKey to favv
   - [favv] Auth-FE: SSO SAML, BE: JWT
+  - [vitevue] websocket health indicator and test retry
 - V0.0.6
   - [vitevue] linting and prettier
   - [vitevue] dark / light mode
@@ -20,10 +21,12 @@
 ## DONE
 - V0.0.5:
   - 2021-06-02
-    - make WS configurable [favv]
+    - target to make WS configurable [favv]
   - 2021-05-31
-    - target to include WS [ ]
+    - target to include WS [favv]
   - 2021-05-28
+    - [BREAKING] remove **src/.env.vite.js** and use **.env.[MODE]** (see --mode in package.json)
+    - [BREAKING] move  **src/.env.js** to **src/[VITE_APPNAME]/.env.[MODE].js**
     - vitevue improve multiple environment configs
 - V0.0.4:
   - 2021-05-14

@@ -1,11 +1,11 @@
 // import.meta is undefined, process.env is not populated with custom values
 import vue from '@vitejs/plugin-vue'
-import envVite from './src/.env.vite.js'
+// import envVite from './src/.env.vite.js'
 const path = require('path')
 
 export default ({ command, mode }) => {
-  // console.log(envVite)
-  // const env = require('dotenv').config({ path: path.join(__dirname, '.env.' + mode) }).parsed
+  const envVite = require('dotenv').config({ path: path.join(__dirname, '.env.' + mode) }).parsed
+  console.log(envVite)
   return {
     base: envVite.WEB_BASEPATH || '/', // set to '/vite' for dev:build, '/' otherwise
     // build: {

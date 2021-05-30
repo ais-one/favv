@@ -12,8 +12,7 @@ npm-debug.log*
 
 # environment
 # vitevue/src/.env.js is filled with your own and untracked
-.env.js
-.env.vite.js
+.env.localdev
 
 # untrack user custom application (it is tracked in their own repo), track example custom application
 *Web

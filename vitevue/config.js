@@ -1,6 +1,9 @@
-import envjs from './src/.env.js'
-
-console.log('envjs', envjs)
+// import envjs from './src/.env.js'
+// let obj = await import(`./src/.env.localdev.js`)
+const { MODE, VITE_APPNAME } = import.meta.env
+let obj = await import('./src/' + VITE_APPNAME + '/.env.' + MODE + `.js`)
+const envjs = obj.default
+console.log('envjs', envjs, import.meta.env)
 
 export const {
   // VITE_HTTPONLY_TOKEN = false, // true, // NOTUSED... replaced by WITH_CREDENTIALS
