@@ -1,12 +1,12 @@
 ## TODO
 - V0.0.5
-  - [vitevue] configurable card forms demo
   - [favv] websockets [WIP]
     - https://github.com/tiangolo/fastapi/pull/3280
     - https://github.com/tiangolo/fastapi/pull/2640/files
     - https://github.com/tiangolo/fastapi/issues/2904
     - https://github.com/tiangolo/fastapi/issues/2639
     - https://github.com/tiangolo/fastapi/issues/2904
+  - [vitevue] configurable card forms demo
   - [vitevue] e2e testing using cypress
   - [fastapi] allow for multiple services (alchemy mongodb, s3, upload folders)
   - [fastapi] add ApiKey to favv

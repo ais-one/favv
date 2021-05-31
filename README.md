@@ -7,6 +7,7 @@ Considerations
 - application segregation **inject your own frontend and backend project**
 - ease of template upgrade 
 - ci/cd and container friendly
+- microservices friendly
 
 ## Development - Setup and Run
 
@@ -142,7 +143,8 @@ docker run -it <your-image-name>:<tag>
     + src
     | + .env.[MODE]: frontend build config (set DEV_SERVER_PORT, WEB_BASEPATH here)
     | + <YourCustomFrontend>Web/: folder with suffix "Web" are your custom frontend code (your frontend repo)
-    |   + .env.[MODE].js: frontend config (set INITIAL_SECURE_PATH, API_URL - to API server, ROUTES here)
+    |   + .env.[MODE].js: frontend environment (environment level settings - API_URL, Websocket URL, etc.)
+    |   + setup.js: frontend setup (set INITIAL_SECURE_PATH, ROUTES CONSTANTS here)
     |   + .gitignore: for your repo
     + deploy.sh: to build into fastapi static folder for small scale app
 ```
@@ -188,7 +190,8 @@ git clone <your frontend project e.g. ExampleWeb>
 - see **favv/vitevue/.env.localdev.example** for defining custom frontend name and vite.config.js related configurations
 - environment is selected using the --mode property (see package.json)
 - use **favv/vitevue/src/CustomWeb/** as reference on your custom frontend
-- see **favv/vitevue/src/CustomWeb/.env.localdev.js** on the configurations used, especially the ROUTES property
+- see **favv/vitevue/src/CustomWeb/.env.localdev.js** on environment level settings, e.g. API URL
+- see **favv/vitevue/src/CustomWeb/setup.js** on the frontend setup especially the ROUTES property
 - ROUTES property
   - use kebab-case, will be converted to Capital Case in menu display
   - only up to 1 submenu level

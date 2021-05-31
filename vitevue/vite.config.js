@@ -7,7 +7,7 @@ export default ({ command, mode }) => {
   const envVite = require('dotenv').config({ path: path.join(__dirname, '.env.' + mode) }).parsed
   console.log(envVite)
   return {
-    base: envVite.WEB_BASEPATH || '/', // set to '/vite' for dev:build, '/' otherwise
+    base: envVite.WEB_BASEPATH || '/', // BASE_URL: set to '/vite' for dev:build, '/' otherwise
     // build: {
     //   rollupOptions: { // vite 2
     //     external: [
