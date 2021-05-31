@@ -37,8 +37,7 @@ import { onMounted, onUnmounted, onBeforeUnmount, ref, reactive } from 'vue'
 import { useStore } from 'vuex'
 // import { useRouter } from 'vue-router'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
-import { CONSTANTS, ROUTES, WS_URL } from '/config.js'
-import { ws } from '~/services.js'
+import { CONSTANTS, ROUTES, ON_LOGIN, ON_LOGOUT } from '/config.js'
 
 export default {
   components: { MenuUnfoldOutlined, MenuFoldOutlined },
@@ -74,17 +73,13 @@ export default {
           })
         }
       })
-      if (WS_URL) {
-        ws.setOptions({ endpoint: `${WS_URL}/${store.state.user}` })
-        ws.connect()
-      }
+      if (ON_LOGIN) ON_LOGIN()
     })
-    onUnmounted(() => console.log('SECURE unmounted'))
-
+    onUnmounted(() => {
+      console.log('SECURE unmounted')
+    })
     onBeforeUnmount(() => {
-      if (WS_URL) {
-        ws.close()
-      }
+      if (ON_LOGOUT) ON_LOGOUT()
     })
 
     const logout = async () => await store.dispatch('doLogin', null)

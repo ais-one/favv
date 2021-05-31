@@ -1,3 +1,5 @@
+import { openWs, closeWs } from './hookFns.js'
+
 export default {
   CONSTANTS: {
     TITLE: 'Dashboard App',
@@ -27,6 +29,16 @@ export default {
     { path: '/more-forms', name: 'Demo More Forms', component: async () => await import('./DemoMoreForms.vue') },
     { path: '/api-forms', name: 'Demo Forms (API)', component: async () => await import('./DemoApiForms.vue') },
   ],
+
   INITIAL_SECURE_PATH: '/dashboard',
-  VERSION: '0.0.2'
+
+  // log-in/logout hook
+  ON_LOGIN: () => {
+    openWs()
+  },
+  ON_LOGOUT: () => {
+    closeWs()
+  },
+
+  VERSION: '0.0.2',
 }

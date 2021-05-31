@@ -64,7 +64,7 @@
 import { ref, reactive, toRaw, watch, onMounted } from 'vue'
 import { Chart } from '@antv/g2'
 import * as http from '~/http.js'
-import { API_URL } from '/config.js'
+import { VITE_API_URL } from '/config.js'
 
 
 
@@ -91,7 +91,7 @@ export default {
 
     onMounted(async () => {
       try {
-        const { data } = await http.get(API_URL + '/api/emerson-app/home/home')
+        const { data } = await http.get(VITE_API_URL + '/api/emerson-app/home/home')
         formState.compareCnnModelList = [...data.cnnModels]
       } catch (e) {
         console.log(e.toString())
@@ -107,7 +107,7 @@ export default {
         columns.value = []
         const coltmp = []
         const temp = []
-        const { data } = await http.post(API_URL + '/api/emerson-app/model/modelcnn', json)
+        const { data } = await http.post(VITE_API_URL + '/api/emerson-app/model/modelcnn', json)
         console.log(data)
         // columns names
         for (let i=0; i < data.colNames.length; i++) {

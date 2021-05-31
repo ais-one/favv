@@ -123,9 +123,8 @@ import { useMainStore } from '../store.js'
 import { ref, reactive, toRaw, watch, onMounted, computed, onBeforeUnmount } from 'vue'
 import { InboxOutlined } from '@ant-design/icons-vue'
 
+import { VITE_API_URL } from '/config.js'
 import * as http from '~/http.js'
-import { API_URL } from '/config.js'
-
 import { ws } from '~/services.js'
 
 export default {
@@ -166,13 +165,13 @@ export default {
     }
     onMounted(() => {
       getMock()
-      ws.setMessage((e) => {
-        console.log('ws onmessage', e.data)
-        mainStore.message = e.data
-      })
+      // ws.setMessage((e) => {
+      //   console.log('ws onmessage', e.data)
+      //   mainStore.message = e.data
+      // })
     })
     onBeforeUnmount(() => {
-      ws.setMessage((e) => console.log('ws onmessage', e.data))
+      // ws.setMessage((e) => console.log('ws onmessage', e.data))
     })
 
     const activeKey = ref(['1']); // accordian
@@ -194,7 +193,7 @@ export default {
       try {
         const body = toRaw(formState)
         console.log('submit!', body)
-        const { data } = await http.post(API_URL + '/api/healthcheck', body)
+        const { data } = await http.post(VITE_API_URL + '/api/healthcheck', body)
         console.log(data)
         submitResult.value = JSON.stringify(data)
       } catch (e) {
@@ -221,7 +220,7 @@ export default {
           text: form1.text,
           number: form1.number
         }))
-        const { data } = await http.post(API_URL + '/api/custom-app/uploads/file-and-json', form)
+        const { data } = await http.post(VITE_API_URL + '/api/custom-app/uploads/file-and-json', form)
         console.log(data)
       } catch (e) {
         console.log('onSubmit1 Error', e.toString())

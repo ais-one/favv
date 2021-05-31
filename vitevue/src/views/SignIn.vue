@@ -15,7 +15,7 @@
 import { ref, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
-import { CALLBACK_URL, CONSTANTS, INITIAL_SECURE_PATH } from '/config.js'
+import { VITE_CALLBACK_URL, CONSTANTS, INITIAL_SECURE_PATH } from '/config.js'
 
 export default {
   setup(props, context) {
@@ -27,7 +27,7 @@ export default {
     const loading = ref(false)
     const errorMessage = ref('')
 
-    const callbackUrl = CALLBACK_URL
+    const callbackUrl = VITE_CALLBACK_URL
 
     // onUnmounted(() => console.log('signIn unmounted'))
     onMounted(async () => {

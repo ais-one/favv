@@ -43,7 +43,7 @@ module.exports = {
   plugins: ['vue', 'prettier'],
   overrides: [
     {
-      files: ['firebase-messaging-sw.js', 'service-worker.js'],
+      // files: ['firebase-messaging-sw.js', 'service-worker.js'],
       globals: {
         importScripts: 'readonly',
         firebase: 'readonly',

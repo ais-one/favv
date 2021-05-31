@@ -24,6 +24,11 @@
     - [favv] target to make WS configurable
   - 2021-05-31
     - [favv] target to include WS
+  - 2021-06-01
+    - [vitevue] improve multiple environment configs
+      - Add demo on adding hook functions for login/logout 
+      - [BREAKING] moved **src/[VITE_APPNAME]/.env.[MODE].js** properties to **.env.[MODE]**
+      - [NREADINH] rename API_URL to VITE_API_URL
   - 2021-05-28
     - [vitevue] improve multiple environment configs
       - [BREAKING] remove **src/.env.vite.js** and use **.env.[MODE]** (see --mode in package.json)

@@ -141,9 +141,8 @@ docker run -it <your-image-name>:<tag>
   | + requirements.txt: DO NOT TOUCH THIS
   + vitevue/
     + src
-    | + .env.[MODE]: frontend build config (set DEV_SERVER_PORT, WEB_BASEPATH here)
+    | + .env.[MODE]: frontend build config (set DEV_SERVER_PORT, WEB_BASEPATH, environment level settings - API_URL, Websocket URL, etc.)
     | + <YourCustomFrontend>Web/: folder with suffix "Web" are your custom frontend code (your frontend repo)
-    |   + .env.[MODE].js: frontend environment (environment level settings - API_URL, Websocket URL, etc.)
     |   + setup.js: frontend setup (set INITIAL_SECURE_PATH, ROUTES CONSTANTS here)
     |   + .gitignore: for your repo
     + deploy.sh: to build into fastapi static folder for small scale app
@@ -187,10 +186,9 @@ Setting up your custom frontend
 git clone <your frontend project e.g. ExampleWeb>
 ```
 
-- see **favv/vitevue/.env.localdev.example** for defining custom frontend name and vite.config.js related configurations
+- see **favv/vitevue/.env.localdev.example** for defining custom frontend name, vite.config.js and environment level (eg API URL) related configurations
 - environment is selected using the --mode property (see package.json)
 - use **favv/vitevue/src/CustomWeb/** as reference on your custom frontend
-- see **favv/vitevue/src/CustomWeb/.env.localdev.js** on environment level settings, e.g. API URL
 - see **favv/vitevue/src/CustomWeb/setup.js** on the frontend setup especially the ROUTES property
 - ROUTES property
   - use kebab-case, will be converted to Capital Case in menu display
