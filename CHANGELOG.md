@@ -7,6 +7,7 @@
     - https://github.com/tiangolo/fastapi/issues/2639
     - https://github.com/tiangolo/fastapi/issues/2904
   - [vitevue] configurable card forms demo
+  - [vitevue] dynamic chart update (simulate websocket)
   - [vitevue] e2e testing using cypress
   - [fastapi] allow for multiple services (alchemy mongodb, s3, upload folders)
   - [fastapi] add ApiKey to favv
@@ -20,10 +21,10 @@
 
 ## DONE
 - V0.0.5:
+  - 2021-06-03
+    - [favv] target implement backend configurable websocket
   - 2021-06-02
-    - [favv] target to make WS configurable
-  - 2021-05-31
-    - [favv] target to include WS
+    - [favv] implement frontend configurable websocket
   - 2021-06-01
     - [vitevue] improve multiple environment configs
       - Add demo on adding hook functions for login/logout 
