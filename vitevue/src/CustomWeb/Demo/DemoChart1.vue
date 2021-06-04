@@ -2,6 +2,8 @@
   <a-collapse v-model:activeKey="activeKey">
     <a-collapse-panel key="1" header="Submit Button" force-render>
       <a-button @click="showC2">Show Chart 2</a-button>
+      <h4>Slide to adjust Chart 2 strategy value (80 - 250)</h4>
+      <a-slider v-model:value="yValue" :min="80" :max="250" :step="10" @after-change="afterChange" />
     </a-collapse-panel>
     <a-collapse-panel key="2" header="Chart 1" force-render>
       <div style="text-align: center;">
@@ -26,6 +28,7 @@
 <script>
 import DataSet from '@antv/data-set'
 import { Chart } from '@antv/g2'
+import { useChartStore } from '../store.js'
 
 const data = [
   { genre: 'Sports', sold: 275 },
@@ -35,13 +38,16 @@ const data = [
   { genre: 'Other', sold: 150 },
 ];
 
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 
 export default {
   name: 'DemoChart1',
   setup() {
     const activeKey = ref(['1'])
     const tabActiveKey = ref('1')
+    const yValue = ref(100)
+
+    const chartStore = useChartStore()
 
     onMounted(() => {
       fetch('https://gw.alipayobjects.com/os/antvdemo/assets/data/flare.json')
@@ -99,17 +105,19 @@ export default {
         })
     })
 
+    let chart2
+
     const showC2 = () => {
       document.querySelector('#c2').innerHTML = '' //  clear content
       activeKey.value = [...activeKey.value, '3']
       tabActiveKey.value = '2'
-      const chart2 = new Chart({
+      chart2 = new Chart({
         container: 'c2', // specify the chart container ID
         height: 500, // specify the chart height
         forceFit: true,
         autoFit: true,
       })
-      chart2.data(data)
+      chart2.data(chartStore.c2data)
       chart2.interval().position('genre*sold')
       chart2.render()
 
@@ -117,10 +125,30 @@ export default {
       e.initEvent('resize', true, true)
       window.dispatchEvent(e)
     }
+
+    const afterChange = (value) => {
+      const temp = [ ...chartStore.c2data ]
+      temp[1].sold = yValue.value
+      chartStore.c2data = [...temp]
+      // chart2.render() // can call rerender here also...
+    }
+    
+    watch(
+      () => chartStore.c2data,
+      (currentValue, oldValue) => {
+        // console.log('watch', currentValue, oldValue)
+        // console.log('watch', chart2)
+        if (chart2) chart2.render()
+      },
+      { deep: true }
+    )
+
     return {
       activeKey,
       tabActiveKey,
-      showC2
+      showC2,
+      afterChange,
+      yValue,
     }
   }
 }

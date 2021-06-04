@@ -1,5 +1,19 @@
 import { defineStore } from 'pinia'
 
+export const useChartStore = defineStore({
+  id: 'chart',
+  // a function that returns a fresh state
+  state: () => ({
+    c2data: [
+      { genre: 'Sports', sold: 275 },
+      { genre: 'Strategy', sold: 115 },
+      { genre: 'Action', sold: 120 },
+      { genre: 'Shooter', sold: 350 },
+      { genre: 'Other', sold: 150 },
+    ]
+  }),
+})
+
 export const useMainStore = defineStore({
   // name of the store
   // it is used in devtools and allows restoring state
@@ -11,7 +25,7 @@ export const useMainStore = defineStore({
       delivery: true,
       date1: '2021-04-01'
     },
-    message: "No Message From WS" // for testing websockets  
+    message: "No Message From WS" // for testing websockets
   }),
   // optional getters
   getters: {

@@ -1,13 +1,13 @@
 ## TODO
 - V0.0.5
-  - [favv] websockets [WIP]
+  - [vitevue] dynamic chart update (simulate websocket)
+  - [vitevue] configurable card forms demo
+  - [fastapi] websockets - need to monitor resolution of the following
     - https://github.com/tiangolo/fastapi/pull/3280
     - https://github.com/tiangolo/fastapi/pull/2640/files
     - https://github.com/tiangolo/fastapi/issues/2904
     - https://github.com/tiangolo/fastapi/issues/2639
     - https://github.com/tiangolo/fastapi/issues/2904
-  - [vitevue] configurable card forms demo
-  - [vitevue] dynamic chart update (simulate websocket)
   - [vitevue] e2e testing using cypress
   - [fastapi] allow for multiple services (alchemy mongodb, s3, upload folders)
   - [fastapi] add ApiKey to favv
@@ -21,8 +21,10 @@
 
 ## DONE
 - V0.0.5:
-  - 2021-06-03
-    - [favv] target implement backend configurable websocket
+  - 2021-06-09
+    - [vitevue] dynamic chart update using slider
+  - 2021-06-04
+    - [favv] backend configurable websocket
   - 2021-06-02
     - [favv] implement frontend configurable websocket
   - 2021-06-01
