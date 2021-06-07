@@ -6,6 +6,7 @@ from services.handlers import UnicornException
 from services.handlers import startup_handler, shutdown_handler
 
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from api.routes.base import router
@@ -35,6 +36,10 @@ app = FastAPI(
   description="This is a very fancy project, with auto docs for the API and everything",
   version=get_settings().VERSION + "-" + get_settings().ENV,
 )
+
+# incoming requests to http or ws will be redirected to the secure scheme instead
+# if (get_settings().USE_HTTPS == 1):
+#   app.add_middleware(HTTPSRedirectMiddleware)
 
 app.add_event_handler("startup", startup_handler)
 app.add_event_handler("shutdown", shutdown_handler)

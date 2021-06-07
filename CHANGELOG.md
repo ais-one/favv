@@ -1,6 +1,5 @@
 ## TODO
 - V0.0.5
-  - [vitevue] dynamic chart update (simulate websocket)
   - [vitevue] configurable card forms demo
   - [fastapi] websockets - need to monitor resolution of the following
     - https://github.com/tiangolo/fastapi/pull/3280
@@ -21,7 +20,7 @@
 
 ## DONE
 - V0.0.5:
-  - 2021-06-09
+  - 2021-06-08
     - [vitevue] dynamic chart update using slider
   - 2021-06-04
     - [favv] backend configurable websocket

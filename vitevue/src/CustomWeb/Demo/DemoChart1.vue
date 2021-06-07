@@ -130,18 +130,16 @@ export default {
       const temp = [ ...chartStore.c2data ]
       temp[1].sold = yValue.value
       chartStore.c2data = [...temp]
-      // chart2.render() // can call rerender here also...
+      chart2.render() // rerender here...
     }
     
-    watch(
-      () => chartStore.c2data,
-      (currentValue, oldValue) => {
-        // console.log('watch', currentValue, oldValue)
-        // console.log('watch', chart2)
-        if (chart2) chart2.render()
-      },
-      { deep: true }
-    )
+    // watch(
+    //   () => chartStore.c2data, //  better not to watch deep...
+    //   (currentValue, oldValue) => {
+    //     if (chart2) chart2.render()
+    //   },
+    //   { deep: true }
+    // )
 
     return {
       activeKey,

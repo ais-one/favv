@@ -73,6 +73,8 @@ huey_consumer custom_app.models.tasks.huey
 
 Navigate to - http://127.0.0.1:8000/api-docs
 
+**Note:** if you use https and self-signed cert you may need to allow on browser
+
 # HTTPS
 
 Generate your private key and...
@@ -93,9 +95,8 @@ openssl req -x509 -newkey rsa:4096 -keyout local.key.pem -out local.cert.pem -da
 # move to the vitevue folder
 cd ../../vitevue
 
-# copy the configs
-cp src/.env.js.example src/.env.js
-cp src/.env.vite.js.example src/.env.vite.js
+# copy the configs - note localdev is and arbitrary environment name and set in package.json
+cp src/.env.localdev.example src/.env.localdev
 
 # install
 npm i
@@ -105,6 +106,10 @@ npm run dev
 ```
 
 Navigate to - http://127.0.0.1:8080
+
+
+**Note:** if you use https and self-signed cert for end point you may need navigate to API using browser first and allow on browser, then use the browser
+
 
 ## Production Run (Docker)
 
