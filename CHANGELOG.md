@@ -7,6 +7,7 @@
     - https://github.com/tiangolo/fastapi/issues/2904
     - https://github.com/tiangolo/fastapi/issues/2639
     - https://github.com/tiangolo/fastapi/issues/2904
+  - [vitevue] flask app links page
   - [vitevue] e2e testing using cypress
   - [fastapi] allow for multiple services (alchemy mongodb, s3, upload folders)
   - [fastapi] add ApiKey to favv
@@ -20,6 +21,8 @@
 
 ## DONE
 - V0.0.5:
+  - 2021-06-11
+    - [fastapi] add graphql sample
   - 2021-06-08
     - [vitevue] dynamic chart update using slider
   - 2021-06-04

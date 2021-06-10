@@ -1,3 +1,4 @@
+aniso8601-7.0.0
 aiofiles==0.6.0
 bcrypt==3.2.0
 boto3==1.17.19
@@ -8,10 +9,14 @@ colorama==0.4.4
 cryptography==3.4.6
 ecdsa==0.14.1
 fastapi==0.63.0
+graphene-2.1.8
+graphql-core-2.3.2
+graphql-relay-2.0.1
 h11==0.12.0
 huey==2.3.1
 jmespath==0.10.0
 passlib==1.7.4
+promise-2.3 rx-1.6.1
 pyasn1==0.4.8
 pycparser==2.20
 pydantic==1.7.3

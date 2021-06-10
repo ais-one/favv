@@ -30,7 +30,7 @@ do
       pip uninstall -r requirements.base.txt -y
       # reinistall and get new versions
       # aiofiles - for serving static files in fastapi
-      pip install aiofiles fastapi uvicorn[standard] python-multipart SQLAlchemy passlib[bcrypt] python-jose[cryptography] boto3 pymongo redis huey
+      pip install aiofiles fastapi uvicorn[standard] python-multipart SQLAlchemy passlib[bcrypt] python-jose[cryptography] boto3 pymongo redis huey graphene
       pip freeze > requirements.base.txt.updated
       pip install -r app/custom_app/requirements.txt
       echo

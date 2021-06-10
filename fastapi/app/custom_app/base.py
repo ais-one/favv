@@ -15,6 +15,9 @@ from services.huey_config import get_huey # task queue
 from custom_app.models.tasks import add_numbers
 # from .models.tasks import add_numbers # An alternative to above
 
+import graphene # graphql
+from starlette.graphql import GraphQLApp
+
 import numpy as np
 
 router_custom_app = APIRouter(prefix="/custom-app")
@@ -23,6 +26,16 @@ router_custom_app.include_router(router_custom_app_uploads)
 router_custom_app.include_router(router_custom_app_s3)
 router_custom_app.include_router(router_custom_app_cascade)
 router_custom_app.include_router(router_custom_app_ws)
+
+# graphql
+class Query(graphene.ObjectType):
+    hello = graphene.String(name=graphene.String(default_value="stranger"))
+    def resolve_hello(self, info, name):
+        return "Hello " + name
+
+# graphql - http://127.0.0.1:8000/api/graphql (it did not recognize prefix... like websockets currently)
+# https://fastapi.tiangolo.com/advanced/graphql/
+router_custom_app.add_route("/graphql", GraphQLApp(schema=graphene.Schema(query=Query)))
 
 @router_custom_app.get("/ext-db", tags=["api_custom_app"])
 async def ext_db():
