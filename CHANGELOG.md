@@ -1,18 +1,18 @@
 ## TODO
 - V0.0.5
   - [vitevue] configurable card forms demo
+  - [vitevue] e2e testing using cypress
+  - [vitevue] flask app links page
+  - [fastapi] allow for multiple services (alchemy mongodb, s3, upload folders)
+  - [fastapi] add ApiKey to favv
+  - [favv] Auth-FE: SSO SAML, BE: JWT
+  - [vitevue] websocket health indicator and test retry
   - [fastapi] websockets - need to monitor resolution of the following
     - https://github.com/tiangolo/fastapi/pull/3280
     - https://github.com/tiangolo/fastapi/pull/2640/files
     - https://github.com/tiangolo/fastapi/issues/2904
     - https://github.com/tiangolo/fastapi/issues/2639
     - https://github.com/tiangolo/fastapi/issues/2904
-  - [vitevue] flask app links page
-  - [vitevue] e2e testing using cypress
-  - [fastapi] allow for multiple services (alchemy mongodb, s3, upload folders)
-  - [fastapi] add ApiKey to favv
-  - [favv] Auth-FE: SSO SAML, BE: JWT
-  - [vitevue] websocket health indicator and test retry
 - V0.0.6
   - [vitevue] linting and prettier
   - [vitevue] dark / light mode

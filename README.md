@@ -2,12 +2,18 @@
 
 FastAPI Python backend (BE) and Vite + VueJS + Ant Design frontend (FE) template... for your API and Web application needs.
 
-Considerations
+## Considerations
+
+The following are considerations for the project. The aim is to allow things to be built faster and reduce maintenence overhead.
+
 - code reusability
 - application segregation **inject your own frontend and backend project**
-- ease of template upgrade 
+- ease of template upgrade
 - ci/cd and container friendly
 - microservices friendly
+- up to date dependencies
+- reducing technical debt
+- scalability
 
 ## Development - Setup and Run
 
