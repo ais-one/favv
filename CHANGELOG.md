@@ -21,6 +21,8 @@
 
 ## DONE
 - V0.0.5:
+  - 2021-06-21
+    - [fastapi] keycloak in progress, update libraries
   - 2021-06-11
     - [fastapi] add graphql sample
   - 2021-06-08
