@@ -66,7 +66,7 @@ cd app
 
 # fastapi application
 python main.py # OPTION 1 - running using python
-uvicorn main:app --reload --host=0.0.0.0 --port=8000 --access-log --log-level=debug --header server:none # OPTION 2 - running uvicorn
+uvicorn main:app --reload --host=0.0.0.0 --port=3000 --access-log --log-level=debug --header server:none # OPTION 2 - running uvicorn
 
 # HTTPS
 # if using SSL include the following to uvicorn, also set USE_HTTPS in environment file
@@ -77,7 +77,7 @@ huey_consumer custom_app.models.tasks.huey
 
 ```
 
-Navigate to - http://127.0.0.1:8000/api-docs
+Navigate to - http://127.0.0.1:3000/api-docs
 
 **Note:** if you use https and self-signed cert you may need to allow on browser
 

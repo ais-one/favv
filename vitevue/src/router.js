@@ -66,6 +66,7 @@ const router = createRouter({
     ...ROUTES,
 
     // catchall
+    { path: '/forbidden', name: 'Forbidden', component: () => import('./views/Forbidden.vue') },
     { path: '/:catchAll(.*)', name: 'catchAll', redirect: { name: 'SignIn' }, meta: { requiresAuth: false, layout: 'layout-public' } }
   ]
 })

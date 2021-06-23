@@ -1,7 +1,8 @@
 from fastapi import APIRouter, Response
 
 from api.routes.test import router as router_test # or... from .test
-from api.routes.common.base import router as router_common
+from api.routes.oidc import router as router_oidc
+from api.routes.auth.base import router as router_auth
 
 from config import get_settings
 
@@ -20,7 +21,8 @@ router_app = getattr(importlib.import_module(app_name + ".base"), "router_" + ap
 
 router = APIRouter()
 
-router.include_router(router_common)
+router.include_router(router_auth)
+router.include_router(router_oidc)
 if app_env != "production":
   router.include_router(router_test)
 if router_app:

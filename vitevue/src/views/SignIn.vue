@@ -15,7 +15,7 @@
 import { ref, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
-import { VITE_CALLBACK_URL, CONSTANTS, INITIAL_SECURE_PATH } from '/config.js'
+import { VITE_CALLBACK_URL, CONSTANTS, INITIAL_SECURE_PATH, VITE_SSO_URL } from '/config.js'
 
 export default {
   setup(props, context) {
@@ -34,6 +34,10 @@ export default {
       // console.log('signIn mounted!', route.hash) // deal with hashes here if necessary
       errorMessage.value = ''
       loading.value = false
+
+      if (VITE_SSO_URL) {
+        window.location.assign(VITE_SSO_URL)
+      }
     })
     // onBeforeUnmount(() => { })
 
@@ -44,7 +48,7 @@ export default {
     const login = async () => {
       _setUser()
       loading.value = false
-      router.push(INITIAL_SECURE_PATH)
+      // router.push(INITIAL_SECURE_PATH) // will be done in router auth guard
     }
 
     return {

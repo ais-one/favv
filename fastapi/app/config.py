@@ -23,7 +23,7 @@ class EnvSettings(BaseSettings):
   JWT_ALG: str = "HS256"
   JWT_SECRET: str = "".join(random.choice(string.ascii_letters) for i in range(32))
   REFRESH_TOKEN_SECRET: str = "".join(random.choice(string.ascii_letters) for i in range(64))
-  API_PORT: int = 8000
+  API_PORT: int = 3000
   SQLALCHEMY_DB_URL: Optional[str] = "" # to be made a list
   CORS_ORIGINS: str = ""
   S3_ENDPOINT_URL: str = ""
@@ -36,11 +36,18 @@ class EnvSettings(BaseSettings):
   REDIS_CONNECTION: str = ""
   HUEY_REDIS_CONNECTION: str = ""
   HUEY_TASK_QUEUES: str = "" # to be made a list
+
   MONGODB_URL: str = "" # to be made a list
   MONGODB_DB: str = "" # to be made a list
+
   USE_HTTPS: int = 0
   HTTPS_CERT_PATH: str = ""
   HTTPS_KEY_PATH: str = ""
+
+  OIDC_URL: str = ""
+  OIDC_CLIENT_ID: str = ""
+  OIDC_CALLBACK: str = ""
+
   class Config:
     env_file = ".env." + CommonSettings().ENV # .env.development .env.production
 

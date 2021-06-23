@@ -19,7 +19,7 @@ from config import get_settings
 tags_metadata = [
   {
     "name": "default",
-    "description": "Operations with users. The **login** logic is also here.",
+    "description": "Description For Tags Metadata",
     "externalDocs": {
         "description": "Items external docs",
         "url": "https://fastapi.tiangolo.com/",
@@ -85,6 +85,7 @@ if __name__ == "__main__":
     args["ssl_certfile"] = get_settings().HTTPS_CERT_PATH
   else:
     print("No HTTPS")
+  # print(args)
   uvicorn.run("main:app", **args)
 
 if __name__ == "__mp_main__":

@@ -13,6 +13,7 @@ export const {
   VITE_API_URL, // make an alias
   VITE_WS_URL,
   // HTTPONLY_TOKEN = false, // true, // NOTUSED... replaced by VITE_WITH_CREDENTIALS
+  VITE_SSO_URL,
 
   // From setup.js
   CONSTANTS = setup.CONSTANTS,

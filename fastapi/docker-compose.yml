@@ -3,7 +3,7 @@ services:
   favv:
     build: .
     ports:
-      - "8000:8000"
+      - "3000:3000"
   redis:
     image: "redis:alpine"
     ports:

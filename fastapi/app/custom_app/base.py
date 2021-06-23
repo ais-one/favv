@@ -10,7 +10,6 @@ from .uploads import router_custom_app_uploads # reference same level
 from .s3 import router_custom_app_s3
 from .cascade import router_custom_app_cascade
 from .ws import router_custom_app_ws
-from .oidc import router_custom_app_oidc
 
 from services.huey_config import get_huey # task queue
 from custom_app.models.tasks import add_numbers
@@ -27,7 +26,6 @@ router_custom_app.include_router(router_custom_app_uploads)
 router_custom_app.include_router(router_custom_app_s3)
 router_custom_app.include_router(router_custom_app_cascade)
 router_custom_app.include_router(router_custom_app_ws)
-router_custom_app.include_router(router_custom_app_oidc)
 
 # graphql
 class Query(graphene.ObjectType):
@@ -35,7 +33,7 @@ class Query(graphene.ObjectType):
     def resolve_hello(self, info, name):
         return "Hello " + name
 
-# graphql - http://127.0.0.1:8000/api/graphql (it did not recognize prefix... like websockets currently)
+# graphql - http://127.0.0.1:3000/api/graphql (it did not recognize prefix... like websockets currently)
 # https://fastapi.tiangolo.com/advanced/graphql/
 router_custom_app.add_route("/graphql", GraphQLApp(schema=graphene.Schema(query=Query)))
 

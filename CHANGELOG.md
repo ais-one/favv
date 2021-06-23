@@ -21,6 +21,8 @@
 
 ## DONE
 - V0.0.5:
+  - 2021-06-24
+    - [fastapi] implement OIDC, use 3000 as backend port instead (to sync with express)
   - 2021-06-21
     - [fastapi] keycloak in progress, update libraries
   - 2021-06-11
