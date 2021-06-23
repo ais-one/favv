@@ -15,3 +15,5 @@ __pycache__
 # untrack user custom application (it is tracked in their own repo), track example custom application
 *_app
 !custom_app
+
+Dockerfile

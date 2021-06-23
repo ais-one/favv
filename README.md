@@ -147,9 +147,9 @@ docker run -it <your-image-name>:<tag>
   | |   + uploads/
   | + .env: environment state, custom app name and version
   | + .env.<your-environment>: environment specific info
-  | + Dockerfile: DO NOT TOUCH THIS
+  | + Dockerfile.example: DO NOT TOUCH THIS, use this as an example for your own Dockerfile
   | + install.sh: DO NOT TOUCH THIS 
-  | + requirements.txt: DO NOT TOUCH THIS
+  | + requirements.base.txt: DO NOT TOUCH THIS
   + vitevue/
     + src
     | + .env.[MODE]: frontend build config (set DEV_SERVER_PORT, WEB_BASEPATH, environment level settings - API_URL, Websocket URL, etc.)
