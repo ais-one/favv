@@ -62,7 +62,7 @@ async def refresh(refresh_token: str):
   token_body = json.loads(token_response.content)
   new__access_token = token_body["access_token"]
   new_refresh_token = token_body["refresh_token"]
-  return { "access_token": new_access_token, "refresh_token", new_refresh_token }
+  return { "access_token": new_access_token, "refresh_token": new_refresh_token }
   
 # @router.get("/")
 # async def root(request: Request,) -> Dict:
