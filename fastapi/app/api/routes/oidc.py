@@ -50,6 +50,20 @@ async def auth(code: str) -> RedirectResponse:
   response.set_cookie("Authorization", value=f"Bearer {access_token}")
   return response
 
+@router.get("/refresh", description="Endpoint for OIDC refresh")
+async def refresh(refresh_token: str):
+  payload = f"grant_type=refresh_token&refresh_token={refresh_token}&client_id={OIDC_CLIENT_ID}"
+  if (OIDC_CLIENT_SECRET != ""):
+    payload = payload + f"&client_secret{OIDC_CLIENT_SECRET}"
+
+  headers = {"Content-Type": "application/x-www-form-urlencoded"}
+  token_response = requests.request("POST", TOKEN_URL, data=payload, headers=headers)
+
+  token_body = json.loads(token_response.content)
+  new__access_token = token_body["access_token"]
+  new_refresh_token = token_body["refresh_token"]
+  return { "access_token": new_access_token, "refresh_token", new_refresh_token }
+  
 # @router.get("/")
 # async def root(request: Request,) -> Dict:
 #   return {"message": "You're logged in! "}
