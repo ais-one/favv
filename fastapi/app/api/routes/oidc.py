@@ -14,9 +14,10 @@ from config import get_settings
 
 OIDC_URL = get_settings().OIDC_URL
 OIDC_CLIENT_ID = get_settings().OIDC_CLIENT_ID
+OIDC_CLIENT_SECRET = get_settings().OIDC_CLIENT_SECRET
 OIDC_CALLBACK = get_settings().OIDC_CALLBACK
 
-AUTH_URL = f"{OIDC_URL}/auth?client_id={OIDC_CLIENT_ID}&response_type=code"
+AUTH_URL = f"{OIDC_URL}/auth?"
 TOKEN_URL = f"{OIDC_URL}/token"
 
 router = APIRouter(tags=["oidc"], prefix="/oidc")
@@ -25,13 +26,18 @@ router = APIRouter(tags=["oidc"], prefix="/oidc")
 
 @router.get("/login", description="Endpoint for frontend client to call")
 async def login() -> RedirectResponse:
-  # return { "test": AUTH_URL }
-  return RedirectResponse(AUTH_URL)
+  payload = f"response_type=code&client_id={OIDC_CLIENT_ID}"
+  if (OIDC_CLIENT_SECRET != ""):
+    payload = payload + f"&client_secret{OIDC_CLIENT_SECRET}"
+  return RedirectResponse(AUTH_URL + payload)
 
 @router.get("/auth", description="Endpoint for OIDC IDP to callback")
 async def auth(code: str) -> RedirectResponse:
   # using grant_type: authorization_code
   payload = f"grant_type=authorization_code&code={code}&redirect_uri={OIDC_CALLBACK}&client_id={OIDC_CLIENT_ID}"
+  if (OIDC_CLIENT_SECRET != ""):
+    payload = payload + f"&client_secret{OIDC_CLIENT_SECRET}"
+
   headers = {"Content-Type": "application/x-www-form-urlencoded"}
   token_response = requests.request("POST", TOKEN_URL, data=payload, headers=headers)
 

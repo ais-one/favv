@@ -46,6 +46,7 @@ class EnvSettings(BaseSettings):
 
   OIDC_URL: str = ""
   OIDC_CLIENT_ID: str = ""
+  OIDC_CLIENT_SECRET: str = ""
   OIDC_CALLBACK: str = ""
 
   class Config:
