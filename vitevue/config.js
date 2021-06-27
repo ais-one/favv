@@ -1,9 +1,9 @@
 //console.log('import.meta.env', import.meta.env)
-const { MODE, VITE_APPNAME } = import.meta.env
-const setupModule = await import('./src/' + VITE_APPNAME + '/setup.js')
-const setup = setupModule.default
+import setup from './apploader.js'
+// const setup = await import('./src/' + VITE_APPNAME + '/setup.js').default // await causes problems
 
 export const {
+  MODE,
   // from vite.config.js base property
   BASE_URL,
 

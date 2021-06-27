@@ -102,7 +102,8 @@ openssl req -x509 -newkey rsa:4096 -keyout local.key.pem -out local.cert.pem -da
 cd ../../vitevue
 
 # copy the configs - note localdev is and arbitrary environment name and set in package.json
-cp src/.env.localdev.example src/.env.localdev
+cp .env.localdev.example .env.localdev
+cp apploader.js.example apploader.js
 
 # install
 npm i
@@ -151,8 +152,9 @@ docker run -it <your-image-name>:<tag>
   | + install.sh: DO NOT TOUCH THIS 
   | + requirements.base.txt: DO NOT TOUCH THIS
   + vitevue/
+    + apploader.js: for loading specified custom folder
+    + .env.[MODE]: frontend build config (set DEV_SERVER_PORT, WEB_BASEPATH, environment level settings - API_URL, Websocket URL, etc.)
     + src
-    | + .env.[MODE]: frontend build config (set DEV_SERVER_PORT, WEB_BASEPATH, environment level settings - API_URL, Websocket URL, etc.)
     | + <YourCustomFrontend>Web/: folder with suffix "Web" are your custom frontend code (your frontend repo)
     |   + setup.js: frontend setup (set INITIAL_SECURE_PATH, ROUTES CONSTANTS here)
     |   + .gitignore: for your repo
@@ -197,7 +199,8 @@ Setting up your custom frontend
 git clone <your frontend project e.g. ExampleWeb>
 ```
 
-- see **favv/vitevue/.env.localdev.example** for defining custom frontend name, vite.config.js and environment level (eg API URL) related configurations
+- see **favv/vitevue/.env.localdev.example** for defining vite.config.js and environment level (eg API URL) related configurations
+- see **favv/vitevue/apploader.js.example** for loading custom frontend
 - environment is selected using the --mode property (see package.json)
 - use **favv/vitevue/src/CustomWeb/** as reference on your custom frontend
 - see **favv/vitevue/src/CustomWeb/setup.js** on the frontend setup especially the ROUTES property

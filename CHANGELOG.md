@@ -21,6 +21,8 @@
 
 ## DONE
 - V0.0.5:
+  - 2021-06-28
+    - [vitevue] redo custom app loading, dynamic import was causing problems, fixed
   - 2021-06-24
     - [fastapi] implement OIDC, use 3000 as backend port instead (to sync with express)
   - 2021-06-21
