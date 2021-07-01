@@ -2,6 +2,11 @@
 
 FastAPI Python backend (BE) and Vite + VueJS + Ant Design frontend (FE) template... for your API and Web application needs.
 
+The difference between this project and [https://github.com/ais-one/vue-crud-x](https://github.com/ais-one/vue-crud-x) are:
+- vue-crud-x is more of a cookbook and recipes are constantly being improved and updated
+- favv tries to seperate boiler plate from custom logic for better maintainability
+- they complement each other and each can be used to improve on the other
+
 ## Considerations
 
 The following are considerations for the project. The aim is to allow things to be built faster and reduce maintenence overhead.
@@ -14,6 +19,10 @@ The following are considerations for the project. The aim is to allow things to 
 - up to date dependencies
 - reducing technical debt
 - scalability
+
+## Roadmap & Updates
+
+See [CHANGELOG.md](./CHANGELOG.md)
 
 ## Development - Setup and Run
 

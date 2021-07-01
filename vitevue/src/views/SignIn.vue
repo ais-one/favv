@@ -36,7 +36,7 @@ export default {
       loading.value = false
 
       if (VITE_SSO_URL) {
-        window.location.assign(VITE_SSO_URL)
+        window.location.assign(VITE_SSO_URL + '/login')
       }
     })
     // onBeforeUnmount(() => { })

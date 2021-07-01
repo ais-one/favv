@@ -14,6 +14,7 @@ export const {
   VITE_WS_URL,
   // HTTPONLY_TOKEN = false, // true, // NOTUSED... replaced by VITE_WITH_CREDENTIALS
   VITE_SSO_URL,
+  VITE_VERIFY_URL,
 
   // From setup.js
   CONSTANTS = setup.CONSTANTS,
