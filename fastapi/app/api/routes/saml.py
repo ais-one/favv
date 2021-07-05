@@ -6,7 +6,12 @@ from onelogin.saml2.auth import OneLogin_Saml2_Auth
 from onelogin.saml2.settings import OneLogin_Saml2_Settings
 from onelogin.saml2.utils import OneLogin_Saml2_Utils
 
-app = FastAPI()
+from fastapi import APIRouter
+from config import get_settings
+import os
+import json
+
+router = APIRouter(tags=["saml"], prefix="/saml")
 
 saml_settings = {
   "strict": False, # can set to True to see problems such as Time skew/drift
@@ -25,9 +30,14 @@ saml_settings = {
       "url": "http://127.0.0.1:3000/api/saml/login/callback",
       "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
     },
-    "x509cert": "MIIClzCCAX8CBgF6A0sAhDANBgkqhkiG9w0BAQsFADAPMQ0wCwYDVQQDDAR0ZXN0MB4XDTIxMDYxMzAyNTMwNFoXDTMxMDYxMzAyNTQ0NFowDzENMAsGA1UEAwwEdGVzdDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAK97NlCcNOhtH0a0wz5boYKb7TaxogxnlyysOWUre1uI8SC6EBV3G5DHMdg4aWXwuXwy61+JJu70xNzJj155MJ+atGS7eLrxxGl0DNoLu/LU7Vhht+j09MZt5J60DnS76H3pkvzAtRfd1P/d5JEFzWYkI4drBJccYX/nrrx2KZBkXOjwjVcEhsyK5ykA0LX+M+yFDy2w8qEWhxHuSL6enzw8IZ7qdtsF8SHqw7cdCgCJU6+0dxaRAAqmzMkO7BDEkwCJl0M8VaOPGo/SnZIAMYHLIUg1x0h/ecST4NPdqAwgDGtWAcD+Gp7Lr7xfBbKKqnLfg2PJdjs7Z0+NFOeVTvcCAwEAATANBgkqhkiG9w0BAQsFAAOCAQEAeJ2r2yoaQAo6v8MC6iAobOeJoBoezQg/OSQqeA9lygMWmGHpDIjSV7m3PCXwf5H9/NpHgBLt8y5PcjEs99uPfPeUBV/qitTFMuznMyr35e60iaHSdhZVjyCmrKgnIuGa07lng2wFabtpijqzbQJ99kYsWxbBDgbdVnt3jxohG1KKaXkGMyy7suwPgwrbwXfDrpyyj33NT/Dk/2W4Fjrjg8rIkuQypwB0SQLG1cZL9Z2AgW39JeVnP/sOH1gNpCCQwbpgE9hEed80jsYWlvucnFm2aHBtGV+/7/7N3qRRpIvzrNVJoznqDDWU41RxS0NphAwX2ZqprWvN+SCEEhPGGQ==",
+    "x509cert": "MIIClzCCAX8CBgF6A0sAhDANBgkqhkiG9w0BAQsFADAPMQ0wCwYDVQQDDAR0ZXN0MB4XDTIxMDYxMzAyNTMwNFoXDTMxMDYxMzAyNTQ0NFowDzENMAsGA1UEAwwEdGVzdDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAK97NlCcNOhtH0a0wz5boYKb7TaxogxnlyysOWUre1uI8SC6EBV3G5DHMdg4aWXwuXwy61+JJu70xNzJj155MJ+atGS7eLrxxGl0DNoLu/LU7Vhht+j09MZt5J60DnS76H3pkvzAtRfd1P/d5JEFzWYkI4drBJccYX/nrrx2KZBkXOjwjVcEhsyK5ykA0LX+M+yFDy2w8qEWhxHuSL6enzw8IZ7qdtsF8SHqw7cdCgCJU6+0dxaRAAqmzMkO7BDEkwCJl0M8VaOPGo/SnZIAMYHLIUg1x0h/ecST4NPdqAwgDGtWAcD+Gp7Lr7xfBbKKqnLfg2PJdjs7Z0+NFOeVTvcCAwEAATANBgkqhkiG9w0BAQsFAAOCAQEAeJ2r2yoaQAo6v8MC6iAobOeJoBoezQg/OSQqeA9lygMWmGHpDIjSV7m3PCXwf5H9/NpHgBLt8y5PcjEs99uPfPeUBV/qitTFMuznMyr35e60iaHSdhZVjyCmrKgnIuGa07lng2wFabtpijqzbQJ99kYsWxbBDgbdVnt3jxohG1KKaXkGMyy7suwPgwrbwXfDrpyyj33NT/Dk/2W4Fjrjg8rIkuQypwB0SQLG1cZL9Z2AgW39JeVnP/sOH1gNpCCQwbpgE9hEed80jsYWlvucnFm2aHBtGV+/7/7N3qRRpIvzrNVJoznqDDWU41RxS0NphAwX2ZqprWvN+SCEEhPGGQ=="
   }
 }
+
+realpath = os.path.dirname( os.path.realpath(__file__) )
+file_path = os.path.abspath( os.path.join(realpath, "..", "..", get_settings().APP, get_settings().SAML_SETTINGS_FILEPATH) ) # relative to app
+with open(file_path) as file:
+  saml_settings = json.load(file)
 
 async def prepare_from_fastapi_request(request, debug=False):
   form_data = await request.form()
@@ -54,16 +64,19 @@ async def prepare_from_fastapi_request(request, debug=False):
     rv["post_data"]["RelayState"] = RelayState
   return rv
 
-@app.get("/")
-async def root():
-  return { "message": "Hello World" }
+@router.get("/test1")
+async def test1():
+  print(file_path)
+  print(saml_settings)
 
-@app.post("/test")
-async def test(request: Request, p1: Optional[str] = Form(None), p2: Optional[str] = Form(None)):
+  return { "message": "SAML Route OK: " + file_path }
+
+@router.post("/test2")
+async def test2(request: Request, p1: Optional[str] = Form(None), p2: Optional[str] = Form(None)):
   req = await prepare_from_fastapi_request(request)
   return req
 
-@app.get('/api/saml/login')
+@router.get('/login')
 async def saml_login(request: Request):
   req = await prepare_from_fastapi_request(request)
   auth = OneLogin_Saml2_Auth(req, saml_settings)
@@ -80,7 +93,7 @@ async def saml_login(request: Request):
   response = RedirectResponse(url=callback_url)
   return response
 
-@app.post('/api/saml/login/callback')
+@router.post('/login/callback')
 async def saml_login_callback(request: Request):
   req = await prepare_from_fastapi_request(request, True)
   auth = OneLogin_Saml2_Auth(req, saml_settings)

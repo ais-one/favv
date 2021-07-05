@@ -23,6 +23,8 @@ class EnvSettings(BaseSettings):
   JWT_ALG: str = "HS256"
   JWT_SECRET: str = "".join(random.choice(string.ascii_letters) for i in range(32))
   REFRESH_TOKEN_SECRET: str = "".join(random.choice(string.ascii_letters) for i in range(64))
+  JWT_EXPIRY_S: int = 300
+  REFRESH_TOKEN_EXPIRY_S: int = 3600
   API_PORT: int = 3000
   SQLALCHEMY_DB_URL: Optional[str] = "" # to be made a list
   CORS_ORIGINS: str = ""
@@ -48,6 +50,13 @@ class EnvSettings(BaseSettings):
   OIDC_CLIENT_ID: str = ""
   OIDC_CLIENT_SECRET: str = ""
   OIDC_CALLBACK: str = ""
+
+  OAUTH_URL: str = ""
+  OAUTH_CLIENT_ID: str = ""
+  OAUTH_CLIENT_SECRET: str = ""
+  OAUTH_CALLBACK: str = ""
+
+  SAML_SETTINGS_FILEPATH: str = ""
 
   class Config:
     env_file = ".env." + CommonSettings().ENV # .env.development .env.production

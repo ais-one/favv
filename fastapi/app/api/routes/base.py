@@ -2,6 +2,8 @@ from fastapi import APIRouter, Response
 
 from api.routes.test import router as router_test # or... from .test
 from api.routes.oidc import router as router_oidc
+from api.routes.oauth import router as router_oauth
+from api.routes.saml import router as router_saml
 from api.routes.auth.base import router as router_auth
 
 from config import get_settings
@@ -23,6 +25,8 @@ router = APIRouter()
 
 router.include_router(router_auth)
 router.include_router(router_oidc)
+router.include_router(router_saml)
+router.include_router(router_oauth)
 if app_env != "production":
   router.include_router(router_test)
 if router_app:

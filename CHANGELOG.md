@@ -1,11 +1,11 @@
 ## TODO
 - V0.0.5
+  - [fastapi] add ApiKey to favv
+  - [favv] Auth-FE: SSO SAML, BE: JWT
   - [vitevue] configurable card forms demo
   - [vitevue] e2e testing using cypress
   - [vitevue] flask app links page
   - [fastapi] allow for multiple services (alchemy mongodb, s3, upload folders)
-  - [fastapi] add ApiKey to favv
-  - [favv] Auth-FE: SSO SAML, BE: JWT
   - [vitevue] websocket health indicator and test retry
   - [fastapi] websockets - need to monitor resolution of the following
     - https://github.com/tiangolo/fastapi/pull/3280
@@ -21,6 +21,10 @@
 
 ## DONE
 - V0.0.5:
+  - 2021-07-05
+    - [favv] SAML work-in-progress, bearer token settings, etc.
+  - 2021-07-05
+    - [favv] add OAuth for social login
   - 2021-06-28
     - [vitevue] redo custom app loading, dynamic import was causing problems, fixed
   - 2021-06-24
