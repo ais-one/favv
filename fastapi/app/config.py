@@ -55,8 +55,13 @@ class EnvSettings(BaseSettings):
   OAUTH_CLIENT_ID: str = ""
   OAUTH_CLIENT_SECRET: str = ""
   OAUTH_CALLBACK: str = ""
+  OAUTH_USER_URL: str = ""
+  OAUTH_USER_ID: str = ""
+  OAUTH_USER_GROUPS: str = "" # unused
+  OAUTH_FIND_ID: str = "" # unused
 
   SAML_SETTINGS_FILEPATH: str = ""
+  SAML_CALLBACK: str = ""
 
   class Config:
     env_file = ".env." + CommonSettings().ENV # .env.development .env.production

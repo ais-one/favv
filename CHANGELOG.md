@@ -1,7 +1,6 @@
 ## TODO
 - V0.0.5
   - [fastapi] add ApiKey to favv
-  - [favv] Auth-FE: SSO SAML, BE: JWT
   - [vitevue] configurable card forms demo
   - [vitevue] e2e testing using cypress
   - [vitevue] flask app links page
@@ -21,8 +20,10 @@
 
 ## DONE
 - V0.0.5:
-  - 2021-07-05
-    - [favv] SAML work-in-progress, bearer token settings, etc.
+  - 2021-07-XX
+    - [favv] refresh & oidc refresh
+  - 2021-07-09
+    - [favv] SAML, bearer token settings, done
   - 2021-07-05
     - [favv] add OAuth for social login
   - 2021-06-28

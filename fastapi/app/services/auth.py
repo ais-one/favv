@@ -9,8 +9,8 @@ from jose import jwt
 from typing import Optional
 from datetime import datetime, timedelta
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
-apiKeyHeader_scheme = APIKeyHeader(name="Authorization")
+# oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+apiKeyHeader_scheme = APIKeyHeader(name="Authorization") # Authorization: Bearer XXXXX
 
 from config import get_settings
 
@@ -59,7 +59,7 @@ async def create_token(payload: dict):
   # else: # no exception raised
   #     for item in items: ...
   try:
-    now  = datetime.utcnow()
+    now = datetime.utcnow()
 
     access_payload = payload.copy() # should contain user id, user groups and expiry
     access_payload.update({ "exp": now + timedelta(seconds=get_settings().JWT_EXPIRY_S) }) # add expiry
@@ -75,4 +75,5 @@ async def create_token(payload: dict):
     # token = jwt.encode(jsonable_encoder(payload_dict), get_settings().JWT_SECRET, algorithm="HS256")
     return { "access_token": access_token, "refresh_token": refresh_token }
   except:
-    raise HTTPException(status_code=401, detail="Create token error")
+    # raise HTTPException(status_code=401, detail="Create token error")
+    return None

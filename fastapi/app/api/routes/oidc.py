@@ -39,15 +39,17 @@ async def auth(code: str) -> RedirectResponse:
     payload = payload + f"&client_secret{OIDC_CLIENT_SECRET}"
 
   headers = {"Content-Type": "application/x-www-form-urlencoded"}
-  token_response = requests.request("POST", TOKEN_URL, data=payload, headers=headers)
+  r = requests.request("POST", TOKEN_URL, data=payload, headers=headers)
 
-  token_body = json.loads(token_response.content)
+  token_body = json.loads(r.content)
   access_token = token_body["access_token"]
+  refresh_token = token_body["refresh_token"]
 
   # TBD create own token instead...
   callback_url = f"{OIDC_CALLBACK}#{access_token}" # how about refresh token?
-  response = RedirectResponse(url=callback_url)
-  response.set_cookie("Authorization", value=f"Bearer {access_token}")
+  response = RedirectResponse(url=callback_url, status_code=302)
+  response.set_cookie("Authorization", value=f"Bearer {access_token}", httponly=True)
+  response.set_cookie("refresh_token", value=refresh_token, httponly=True)
   return response
 
 @router.get("/refresh", description="Endpoint for OIDC refresh")

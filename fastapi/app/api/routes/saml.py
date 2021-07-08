@@ -11,6 +11,8 @@ from config import get_settings
 import os
 import json
 
+from services.auth import create_token
+
 router = APIRouter(tags=["saml"], prefix="/saml")
 
 saml_settings = {
@@ -103,7 +105,26 @@ async def saml_login_callback(request: Request):
     if not auth.is_authenticated(): # This check if the response was ok and the user data retrieved or not (user authenticated)
       return "user Not authenticated"
     else:
-      return "User authenticated"
+      attrs = auth.get_attributes()
+      id = auth.get_nameid()
+      # request.session['samlNameIdFormat'] = auth.get_nameid_format()
+      # request.session['samlNameIdNameQualifier'] = auth.get_nameid_nq()
+      # request.session['samlNameIdSPNameQualifier'] = auth.get_nameid_spnq()
+      # request.session['samlSessionIndex'] = auth.get_session_index()
+      # return "done"
+      # if 'RelayState' in req['post_data'] and
+      #   OneLogin_Saml2_Utils.get_self_url(req) != req['post_data']['RelayState']:
+      #   auth.redirect_to(req['post_data']['RelayState'])
+      groups = attrs["Role"]
+      tokens = await create_token({ "id": id, "groups": groups })
+      access_token = tokens["access_token"]
+      refresh_token = tokens["refresh_token"]
+      tmp_url = get_settings().SAML_CALLBACK
+      callback_url = f"{tmp_url}#{access_token}-{refresh_token}-{{}}"
+      response = RedirectResponse(url=callback_url, status_code=302)
+      response.set_cookie("Authorization", value=f"Bearer {access_token}", httponly=True)
+      response.set_cookie("refresh_token", value=refresh_token, httponly=True)
+      return response
   else:
     print("Error when processing SAML Response: %s %s" % (', '.join(errors), auth.get_last_error_reason()))
     return "Error in callback"
