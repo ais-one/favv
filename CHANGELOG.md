@@ -1,6 +1,5 @@
 ## TODO
 - V0.0.5
-  - [fastapi] add ApiKey to favv
   - [vitevue] configurable card forms demo
   - [vitevue] e2e testing using cypress
   - [vitevue] flask app links page
@@ -17,11 +16,20 @@
   - [vitevue] dark / light mode
   - [fastapi] add task db and API
   - [favv] add todo list example
+  - [fastapi] SSE
+    - https://amittallapragada.github.io/docker/fastapi/python/2020/12/23/server-side-events.html
+    - https://morioh.com/p/91e29c138c23
+    - https://ably.com/topic/server-sent-events
+    - https://medium.com/javarevisited/building-scalable-facebook-like-notification-using-server-sent-event-and-redis-9d0944dee618
+    - https://dev.to/miketalbot/server-sent-events-are-still-not-production-ready-after-a-decade-a-lesson-for-me-a-warning-for-you-2gie
+    - https://stackoverflow.com/questions/33471766/node-js-server-sent-events-with-load-balancer
+    - http://blog.bayn.es/real-time-web-applications-with-server-sent-events-pt-1/
 
 ## DONE
 - V0.0.5:
   - 2021-07-XX
-    - [favv] refresh & oidc refresh
+    - [fastapi] add ApiKey to favv
+    - [fastapi] add refresh & oidc refresh
   - 2021-07-09
     - [favv] SAML, bearer token settings, done
   - 2021-07-05
