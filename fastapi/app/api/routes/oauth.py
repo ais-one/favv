@@ -1,16 +1,15 @@
+# replaces fastapi-sso
+
 import json
 import logging
 from typing import Dict, Optional
-
-# import jwt
 import requests
 
 # from starlette.requests import Request
 from starlette.responses import RedirectResponse
-
 from fastapi import APIRouter
-from config import get_settings
 
+from config import get_settings
 from services.auth import create_token
 
 OAUTH_URL = get_settings().OAUTH_URL
