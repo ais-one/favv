@@ -41,13 +41,15 @@ async def auth_user(access_token: str = Depends(apiKeyHeader_scheme)):
 
 async def do_refresh_token(refresh_token: str = Depends(apiKeyHeader_scheme)):
   try:
-    decoded = jwt.decode(refresh_token, get_settings().JWT_SECRET, algorithms=["HS256"])
+    refresh_token = refresh_token.split(" ")[1]
+    decoded = jwt.decode(refresh_token, get_settings().REFRESH_TOKEN_SECRET, algorithms=["HS256"])
     return await create_token(decoded)
-  except jwt.JWTError:
-    return JSONResponse( status_code=400, content={"message": "Token Error"} )
-
+  except jwt.JWTError as e:
+    print(e)
+    return None
+    
 async def decode_token(tokens):
-  decoded = jwt.decode(tokens["access_token"], get_settings().REFRESH_TOKEN_SECRET, algorithms=["HS256"])
+  decoded = jwt.decode(tokens["access_token"], get_settings().JWT_SECRET, algorithms=["HS256"])
   return decoded
 
 # create access_token and refresh_token

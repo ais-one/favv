@@ -18,12 +18,18 @@ async def verify(decoded = Depends(auth_user)):
 
 # decoded = Depends(do_refresh_token)
 @router.post("/refresh", tags=["api_auth"])
-async def refresh(tokens = Depends(do_refresh_token)):
-  # response.status_code = 201 # change status code
-  return {
-    "access_token": tokens["access_token"],
-    "refresh_token": tokens["refresh_token"],
-  }
-
+async def refresh(response: Response, tokens = Depends(do_refresh_token)):
+  if (tokens == None):
+    response.status_code = 400
+    return {"message": "Token Error"}
+  else:
+    access_token = tokens["access_token"]
+    refresh_token = tokens["refresh_token"]
+    response.set_cookie("Authorization", value=f"Bearer {access_token}", httponly=True)
+    response.set_cookie("refresh_token", value=refresh_token, httponly=True)
+    return {
+      "access_token": access_token,
+      "refresh_token": refresh_token
+    }
 # Cookie
 # ads_id: Optional[str] = Cookie(None)
