@@ -2,6 +2,7 @@
 - V0.0.6
   - [vitevue] add leafletjs demo
   - [vitevue] configurable card forms demo
+  - [vitevue] linting and prettier
   - [vitevue] e2e testing using cypress
   - [vitevue] flask app links page
   - [fastapi] allow for multiple services (alchemy mongodb, s3, upload folders)
@@ -12,8 +13,7 @@
     - https://github.com/tiangolo/fastapi/issues/2904
     - https://github.com/tiangolo/fastapi/issues/2639
     - https://github.com/tiangolo/fastapi/issues/2904
-- V0.0.6
-  - [vitevue] linting and prettier
+- V0.0.7
   - [vitevue] dark / light mode
   - [fastapi] add task db and API
   - [favv] add todo list example
