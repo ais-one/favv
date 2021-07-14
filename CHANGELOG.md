@@ -1,5 +1,6 @@
 ## TODO
-- V0.0.5
+- V0.0.6
+  - [vitevue] add leafletjs demo
   - [vitevue] configurable card forms demo
   - [vitevue] e2e testing using cypress
   - [vitevue] flask app links page
@@ -27,9 +28,9 @@
 
 ## DONE
 - V0.0.5:
-  - 2021-07-XX
-    - [fastapi] add ApiKey to favv
-    - [fastapi] add refresh & oidc refresh
+  - 2021-07-14
+    - [fastapi] added ApiKey to favv
+    - [fastapi] added refresh & oidc refresh
   - 2021-07-09
     - [favv] SAML, bearer token settings, done
   - 2021-07-05
