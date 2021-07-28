@@ -2,10 +2,7 @@
 
 FastAPI Python backend (BE) and Vite + VueJS + Ant Design frontend (FE) template... for your API and Web application needs.
 
-The difference between this project and [https://github.com/ais-one/vue-crud-x](https://github.com/ais-one/vue-crud-x) are:
-- vue-crud-x is more of a cookbook and recipes are constantly being improved and updated
-- favv tries to seperate boiler plate from custom logic for better maintainability
-- they complement each other and each can be used to improve on the other
+The difference between this project and [https://github.com/ais-one/cookbook](https://github.com/ais-one/cookbook) is described [here](https://github.com/ais-one/cookbook/blob/master/README.md#about)
 
 ## Considerations
 
@@ -44,12 +41,12 @@ cp ./app/.env.docker-compose.example ./app/.env.docker-compose # for docker comp
 # copy requirements.txt.example to copy requirements.txt (point to your own custom requirements.txt inside)
 cp ./requirements.txt.example ./requirements.txt
 ```
-# activate it for windows
+### activate env in windows
 
 ```
 dev\Scripts\activate
 ```
-# activate using linux
+### activate env in linux
 
 ```
 source dev/bin/activate 
