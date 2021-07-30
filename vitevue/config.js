@@ -18,6 +18,7 @@ export const {
 
   // From setup.js
   CONSTANTS = setup.CONSTANTS,
+  LAYOUTS = setup.LAYOUTS,
   ROUTES = setup.ROUTES,
   INITIAL_SECURE_PATH = setup.INITIAL_SECURE_PATH,
   VERSION = setup.VERSION,

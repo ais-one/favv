@@ -5,26 +5,23 @@
 </template>
 
 <script>
-// :key="$route.fullPath" // this is causing problems
-import layoutPublic from './layouts/Public.vue' // store.state.user determines if public or secure
-import layoutSecure from './layouts/Secure.vue'
-
-import { computed } from 'vue'
-import { useStore } from 'vuex'
+import { LAYOUTS } from '../config.js'
+// import { computed } from 'vue'
+// import { useStore } from 'vuex'
 
 export default {
   components: {
-    'layout-public': layoutPublic,
-    'layout-secure': layoutSecure
+    'layout-public': LAYOUTS.layoutPublic,
+    'layout-secure': LAYOUTS.layoutSecure
   },
   setup(props, context) {
-    const store = useStore()
-    const storeUser = computed(() => store.state.user)
-    const logout = async () => {
-      await store.dispatch('doLogin', { forced: true })
-    }
+    // const store = useStore()
+    // const storeUser = computed(() => store.state.user)
+    // const logout = async () => {
+    //   await store.dispatch('doLogin', { forced: true })
+    // }
     return {
-      storeUser // computed
+      // storeUser // computed
     }
   }
 }

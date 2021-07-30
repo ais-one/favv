@@ -60,17 +60,11 @@ export default {
         if (submenu) {
           if (!subMenus[submenu]) { // first time
             subMenus[submenu] = []
-            mappedRoutes.push({
-              name: route.name, path: route.path, submenu: submenu
-            })
+            mappedRoutes.push({ name: route.name, path: route.path, submenu: submenu })
           }
-          subMenus[submenu].push({ // add
-            name: route.name, path: route.path
-          })
+          subMenus[submenu].push({ name: route.name, path: route.path }) // add
         } else {
-          mappedRoutes.push({
-            name: route.name, path: route.path, submenu: ''
-          })
+          mappedRoutes.push({ name: route.name, path: route.path, submenu: '' })
         }
       })
       if (ON_LOGIN) ON_LOGIN()

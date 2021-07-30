@@ -1,5 +1,9 @@
 import { openWs, closeWs } from './hookFns.js'
 
+// :key="$route.fullPath" // this is causing problems
+import layoutPublic from './layouts/Public.vue'
+import layoutSecure from './layouts/Secure.vue'
+
 export default {
   CONSTANTS: {
     TITLE: 'Dashboard App',
@@ -10,6 +14,10 @@ export default {
     LOGIN_TEXT: 'Login',
     BUTTON_TYPE: 'default',
     LOGOUT_TEXT: 'Logout',
+  },
+  LAYOUTS: {
+    layoutPublic,
+    layoutSecure
   },
   ROUTES: [
     { path: '/dashboard', name: 'Dashboard', component: async () => await import('./Demo/Dashboard.vue') },

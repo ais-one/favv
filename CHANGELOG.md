@@ -27,6 +27,10 @@
     - http://blog.bayn.es/real-time-web-applications-with-server-sent-events-pt-1/
 
 ## DONE
+- V0.0.6
+  - 2021-07-31
+    - [vitevue] make layout customizable
+    - [vitevue] update dependencies
 - V0.0.5:
   - 2021-07-14
     - [fastapi] added ApiKey to favv
