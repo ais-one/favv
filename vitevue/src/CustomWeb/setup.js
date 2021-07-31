@@ -38,6 +38,7 @@ export default {
     { path: '/api-forms', name: 'Demo Forms (API)', component: async () => await import('./DemoApiForms.vue') },
   ],
 
+  INITIAL_PUBLIC_PATH: '/signin',
   INITIAL_SECURE_PATH: '/dashboard',
 
   // log-in/logout hook

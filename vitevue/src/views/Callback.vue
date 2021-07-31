@@ -12,7 +12,7 @@
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
-// import { INITIAL_SECURE_PATH } from '/config.js'
+import { INITIAL_PUBLIC_PATH } from '/config.js'
 import { CONSTANTS, VITE_VERIFY_URL } from '/config.js'
 import * as http from '~/http.js'
 
@@ -45,7 +45,7 @@ export default {
     })
 
     const proceed = async () => await store.dispatch('doLogin', hash.value) // router.push(INITIAL_SECURE_PATH) // will be done in router auth guard
-    const backToLogin = async () => router.push('/') //  looks like a job for an auth server...!
+    const backToLogin = async () => router.push(INITIAL_PUBLIC_PATH) //  looks like a job for an auth server...!
 
     return {
       backToLogin,

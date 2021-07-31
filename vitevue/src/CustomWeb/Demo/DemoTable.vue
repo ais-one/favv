@@ -96,7 +96,7 @@
 <script>
 import { defineComponent, onMounted, onUnmounted, reactive, ref } from 'vue';
 import { SearchOutlined, CopyOutlined, DownloadOutlined, SettingOutlined } from '@ant-design/icons-vue';
-import { downloadData, jsonToCsv } from '~/utils.js'
+import { downloadData, jsonToCsv } from '~/@es-labs/esm/util.js'
 
 export default defineComponent({
   components: {

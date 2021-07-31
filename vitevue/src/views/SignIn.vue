@@ -15,7 +15,7 @@
 import { ref, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
-import { VITE_CALLBACK_URL, CONSTANTS, INITIAL_SECURE_PATH, VITE_SSO_URL } from '/config.js'
+import { VITE_CALLBACK_URL, CONSTANTS, VITE_SSO_URL } from '/config.js'
 
 export default {
   setup(props, context) {

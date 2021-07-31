@@ -1,5 +1,5 @@
 <template>
-  <a-result status="403" title="403" sub-title="Sorry, you are not authorized to access this page.">
+  <a-result status="404" title="404" sub-title="Sorry, the page you visited does not exist.">
     <template #extra>
       <a-button type="primary" @click="goHome">Back Home</a-button>
     </template>
@@ -12,7 +12,7 @@ import { useStore } from 'vuex'
 import { INITIAL_SECURE_PATH, INITIAL_PUBLIC_PATH } from '/config.js'
 
 export default {
-  name: 'Forbidden',
+  name: 'NotFound',
   setup(props, context) {
     const router = useRouter()
     const store = useStore()
