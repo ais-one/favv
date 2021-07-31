@@ -19,7 +19,7 @@
     "@antv/g2plot": "^2.3.28",
     "ant-design-vue": "^2.2.2",
     "dotenv": "^10.0.0",
-    "pinia": "^2.0.0-rc.0",
+    "pinia": "^2.0.0-rc.1",
     "vue": "^3.2.0-0",
     "vue-router": "^4.0.10",
     "vuex": "^4.0.2"

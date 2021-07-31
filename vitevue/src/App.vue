@@ -1,13 +1,13 @@
 <template>
   <div>
-    <component :is="$route.meta.layout || 'layout-public'"></component>
+    <component :is="$route.meta.layout || (storeUser ? 'layout-secure' : 'layout-public')"></component>
   </div>
 </template>
 
 <script>
 import { LAYOUTS } from '../config.js'
-// import { computed } from 'vue'
-// import { useStore } from 'vuex'
+import { computed } from 'vue'
+import { useStore } from 'vuex'
 
 export default {
   components: {
@@ -15,13 +15,13 @@ export default {
     'layout-secure': LAYOUTS.layoutSecure
   },
   setup(props, context) {
-    // const store = useStore()
-    // const storeUser = computed(() => store.state.user)
+    const store = useStore()
+    const storeUser = computed(() => store.state.user)
     // const logout = async () => {
     //   await store.dispatch('doLogin', { forced: true })
     // }
     return {
-      // storeUser // computed
+      storeUser // computed
     }
   }
 }

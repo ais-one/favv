@@ -2,7 +2,7 @@
   <a-layout>
     <a-back-top />
     <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible :collapsedWidth="0">
-      <div class="logo" :style="`background-image: url(${constants.LOGO_RECT_URL});`" />
+      <div class="logo" :style="`background-image: url('https://via.placeholder.com/168x32.png?text=A+Logo');`" />
       <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectedKeys">
         <template v-for="route in mappedRoutes">
           <a-sub-menu v-if="route.submenu" :key="route.submenu" :title="toPascalCase(route.submenu)">
@@ -10,14 +10,14 @@
           </a-sub-menu>
           <a-menu-item v-else :key="route.path" @click="$router.push(route.path)">{{ route.name }}</a-menu-item>
         </template>
-        <a-menu-item key="6" @click="logout">{{ constants.LOGOUT_TEXT}}</a-menu-item>
+        <a-menu-item key="6" @click="logout">Logout</a-menu-item>
       </a-menu>
     </a-layout-sider>
     <a-layout>
       <a-layout-header style="background: #fff; padding: 0">
         <menu-unfold-outlined v-if="collapsed" class="trigger" @click="() => (collapsed = !collapsed)" />
         <menu-fold-outlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
-        <span>{{ constants.TITLE }}</span>
+        <span>Dashboard App</span>
       </a-layout-header>
       <a-layout-content :style="{ margin: '16px 12px', padding: '16px', background: '#fff', minHeight: 'calc(100vh - 96px)' }">
         <!--
@@ -37,12 +37,11 @@ import { onMounted, onUnmounted, onBeforeUnmount, ref, reactive } from 'vue'
 import { useStore } from 'vuex'
 // import { useRouter } from 'vue-router'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
-import { CONSTANTS, ROUTES, ON_LOGIN, ON_LOGOUT } from '/config.js'
+import { SECURE_ROUTES, ON_LOGIN, ON_LOGOUT } from '/config.js'
 
 export default {
   components: { MenuUnfoldOutlined, MenuFoldOutlined },
   setup(props, context) {
-    const constants = ref(CONSTANTS)
     const store = useStore()
     // const router = useRouter()
     const mappedRoutes = reactive([])
@@ -55,7 +54,7 @@ export default {
 
     onMounted(async () => {
       console.log('SECURE mounted!')
-      ROUTES.filter(route => route.meta.layout === 'layout-secure').forEach(route => {
+      SECURE_ROUTES.filter(route => route.meta.layout === 'layout-secure').forEach(route => {
         const submenu = route.path.split('/').length === 3 ? route.path.split('/', 2)[1] : '' // 2 or 3 only
         if (submenu) {
           if (!subMenus[submenu]) { // first time
@@ -79,7 +78,6 @@ export default {
     const logout = async () => await store.dispatch('doLogin', null)
 
     return {
-      constants,
       logout,
       selectedKeys: ref([]),
       collapsed: ref(false),

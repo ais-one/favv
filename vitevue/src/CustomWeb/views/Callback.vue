@@ -3,7 +3,7 @@
     <template #extra>
       <!-- <p>HASH = {{ hash }}</p> -->
       <!-- <a-button v-if="hash" @click="proceed">Proceed</a-button> -->
-      <a-button v-if="!hash" :type="constants.LOGIN_TYPE" size="large" html-type="button" @click="backToLogin">Back To Login</a-button>
+      <a-button v-if="!hash" type="default" size="large" html-type="button" @click="backToLogin">Back To Login</a-button>
     </template>
   </a-result>
 </template>
@@ -13,12 +13,11 @@ import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { INITIAL_PUBLIC_PATH } from '/config.js'
-import { CONSTANTS, VITE_VERIFY_URL } from '/config.js'
+import { VITE_VERIFY_URL } from '/config.js'
 import * as http from '~/http.js'
 
 export default {
   setup(props, context) {
-    const constants = ref(CONSTANTS)
     const route = useRoute()
     const router = useRouter()
     const store = useStore()
@@ -51,7 +50,6 @@ export default {
       backToLogin,
       hash,
       proceed,
-      constants
     }
   }
 }

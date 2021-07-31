@@ -1,11 +1,11 @@
 <template>
   <div class="super-center-parent" >
-    <a-result :title="constants.TITLE" :sub-title="constants.SUBTITLE">
+    <a-result title="Dashboard App" sub-title="Your one-stop web portal">
       <template #icon>
-        <a-image :height="constants.LOGO_HEIGHT" :src="constants.LOGO_URL" />
+        <a-image :height="150" src="https://via.placeholder.com/150x150.png?text=A+Logo" />
       </template>
       <template #extra>
-        <a-button :type="constants.LOGIN_TYPE" size="large" html-type="button" @click="login">{{ constants.LOGIN_TEXT }}</a-button>
+        <a-button type="default" size="large" html-type="button" @click="login">Login</a-button>
       </template>
     </a-result>
   </div>
@@ -15,11 +15,10 @@
 import { ref, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
-import { VITE_CALLBACK_URL, CONSTANTS, VITE_SSO_URL } from '/config.js'
+import { VITE_CALLBACK_URL, VITE_SSO_URL } from '/config.js'
 
 export default {
   setup(props, context) {
-    const constants = ref(CONSTANTS)
     const store = useStore()
     const route = useRoute()
     const router = useRouter()
@@ -57,7 +56,6 @@ export default {
       errorMessage,
       loading,
       callbackUrl,
-      constants,
     }
   }
 }

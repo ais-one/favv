@@ -5,21 +5,21 @@ import layoutPublic from './layouts/Public.vue'
 import layoutSecure from './layouts/Secure.vue'
 
 export default {
-  CONSTANTS: {
-    TITLE: 'Dashboard App',
-    SUBTITLE: 'Your one-stop web portal',
-    LOGO_HEIGHT: 150,
-    LOGO_URL: 'https://via.placeholder.com/150x150.png?text=A+Logo',
-    LOGO_RECT_URL: 'https://via.placeholder.com/168x32.png?text=A+Logo',
-    LOGIN_TEXT: 'Login',
-    BUTTON_TYPE: 'default',
-    LOGOUT_TEXT: 'Logout',
-  },
   LAYOUTS: {
     layoutPublic,
     layoutSecure
   },
   ROUTES: [
+    { path: '/forbidden', name: 'Forbidden', component: () => import('./views/Forbidden.vue') },
+    { path: '/:catchAll(.*)', name: 'NotFound', component: () => import('./views/NotFound.vue') },
+    // { path: '/:catchAll(.*)', name: 'catchAll', redirect: { name: 'SignIn' }, meta: { requiresAuth: false, layout: 'layout-public' } }
+  ],
+  PUBLIC_ROUTES: [
+    { path: '/', name: 'Home', component: () => import('./views/SignIn.vue') },
+    { path: '/signin', name: 'SignIn', component: () => import('./views/SignIn.vue') },
+    { path: '/callback', name: 'Callback', component: () => import('./views/Callback.vue') },
+  ],
+  SECURE_ROUTES: [
     { path: '/dashboard', name: 'Dashboard', component: async () => await import('./Demo/Dashboard.vue') },
 
     // demo

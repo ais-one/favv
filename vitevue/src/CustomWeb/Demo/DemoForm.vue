@@ -113,12 +113,17 @@
         WS Rx Message: {{ mainStore.message || 'No WS Message' }}
       </a-form>
     </a-collapse-panel>
+    <a-collapse-panel key="5" :header="`Form - Test Forbidden & Not Found`">
+      <a-button @click="goToForbidden">Forbidden</a-button>
+      <a-button @click="goToNotFound">Not Found</a-button>
+    </a-collapse-panel>
   </a-collapse>
-
 </template>
+
 <script>
 // v-model:fileList="form1.files"
 import { useMainStore } from '../store.js'
+import { useRouter } from 'vue-router'
 
 import { ref, reactive, toRaw, watch, onMounted, computed, onBeforeUnmount } from 'vue'
 import { InboxOutlined } from '@ant-design/icons-vue'
@@ -133,12 +138,13 @@ export default {
   },
   setup() {
     const mainStore = useMainStore()
+    const router = useRouter()
     const submitResult = ref('')
-    const mockData = ref([]); // transfer
-    const targetKeys = ref([]);
+    const mockData = ref([]) // transfer
+    const targetKeys = ref([])
     const getMock = () => {
-      const keys = [];
-      const mData = [];
+      const keys = []
+      const mData = []
 
       for (let i = 0; i < 20; i++) {
         const data = {
@@ -146,18 +152,18 @@ export default {
           title: `content${i + 1}`,
           description: `description of content${i + 1}`,
           chosen: Math.random() * 2 > 1,
-        };
-
-        if (data.chosen) {
-          keys.push(data.key);
         }
 
-        mData.push(data);
+        if (data.chosen) {
+          keys.push(data.key)
+        }
+
+        mData.push(data)
       }
 
-      mockData.value = mData;
-      targetKeys.value = keys;
-    };
+      mockData.value = mData
+      targetKeys.value = keys
+    }
 
     const handleChange = (keys, direction, moveKeys) => {
       targetKeys.value = keys;
@@ -256,6 +262,9 @@ export default {
       ws.send(wsMsg.value)
     }
 
+    const goToNotFound = () => router.push('/notfound')
+    const goToForbidden = () => router.push('/forbidden')
+
     return {
       form1,
       onSubmit1,
@@ -287,8 +296,10 @@ export default {
       }),
 
       wsMsg,
-      onWsMsg // websockets
+      onWsMsg, // websockets
 
+      goToNotFound,
+      goToForbidden
     }
   }
 }

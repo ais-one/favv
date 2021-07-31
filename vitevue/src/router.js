@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import store from './store.js'
-import { BASE_URL, ROUTES, INITIAL_SECURE_PATH, INITIAL_PUBLIC_PATH } from '../config.js'
+import { BASE_URL, ROUTES, SECURE_ROUTES, PUBLIC_ROUTES, INITIAL_SECURE_PATH, INITIAL_PUBLIC_PATH } from '../config.js'
 
 // const permissions = {
 //   // g1 = route groups, g2 = user groups
@@ -49,25 +49,23 @@ const authGuard = (to, from, next) => {
   }
 }
 
-for (let route of ROUTES) {
+for (let route of SECURE_ROUTES) {
   route.beforeEnter = authGuard
   route.meta = { requiresAuth: true, layout: 'layout-secure' }
+}
+
+for (let route of PUBLIC_ROUTES) {
+  route.beforeEnter = authGuard
+  route.meta = { requiresAuth: false, layout: 'layout-public' }
 }
 
 const routerHistory = createWebHistory(BASE_URL)
 const router = createRouter({
   history: routerHistory,
   routes: [
-    // public
-    { path: '/', name: 'Home', component: () => import('./views/SignIn.vue') },
-    { path: '/signin', name: 'SignIn', component: () => import('./views/SignIn.vue'), beforeEnter: authGuard, meta: { requiresAuth: false, layout: 'layout-public' } },
-    { path: '/callback', name: 'Callback', component: () => import('./views/Callback.vue'), beforeEnter: authGuard, meta: { requiresAuth: false, layout: 'layout-public' } },
-
-    ...ROUTES,
-
-    // catchall
-    { path: '/forbidden', name: 'Forbidden', component: () => import('./views/Forbidden.vue') },
-    { path: '/:catchAll(.*)', name: 'catchAll', redirect: { name: 'SignIn' }, meta: { requiresAuth: false, layout: 'layout-public' } }
+    ...PUBLIC_ROUTES, // authguard, requiresAuth: false, public-layout
+    ...SECURE_ROUTES, // authguard, requiresAuth: true, secure-layout
+    ...ROUTES, // no authguard, no layout
   ]
 })
 

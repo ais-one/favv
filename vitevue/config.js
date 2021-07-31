@@ -1,4 +1,3 @@
-//console.log('import.meta.env', import.meta.env)
 import setup from './apploader.js'
 // const setup = await import('./src/' + VITE_APPNAME + '/setup.js').default // await causes problems
 
@@ -17,9 +16,10 @@ export const {
   VITE_VERIFY_URL,
 
   // From setup.js
-  CONSTANTS = setup.CONSTANTS,
   LAYOUTS = setup.LAYOUTS,
   ROUTES = setup.ROUTES,
+  PUBLIC_ROUTES = setup.PUBLIC_ROUTES,
+  SECURE_ROUTES = setup.SECURE_ROUTES,
   INITIAL_SECURE_PATH = setup.INITIAL_SECURE_PATH,
   INITIAL_PUBLIC_PATH = setup.INITIAL_PUBLIC_PATH,
   VERSION = setup.VERSION,
