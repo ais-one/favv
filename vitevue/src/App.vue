@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <component :is="$route.meta.layout || (storeUser ? 'layout-secure' : 'layout-public')"></component>
-  </div>
+  <component :is="$route.meta.layout || (storeUser ? 'layout-secure' : 'layout-public')"></component>
 </template>
 
 <script>

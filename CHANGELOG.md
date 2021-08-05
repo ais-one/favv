@@ -31,6 +31,7 @@
   - 2021-07-31
     - [vitevue] make all pages and routes customizable
     - [vitevue] rename utils.js to util.js and move file to folder with reusable components
+    - [vitevue] make forbidden and notfound pages available in both public and secure routes
   - 2021-07-30
     - [vitevue] make layout customizable
     - [vitevue] update dependencies
