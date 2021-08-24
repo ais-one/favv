@@ -32,6 +32,7 @@ export default {
     { path: '/demo/map', name: 'Demo Map', component: async () => await import('./Demo/DemoMap.vue') },
     { path: '/demo-charts/chart1', name: 'Demo Chart1', component: async () => await import('./Demo/DemoChart1.vue') },
     { path: '/demo-charts/chart2', name: 'Demo Chart2', component: async () => await import('./Demo/DemoChart2.vue') },
+    { path: '/demo-charts/graph', name: 'Demo Graph', component: async () => await import('./Demo/DemoGraph.vue') },
 
     // more demo
     { path: '/more-forms', name: 'Demo More Forms', component: async () => await import('./DemoMoreForms.vue') },

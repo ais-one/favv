@@ -28,6 +28,8 @@
 
 ## DONE
 - V0.0.6
+  - 2021-08-25
+    - [vitevue] add Ant Vision G6 (graph visuals) example
   - 2021-07-31
     - [vitevue] make all pages and routes customizable
     - [vitevue] rename utils.js to util.js and move file to folder with reusable components

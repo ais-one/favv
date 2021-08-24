@@ -17,16 +17,17 @@
     "@antv/data-set": "^0.11.8",
     "@antv/g2": "^4.1.24",
     "@antv/g2plot": "^2.3.31",
+    "@antv/g6": "^4.3.6",
     "ant-design-vue": "^2.2.6",
     "dotenv": "^10.0.0",
     "pinia": "^2.0.0-rc.6",
-    "vue": "^3.2.4",
+    "vue": "^3.2.5",
     "vue-router": "^4.0.11",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.4.0",
-    "@vue/compiler-sfc": "^3.2.4",
-    "vite": "^2.5.0"
+    "@vitejs/plugin-vue": "^1.5.0",
+    "@vue/compiler-sfc": "^3.2.5",
+    "vite": "^2.5.1"
   }
 }
