@@ -107,10 +107,6 @@ openssl req -x509 -newkey rsa:4096 -keyout local.key.pem -out local.cert.pem -da
 # move to the vitevue folder
 cd ../../vitevue
 
-# copy the configs - note localdev is and arbitrary environment name and set in package.json
-cp .env.localdev.example .env.localdev
-cp apploader.js.example apploader.js
-
 # install
 npm i
 
@@ -121,8 +117,11 @@ npm run dev
 Navigate to - http://127.0.0.1:8080
 
 
-**Note:** if you use https and self-signed cert for end point you may need navigate to API using browser first and allow on browser, then use the browser
-
+**Notes:**
+- if you use https and self-signed cert for end point you may need navigate to API using browser first and allow on browser, then use the browser
+- in **package.json**, we specify using envrionment called **localdev**
+- **.env.<environment>** and **apploader.js** files are specific to each application and count in **src/web<your-web-app>/deploy** folder, and copied to root folder when switching app to work on
+- **src/web<your-web-app>/deploy** folder can also store app specific info which need not be copied to project folder (example deployment scripts)
 
 ## Production Run (Docker)
 
@@ -161,16 +160,17 @@ docker run -it <your-image-name>:<tag>
     + apploader.js: for loading specified custom folder
     + .env.[MODE]: frontend build config (set DEV_SERVER_PORT, WEB_BASEPATH, environment level settings - API_URL, Websocket URL, etc.)
     + src
-    | + <YourCustomFrontend>Web/: folder with suffix "Web" are your custom frontend code (your frontend repo)
-    |   + setup.js: frontend setup (set INITIAL_SECURE_PATH, ROUTES CONSTANTS here)
-    |   + .gitignore: for your repo
+    | + web/:
+    | | + <YourCustomFrontend>-web/: folder with suffix "-web" are your custom frontend code (your frontend repo)
+    | |   + setup.js: frontend setup (set INITIAL_SECURE_PATH, ROUTES CONSTANTS here)
+    | |   + .gitignore: for your repo
     + deploy.sh: to build into fastapi static folder for small scale app
 ```
 
 **NOTES**
 - All folders and files prefixed with TBD can be ignored, they are not implemented and used for reference
 - MODE is set in package.json
-- .env.[MODE] file uses VITE_APPNAME to define <YourCustomFrontend>Web 
+- .env.[MODE] file uses VITE_APPNAME to define <YourCustomFrontend>-web
 
 ## Backend Customization Notes
 
@@ -205,11 +205,11 @@ Setting up your custom frontend
 git clone <your frontend project e.g. ExampleWeb>
 ```
 
-- see **favv/vitevue/.env.localdev.example** for defining vite.config.js and environment level (eg API URL) related configurations
-- see **favv/vitevue/apploader.js.example** for loading custom frontend
+- see **favv/vitevue/.env.localdev** for defining vite.config.js and environment level (eg API URL) related configurations
+- see **favv/vitevue/apploader.js** for loading custom frontend
 - environment is selected using the --mode property (see package.json)
-- use **favv/vitevue/src/CustomWeb/** as reference on your custom frontend
-- see **favv/vitevue/src/CustomWeb/setup.js** on the frontend setup especially the ROUTES property
+- use **favv/vitevue/src/web/custom-web/** as reference on your custom frontend
+- see **favv/vitevue/src/web/custom-web/setup.js** on the frontend setup especially the ROUTES property
 - ROUTES property
   - use kebab-case, will be converted to Capital Case in menu display
   - only up to 1 submenu level
