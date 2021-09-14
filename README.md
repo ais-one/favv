@@ -4,6 +4,8 @@ FastAPI Python backend (BE) and Vite + VueJS + Ant Design frontend (FE) template
 
 The difference between this project and [https://github.com/ais-one/cookbook](https://github.com/ais-one/cookbook) is described [here](https://github.com/ais-one/cookbook/blob/master/README.md#about)
 
+Also includes some samples in streamlit
+
 ## Considerations
 
 The following are considerations for the project. The aim is to allow things to be built faster and reduce maintenence overhead.
@@ -224,3 +226,7 @@ git clone <your frontend project e.g. ExampleWeb>
 - use **fastapi/install.sh** to update python libraries
 - run npm install in **vitevue** to update npm packages
 - for favv/fastapi .env host is **redis** if using docker compose **127.0.0.1** otherwise
+
+# Streamlit
+
+See [streamlit/README.md](streamlit/README.md) for more information

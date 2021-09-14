@@ -5,6 +5,7 @@
 <script>
 import G6 from '@antv/g6'
 
+// https://g6.antv.vision/en/docs/manual/tutorial/layout - TBD deal with multiple edges in auto layout
 // NOSONAR const endArrow = true // { path: 'M 0,0 L 10,5 L 10,-5 Z', fill: '#333', }
 const startArrow = true // { path: 'M 0,0 L 10,5 L 10,-5 Z', fill: '#f00', }
 const endArrow = true // { path: G6.Arrow.vee(10, 15, 0), d: 0 }
@@ -38,22 +39,22 @@ const data = {
     {
       id: 'node0',
       label: 'N0',
-      x: 150, y: 150 // if this is taken out... edges will jump when you move nodes
+      // x: 150, y: 150 // if this is taken out... edges will jump when you move nodes
     },
     {
       id: 'node1',
       label: 'N1',
-      x: 300, y: 150
+      // x: 300, y: 150
     },
     {
       id: 'node2',
       label: 'N2',
-      x: 450, y: 150
+      // x: 450, y: 150
     },
     {
       id: 'node3',
       label: 'N3',
-      x: 450, y: 50,
+      // x: 450, y: 50,
       // anchorPoints: [ [0, 0.5], [1, 0.5] ]
     }
   ],
@@ -64,10 +65,10 @@ const data = {
       type: 'quadratic',
       source: 'node0',
       target: 'node1',
-      sourceAnchor: ANCHOR_RIGHT,
-      targetAnchor: ANCHOR_LEFT,
+      // sourceAnchor: ANCHOR_RIGHT,
+      // targetAnchor: ANCHOR_LEFT,
       label: 'E0 End',
-      curveOffset: 60,
+      // curveOffset: 60,
       style: { endArrow }
     },
     {
@@ -75,10 +76,10 @@ const data = {
       type: 'quadratic',
       source: 'node0',
       target: 'node1',
-      sourceAnchor: ANCHOR_RIGHT,
-      targetAnchor: ANCHOR_LEFT,
+      // sourceAnchor: ANCHOR_RIGHT,
+      // targetAnchor: ANCHOR_LEFT,
       label: 'E1 Start', // the bending degree
-      curveOffset: -50,
+      // curveOffset: -50,
       style: { startArrow }
     },
     {
@@ -86,10 +87,10 @@ const data = {
       type: 'quadratic',
       source: 'node0',
       target: 'node1',
-      sourceAnchor: ANCHOR_RIGHT,
-      targetAnchor: ANCHOR_LEFT,
+      // sourceAnchor: ANCHOR_RIGHT,
+      // targetAnchor: ANCHOR_LEFT,
       label: 'E2', // the bending degree
-      curveOffset: -120
+      // curveOffset: -120
     },
     {
       id: 'loop0',
@@ -110,8 +111,8 @@ const data = {
       target: 'node2',
       type: 'quadratic',
       label: 'D0',
-      sourceAnchor: ANCHOR_RIGHT,
-      targetAnchor: ANCHOR_LEFT,
+      // sourceAnchor: ANCHOR_RIGHT,
+      // targetAnchor: ANCHOR_LEFT,
       style: { endArrow }
     },
     {
@@ -119,9 +120,9 @@ const data = {
       target: 'node2',
       type: 'quadratic',
       label: 'D1',
-      curveOffset: 60,
-      sourceAnchor: ANCHOR_RIGHT,
-      targetAnchor: ANCHOR_LEFT,
+      // curveOffset: 60,
+      // sourceAnchor: ANCHOR_RIGHT,
+      // targetAnchor: ANCHOR_LEFT,
       style: { startArrow }
     },
     {
@@ -129,8 +130,8 @@ const data = {
       target: 'node3',
       type: 'cubic-vertical',
       label: 'X0',
-      sourceAnchor: ANCHOR_TOP,
-      targetAnchor: ANCHOR_BOTTOM,
+      // sourceAnchor: ANCHOR_TOP,
+      // targetAnchor: ANCHOR_BOTTOM,
       style: { startArrow }
     }
   ]
@@ -150,6 +151,8 @@ export default {
         height,
         linkCenter: false,
         fitCenter: true,
+        // fitView: true,
+        // fitViewPadding: [ 20, 40, 50, 20 ],
         modes: {
           default: ['drag-node', 'drag-canvas'], // drag-canvas zoom-canvas
           // edit: ['click-select'],
@@ -167,7 +170,7 @@ export default {
             autoRotate: true,
             refY: -10
           }
-        }
+        },
         /* styles for different states, there are built-in styles for states: active, inactive, selected, highlight, disable */
         // edgeStateStyles: {
         //   // edge style of active state
@@ -181,6 +184,11 @@ export default {
         //     lineWidth: 3,
         //   },
         // },
+        layout: {
+          type: 'force', // Force layout
+          linkDistance: 100, // The link distance is 100
+          preventOverlap: true, // Prevent node overlappings
+        },
       })
 
       graph.data(data)

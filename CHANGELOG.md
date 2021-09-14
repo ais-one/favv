@@ -28,6 +28,9 @@
 
 ## DONE
 - V0.0.6
+  - 2021-09-12
+    - [streamlit] add new data science tool streamlit and create examples
+    - [vitevue] update dependencies
   - 2021-08-28
     - [vitevue] improve folder layout for deployment
   - 2021-08-25
