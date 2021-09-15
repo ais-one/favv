@@ -46,7 +46,13 @@ cp ./requirements.txt.example ./requirements.txt
 ### activate env in windows
 
 ```
+# cmd 
 dev\Scripts\activate
+dev\Scripts\deactivate
+
+# powershell
+dev\Scripts\Activate.ps1
+deactivate
 ```
 ### activate env in linux
 
