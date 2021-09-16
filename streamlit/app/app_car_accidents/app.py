@@ -20,7 +20,7 @@ def app_run():
     st.markdown("This application is a Streamlit dashboard that can be used "
     "to analyze motor vehicle collisions in NYC")
 
-    data = load_data(10000)
+    data = load_data(100000)
     original_data = data
 
     st.header("Where are the most people injured in NYC?")

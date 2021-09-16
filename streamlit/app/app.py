@@ -3,6 +3,8 @@ from app_demo import app_run as app_run_demo
 from app_titanic.app import app_run as app_run_titanic
 from app_car_accidents.app import app_run as app_run_car_accidents
 
+from logger import logger
+
 # page config must be the very first activity
 # st.set_page_config(
 #   page_title="Streamlit Demo",
@@ -38,7 +40,6 @@ footer {visibility: hidden;}
 #     ("Email", "Home phone", "Mobile phone")
 # )
 
-
 # expander
 optionals = st.expander("Search And Filter", False)
 optionals.checkbox("Active")
@@ -52,20 +53,22 @@ middle_name = name_cols[2].text_input("Middle Name")
 # from streamlit import caching
 # caching.clear_cache()
 
-
 def main():
   st.sidebar.success("Menu")
   page = st.sidebar.radio(
     "Choose An Item",
-    ['Home', 'File Input Test', 'Titanic Data Demo', 'NYC Car Accidents']
+    ['Demos', 'Titanic', 'NYC Car Accidents']
   )
   # print(page)
-  if page == "File Input Test":
+  if page == "Demos":
     app_run_demo()
-  elif page == "Titanic Data Demo":
+    logger.info('Demos')
+  elif page == "Titanic":
     app_run_titanic()
+    logger.info('Titanic')
   elif page == "NYC Car Accidents":
     app_run_car_accidents()
+    logger.info('NYC Car Accidents')
 
 if __name__ == '__main__':
   main()

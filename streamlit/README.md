@@ -24,9 +24,36 @@ source dev/bin/activate
 
 pip install streamlit numpy pandas plotly.express pydeck
 
+### upgrading
+
+pip install streamlit --upgrade
+
 ## Running
 
 ```
 cd app_car_accidents
 streamlit run app.py
+# --logger.level=debug
+```
+
+
+### Code Profiling
+- memory_profiling
+- execution time profiling
+
+#### Tools
+- cProfile
+- memory_profiler
+  - memory
+- scalene
+- line_profiler
+  - time
+
+#### Types of Profiling
+- deterministic
+- statistical
+
+#### Memory Profiling
+```
+pip install memory_profiler
 ```
