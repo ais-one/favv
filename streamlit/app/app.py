@@ -15,7 +15,7 @@ from logger import logger
 PAGE_CONFIG = {
   "page_title": "hello",
   "page_icon": ":smiley:",
-  "layout": "centered",
+  "layout": "wide", # centered, wide
   "initial_sidebar_state": "expanded"
 }
 st.set_page_config(**PAGE_CONFIG)

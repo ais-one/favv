@@ -36,23 +36,28 @@ def app_run():
       FileDownloader(my_text).download()
 
   with st.expander('Forms Demo'):
+    mc1, mc2 = st.columns(2)
     # first form - use with
-    st.subheader("Form 1")
-    with st.form(key='form1'):
-      firstname = st.text_input("Firstname")
-      lastname = st.text_input("Lastname")
-      dob = st.date_input("Date of Birth")
-      submit_button = st.form_submit_button(label='Sign Up')
-    if submit_button:
-      st.success("Hello {}. Your account is created".format(firstname))
+    with mc1:
+      st.subheader("Form 1")
+      with st.form(key='form1'):
+        firstname = st.text_input("Firstname")
+        lastname = st.text_input("Lastname")
+        dob = st.date_input("Date of Birth")
+        submit_button = st.form_submit_button(label='Sign Up')
+      if submit_button:
+        st.success("Hello {}. Your account is created".format(firstname))
     # second form
-    st.subheader("Form 2")
-    form2 = st.form(key='form2')
-    username = form2.text_input("Username")
-    jobtype = form2.selectbox("Job", ["Dev", "Data Scientist", "UX Designer"])
-    submit_button2 = form2.form_submit_button("Login")
-    if submit_button2:
-      st.success("{}. Logged In".format(username))
+    with mc2:
+      st.subheader("Form 2")
+      form2 = st.form(key='form2')
+      username = form2.text_input("Username")
+      jobtype = form2.selectbox("Job", ["Dev", "Data Scientist", "UX Designer"])
+      submit_button2 = form2.form_submit_button("Login")
+      if submit_button2:
+        st.success("{}. Logged In".format(username))
+
+    # 3rd form
     st.subheader("Form 3 - columnar")
     with st.form(key='form3'):
       c1, c2, c3 = st.columns([3, 2, 1])

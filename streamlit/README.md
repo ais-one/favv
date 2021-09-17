@@ -22,7 +22,7 @@ source dev/bin/activate
 
 ### install
 
-pip install streamlit numpy pandas plotly.express pydeck
+pip install streamlit numpy pandas plotly pydeck
 
 ### upgrading
 
