@@ -2,6 +2,27 @@ import pandas as pd
 import time
 import streamlit as st
 import plotly.express as px
+from st_aggrid import AgGrid
+from st_aggrid.grid_options_builder import GridOptionsBuilder
+from st_aggrid.shared import JsCode, GridUpdateMode, DataReturnMode
+
+cellsytle_jscode = JsCode(
+"""
+function(params) {
+    if (params.value.includes('Southampton')) {
+        return {
+            'color': 'white',
+            'backgroundColor': 'darkred'
+        }
+    } else {
+        return {
+            'color': 'black',
+            'backgroundColor': 'white'
+        }
+    }
+};
+"""
+)
 
 @st.cache
 def load_dataset(data_link):
@@ -64,3 +85,39 @@ def app_run():
 
     st.write("This is a large text area.")
     st.text_area("A very big area", height=300)
+
+    # test aggrid
+    st.subheader("streamlit-aggrid test")
+    # https://towardsdatascience.com/7-reasons-why-you-should-use-the-streamlit-aggrid-component-2d9a2b6e32f0
+
+    gb = GridOptionsBuilder.from_dataframe(titanic_data)
+    gb.configure_pagination()
+    # gb.configure_selection(selection_mode="multiple", use_checkbox=True)
+    gb.configure_selection(selection_mode="single", use_checkbox=True)
+
+    # gb.configure_side_bar()
+
+    # gb.configure_default_column(groupable=True, value=True, enableRowGroup=True, aggFunc="sum", editable=True)
+    # gb.configure_column("embark_town", cellStyle=cellsytle_jscode)
+
+    gridOptions = gb.build()
+    grid_data = AgGrid(
+        titanic_data,
+        gridOptions=gridOptions,
+        # enable_enterprise_modules=True,
+        # allow_unsafe_jscode=True,
+        update_mode=GridUpdateMode.SELECTION_CHANGED, # able to detect more than one type of update? # for multiselect, how to batch updates?
+        input_mode=DataReturnMode.FILTERED # only one?
+    )
+
+    st.write(DataReturnMode.__members__)
+    st.write(GridUpdateMode.__members__)
+
+    st.write(grid_data)
+
+    selected_rows = grid_data["selected_rows"]
+    selected_rows = pd.DataFrame(selected_rows)
+
+    if len(selected_rows) != 0:
+        fig = px.bar(selected_rows, "embark_town", color="pclass")
+        st.plotly_chart(fig)

@@ -24,6 +24,8 @@ source dev/bin/activate
 
 pip install streamlit numpy pandas plotly pydeck
 
+pip install streamlit-aggrid
+
 ### upgrading
 
 pip install streamlit --upgrade
