@@ -29,7 +29,7 @@
 ## DONE
 - V0.0.6
   - 2021-09-23
-    - [streamlit] add components demo, aggrid demo
+    - [streamlit] add custom components demo, aggrid demo
   - 2021-09-15
     - [streamlit] add file loading / save and multiple apps functionality
     - [vitevue] update dependencies
