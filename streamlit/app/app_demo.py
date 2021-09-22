@@ -8,15 +8,21 @@ from logger import logger
 import os
 
 # https://docs.streamlit.io/en/stable/publish_streamlit_components.html
-parent_dir = os.path.dirname(os.path.abspath(__file__))
-build_dir = os.path.join(parent_dir, "component-template", "template", "my_component" , "frontend" ,"build")
+base_dir = os.path.dirname(os.path.abspath(__file__))
+
+build_dir = os.path.join(base_dir, "..", "component-template", "template-cra", "my_component" , "frontend" ,"build")
 _my_component = components.declare_component("my_component", path=build_dir)
 # _my_component = components.declare_component( "my_component", url="http://localhost:3001") # dev
 
+_vite_vanilla_component = components.declare_component("vite_vanilla_component", path=os.path.join(base_dir, "..", "component-template", "template-vite", "vite_vanilla_component" , "frontend" ,"dist"))
+# _vite_vanilla_component = components.declare_component( "vite_vanilla_component", url="http://localhost:5000") # dev
 
 def app_run():
   logger.info('In Demos')
   st.title("Demos")
+
+  rv0 = _vite_vanilla_component(key="c3", name="AName")
+  st.write(rv0)
 
   rv1 = _my_component(key="c1", greeting="6Hello", name="Aaron") # create your component
   st.write(rv1)

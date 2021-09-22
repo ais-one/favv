@@ -15,19 +15,19 @@
   "dependencies": {
     "@ant-design/icons-vue": "^6.0.1",
     "@antv/data-set": "^0.11.8",
-    "@antv/g2": "^4.1.25",
+    "@antv/g2": "^4.1.27",
     "@antv/g2plot": "^2.3.33",
     "@antv/g6": "^4.3.7",
-    "ant-design-vue": "^2.2.7",
+    "ant-design-vue": "^2.2.8",
     "dotenv": "^10.0.0",
     "pinia": "^2.0.0-rc.9",
-    "vue": "^3.2.11",
+    "vue": "^3.2.13",
     "vue-router": "^4.0.11",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.6.2",
-    "@vue/compiler-sfc": "^3.2.11",
-    "vite": "^2.5.7"
+    "@vitejs/plugin-vue": "^1.9.0",
+    "@vue/compiler-sfc": "^3.2.13",
+    "vite": "^2.5.10"
   }
 }

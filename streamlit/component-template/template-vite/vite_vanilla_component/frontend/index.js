@@ -1,4 +1,4 @@
-import { Streamlit, RenderData } from "streamlit-component-lib"
+import { Streamlit } from "streamlit-component-lib"
 
 // Add text and a button to the DOM. (You could also add these directly
 // to index.html.)
@@ -10,18 +10,18 @@ button.textContent = "Click Me!"
 // Add a click handler to our button. It will send data back to Streamlit.
 let numClicks = 0
 let isFocused = false
-button.onclick = function(): void {
+button.onclick = function() {
   // Increment numClicks, and pass the new value back to
   // Streamlit via `Streamlit.setComponentValue`.
   numClicks += 1
   Streamlit.setComponentValue(numClicks)
 }
 
-button.onfocus = function(): void {
+button.onfocus = function() {
   isFocused = true
 }
 
-button.onblur = function(): void {
+button.onblur = function() {
   isFocused = false
 }
 
@@ -30,9 +30,9 @@ button.onblur = function(): void {
  * the component is initially loaded, and then again every time the
  * component gets new data from Python.
  */
-function onRender(event: Event): void {
+function onRender(event) {
   // Get the RenderData from the event
-  const data = (event as CustomEvent<RenderData>).detail
+  const data = event.detail
 
   // Maintain compatibility with older versions of Streamlit that don't send
   // a theme object.
