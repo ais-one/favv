@@ -17,17 +17,24 @@ _my_component = components.declare_component("my_component", path=build_dir)
 _vite_vanilla_component = components.declare_component("vite_vanilla_component", path=os.path.join(base_dir, "..", "component-template", "template-vite", "vite_vanilla_component" , "frontend" ,"dist"))
 # _vite_vanilla_component = components.declare_component( "vite_vanilla_component", url="http://localhost:5000") # dev
 
+_vite_vue_component = components.declare_component("vite_vue_component", path=os.path.join(base_dir, "..", "component-template", "template-vite", "vite_vue_component" , "frontend" ,"dist"))
+# _vite_vue_component = components.declare_component( "vite_vue_component", url="http://localhost:3000") # dev
+
 def app_run():
   logger.info('In Demos')
   st.title("Demos")
 
-  rv0 = _vite_vanilla_component(key="c3", name="AName")
+  rv0 = _vite_vanilla_component(key="c3", name="VanillaVueName")
   st.write(rv0)
 
   rv1 = _my_component(key="c1", greeting="6Hello", name="Aaron") # create your component
   st.write(rv1)
+
   rv2 = _my_component(key="c2", greeting="5Ola!", name="Gong")
   st.write(rv2)
+
+  rv3 = _vite_vue_component(key="c4", name="ViteVueName")
+  st.write(rv3)
 
   with st.expander('File Demos'):
     st.subheader("CSV Files")

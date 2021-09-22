@@ -1,8 +1,10 @@
 # npm 6.x
 
 ```
-cd <component_name>
+cd <component_name_vanilla>
 npm init vite@latest frontend --template vanilla
+cd <component_name_vue>
+npm init vite@latest frontend --template vue
 ```
 
 # npm 7+
