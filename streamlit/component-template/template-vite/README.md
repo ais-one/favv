@@ -15,7 +15,7 @@ npm init vite@latest frontend -- --template vanilla
 ```
 
 ```
-cd templa/frontend
+cd frontend
 npm i streamlit-component-lib
 ```
 

@@ -1,5 +1,6 @@
 ## TODO
 - V0.0.6
+  - [streamlit] state & sessions, aggrid
   - [vitevue] add leafletjs demo
   - [vitevue] configurable card forms demo
   - [vitevue] linting and prettier
