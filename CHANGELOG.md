@@ -29,6 +29,9 @@
 
 ## DONE
 - V0.0.6
+  - 2021-09-29
+    - [streamlit] add graph demo with input and output, state persistance, component test harness
+    - [vitevue] update dependencies
   - 2021-09-23
     - [streamlit] add custom components demo, aggrid demo
   - 2021-09-15

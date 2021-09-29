@@ -20,11 +20,55 @@ _vite_vanilla_component = components.declare_component("vite_vanilla_component",
 _vite_vue_component = components.declare_component("vite_vue_component", path=os.path.join(base_dir, "..", "component-template", "template-vite", "vite_vue_component" , "frontend" ,"dist"))
 # _vite_vue_component = components.declare_component( "vite_vue_component", url="http://localhost:3000") # dev
 
+if 'my_hours_per_week' not in st.session_state:
+  st.session_state.my_hours_per_week = 40
+
+def form3_callback():
+  if 'my_hours_per_week' in st.session_state:
+    st.write(st.session_state.my_amount)
+  st.write(st.session_state.my_hours_per_week)
+
 def app_run():
   logger.info('In Demos')
   st.title("Demos")
 
-  rv0 = _vite_vanilla_component(key="c3", name="VanillaVueName")
+  config = {
+    "container": "container",
+    "fitCenter": True,
+    "linkCenter": True,
+    "defaultNode": {
+      "type": "circle",
+      "size": [40],
+      "color": "#5B8FF9",
+      "style": { "fill": "#9EC9FF", "lineWidth": 3 },
+      "labelCfg": { "style": { "fill": "#000", "fontSize": 14 } }
+    },
+    "defaultEdge": {
+      "type": "quadratic",
+      "labelCfg": { "autoRotate": True, },
+    },
+    "modes": {
+      "default": ["drag-canvas", "drag-node"],
+    },
+    "nodeStateStyles": {
+      "hover": { "fillOpacity": 0.8 },
+      "selected": { "lineWidth": 5 }
+    }
+  }
+
+  nodes = [
+    { "id": "node1", "x": 50, "y": 350, "label": "A", },
+    { "id": "node2", "x": 250, "y": 150, "label": "B", },
+    { "id": "node3", "x": 450, "y": 350, "label": "C", },
+  ]
+  edges = []
+
+  for x in range(8):
+    edges.append({ "source": "node1", "target": "node2", "label": f'{x}th edge of A-B', })
+  for x in range(5):
+    edges.append({ "source": "node2", "target": "node3", "label": f'{x}th edge of B-C', })
+
+  rv0 = _vite_vanilla_component(name="NameViteVanilla", config=config, nodes=nodes, edges=edges, key="c0")
   st.write(rv0)
 
   rv1 = _my_component(key="c1", greeting="6Hello", name="Aaron") # create your component
@@ -90,12 +134,12 @@ def app_run():
     with st.form(key='form3'):
       c1, c2, c3 = st.columns([3, 2, 1])
       with c1:
-        amount = st.number_input("Hourly Rate in $")
+        amount = st.number_input("Hourly Rate in $", 0, 50000, key='my_amount')
       with c2:
-        hours_per_week = st.number_input("Hours Per Week", 1,120)
+        hours_per_week = st.number_input("Hours Per Week", 1, 120, key='my_hours_per_week')
       with c3:
         st.text("Salary")
-        submit_salary = st.form_submit_button(label="Calculate")
+        submit_salary = st.form_submit_button(label="Calculate", on_click=form3_callback)
     if submit_salary:
       daily = [amount * 8]
       weekly = [amount * hours_per_week]

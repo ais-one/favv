@@ -10,6 +10,7 @@
     "vite": "^2.5.4"
   },
   "dependencies": {
-    "streamlit-component-lib": "^1.2.0"
+    "@antv/g6": "^4.3.11",
+    "streamlit-component-lib": "^1.3.0"
   }
 }
