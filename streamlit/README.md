@@ -59,3 +59,7 @@ streamlit run app.py
 ```
 pip install memory_profiler
 ```
+
+## Custom Components
+
+see [component-template/README.md](component-template/README.md)
