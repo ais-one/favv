@@ -28,7 +28,7 @@ pip install streamlit-aggrid
 
 ### upgrading
 
-pip install streamlit --upgrade
+**IMPORTANT!!!** pip install streamlit --upgrade
 
 ## Running
 
@@ -63,3 +63,11 @@ pip install memory_profiler
 ## Custom Components
 
 see [component-template/README.md](component-template/README.md)
+
+
+## Streamlit Resources
+
+- https://github.com/TangleSpace/hydralit
+- https://github.com/PablocFonseca/streamlit-aggrid
+- https://awesome-streamlit.org/
+- https://streamlit.io/components

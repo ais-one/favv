@@ -7,6 +7,8 @@ import streamlit.components.v1 as components
 from logger import logger
 import os
 
+## CUSTOM COMPONENTS
+
 # https://docs.streamlit.io/en/stable/publish_streamlit_components.html
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -14,23 +16,38 @@ build_dir = os.path.join(base_dir, "..", "component-template", "template-cra", "
 _my_component = components.declare_component("my_component", path=build_dir)
 # _my_component = components.declare_component( "my_component", url="http://localhost:3001") # dev
 
-_vite_vanilla_component = components.declare_component("vite_vanilla_component", path=os.path.join(base_dir, "..", "component-template", "template-vite", "vite_vanilla_component" , "frontend" ,"dist"))
-# _vite_vanilla_component = components.declare_component( "vite_vanilla_component", url="http://localhost:5000") # dev
+# _vite_vanilla_component = components.declare_component("vite_vanilla_component", path=os.path.join(base_dir, "..", "component-template", "template-vite", "vite_vanilla_component" , "frontend" ,"dist"))
+_vite_vanilla_component = components.declare_component( "vite_vanilla_component", url="http://localhost:3000") # dev
 
 _vite_vue_component = components.declare_component("vite_vue_component", path=os.path.join(base_dir, "..", "component-template", "template-vite", "vite_vue_component" , "frontend" ,"dist"))
 # _vite_vue_component = components.declare_component( "vite_vue_component", url="http://localhost:3000") # dev
 
-if 'my_hours_per_week' not in st.session_state:
-  st.session_state.my_hours_per_week = 40
 
+## SESSIONS
+def init_sessions():
+  if 'my_hours_per_week' not in st.session_state:
+    st.session_state.my_hours_per_week = 40
+  if 'my_amount' not in st.session_state:
+    st.session_state.my_amount = 5
+  if 'expander_form' not in st.session_state:
+    st.session_state['expander_form'] = False
+
+## METHODS
 def form3_callback():
-  if 'my_hours_per_week' in st.session_state:
+  if 'my_amount' in st.session_state:
     st.write(st.session_state.my_amount)
-  st.write(st.session_state.my_hours_per_week)
+  if 'my_hours_per_week' in st.session_state:
+    st.write(st.session_state.my_hours_per_week)
 
+## APP RUN
+init_sessions()
 def app_run():
   logger.info('In Demos')
   st.title("Demos")
+
+  # init_sessions()
+  if 'expander_form' in st.session_state:
+    st.write(st.session_state.expander_form)
 
   config = {
     "container": "container",
@@ -107,7 +124,7 @@ def app_run():
       st.write(my_text)
       FileDownloader(my_text).download()
 
-  with st.expander('Forms Demo'):
+  with st.expander('Forms Demo', expanded=False):
     mc1, mc2 = st.columns(2)
     # first form - use with
     with mc1:

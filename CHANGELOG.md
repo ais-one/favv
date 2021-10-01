@@ -30,6 +30,8 @@
 ## DONE
 - V0.0.6
   - 2021-09-29
+    - [streamlit] make graph component configurable. multiple selection or unselectable, etc.
+  - 2021-09-29
     - [streamlit] add graph demo with input and output, state persistance, component test harness
     - [vitevue] update dependencies
   - 2021-09-23
