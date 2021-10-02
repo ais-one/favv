@@ -31,6 +31,7 @@
 - V0.0.6
   - 2021-09-29
     - [streamlit] make graph component configurable. multiple selection or unselectable, etc.
+    - [streamlit] app session metadata error on first load
   - 2021-09-29
     - [streamlit] add graph demo with input and output, state persistance, component test harness
     - [vitevue] update dependencies

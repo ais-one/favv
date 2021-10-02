@@ -45,7 +45,36 @@ function onRender(event) {
     nodes: []
   };
   gdata.nodes = nodes
-  gdata.edges = edges  
+  gdata.edges = edges
+  gdata.edges.forEach((edge) => {
+    if (edge.type === 'loop') {
+      edge.style = {
+        endArrow: {
+          path: G6.Arrow.vee(10, 15, 0),
+          d: 0,
+          stroke: '#0c0',
+        }
+      }
+    } else {
+      if (edge.return) {
+        edge.style = {
+          endArrow: {
+            path: G6.Arrow.triangle(10, 15, 20),
+            d: 20,
+            fill: '#f00',
+          }
+        }  
+      } else {
+        edge.style = {
+          endArrow: {
+            path: G6.Arrow.triangle(10, 15, 20),
+            d: 20,
+            fill: '#00f',
+          }
+        }
+      }
+    }
+  })
   G6.Util.processParallelEdges(gdata.edges);
 
   let config = data.args["config"]
@@ -53,9 +82,18 @@ function onRender(event) {
   container.setAttribute('id', 'container');
 
   if (!graph) {
+    console.log('w h', config.width, config.height)
     config.width = config.width || document.getElementById('container').scrollWidth;
     config.height = config.height || document.getElementById('container').scrollHeight || 500;
-  
+
+    console.log('w h', config.width, config.height)
+    // if (config?.defaultEdge?.style?.endArrow) {
+    //   config.defaultEdge.style.endArrow = {
+    //     path: G6.Arrow.triangle(10, 15, 20),
+    //     d: 20,
+    //     fill: '#f00',
+    //   }
+    // }
     graph = new G6.Graph(config)
 
     // graph events handling
@@ -134,7 +172,6 @@ Streamlit.events.addEventListener(Streamlit.RENDER_EVENT, onRender)
 Streamlit.setComponentReady()
 Streamlit.setFrameHeight()
 
-// IN PROGRESS keep state of expanders using session state,  keep the result of the calculate after each submission
-// IN PROGRESS app session metadata error on first load... to check
+// IN PROGRESS keep state of expanders using session state, keep the result of the calculate after each submission
 // TBD Server side caching? limited memory - cache data at server... (check on memory usage and limitations)
 // TBD any multiple tabs available on streamlit? able to have expander only show 1 at a time?
