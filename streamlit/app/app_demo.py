@@ -346,14 +346,14 @@ function showSlides(n) {
     st.write(html, unsafe_allow_html=True)
 
   def render_svg_example():
-    text_file = open("ud.svg", "r")
-    svg = text_file.read()
-    text_file.close()
-    # svg = """
-    #     <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
-    #         <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
-    #     </svg>
-    # """
+    # text_file = open("ud.svg", "r")
+    # svg = text_file.read()
+    # text_file.close()
+    svg = """
+        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+            <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+        </svg>
+    """
     st.write('## Rendering an SVG in Streamlit')
     # st.write('### SVG Input')
     # st.code(textwrap.dedent(svg), 'svg')
