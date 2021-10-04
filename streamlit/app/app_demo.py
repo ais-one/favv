@@ -4,6 +4,9 @@ import pandas as pd
 from file_utils import file_uploads, FileDownloader
 import streamlit.components.v1 as components
 
+import textwrap # SVG testing
+import base64
+
 from logger import logger
 import os
 
@@ -334,3 +337,26 @@ function showSlides(n) {
 
 </body>
     """)
+
+  # SVG Testing
+  def render_svg(svg):
+    """Renders the given svg string."""
+    b64 = base64.b64encode(svg.encode('utf-8')).decode("utf-8")
+    html = r'<div style="width:100%%;overflow:scroll;"><img src="data:image/svg+xml;base64,%s"/></div>' % b64
+    st.write(html, unsafe_allow_html=True)
+
+  def render_svg_example():
+    text_file = open("ud.svg", "r")
+    svg = text_file.read()
+    text_file.close()
+    # svg = """
+    #     <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+    #         <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+    #     </svg>
+    # """
+    st.write('## Rendering an SVG in Streamlit')
+    # st.write('### SVG Input')
+    # st.code(textwrap.dedent(svg), 'svg')
+    st.write('### SVG Output')
+    render_svg(svg)
+  render_svg_example()
