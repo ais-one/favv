@@ -1,8 +1,0 @@
-# venv
-dev
-
-# caches
-__pycache__
-
-# environment
-.env

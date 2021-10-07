@@ -1,23 +1,14 @@
 ## TODO
-- V0.0.6
+- V0.0.7
   - [streamlit] state & sessions, aggrid
-  - [vitevue] add leafletjs demo
-  - [vitevue] configurable card forms demo
-  - [vitevue] linting and prettier
-  - [vitevue] e2e testing using cypress
-  - [vitevue] flask app links page
   - [fastapi] allow for multiple services (alchemy mongodb, s3, upload folders)
-  - [vitevue] websocket health indicator and test retry
   - [fastapi] websockets - need to monitor resolution of the following
     - https://github.com/tiangolo/fastapi/pull/3280
     - https://github.com/tiangolo/fastapi/pull/2640/files
     - https://github.com/tiangolo/fastapi/issues/2904
     - https://github.com/tiangolo/fastapi/issues/2639
     - https://github.com/tiangolo/fastapi/issues/2904
-- V0.0.7
-  - [vitevue] dark / light mode
   - [fastapi] add task db and API
-  - [favv] add todo list example
   - [fastapi] SSE
     - https://amittallapragada.github.io/docker/fastapi/python/2020/12/23/server-side-events.html
     - https://morioh.com/p/91e29c138c23
@@ -28,6 +19,9 @@
     - http://blog.bayn.es/real-time-web-applications-with-server-sent-events-pt-1/
 
 ## DONE
+- V0.0.7
+  - 2021-10-07
+    - [viteuve] maintained in seperate repository
 - V0.0.6
   - 2021-09-29
     - [streamlit] make graph component configurable. multiple selection or unselectable, etc.
