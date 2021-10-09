@@ -7,7 +7,7 @@
     "serve": "vite preview"
   },
   "devDependencies": {
-    "vite": "^2.6.2"
+    "vite": "^2.6.5"
   },
   "dependencies": {
     "@antv/g6": "^4.3.11",
