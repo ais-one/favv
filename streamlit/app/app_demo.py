@@ -19,8 +19,8 @@ build_dir = os.path.join(base_dir, "..", "component-template", "template-cra", "
 _my_component = components.declare_component("my_component", path=build_dir)
 # _my_component = components.declare_component( "my_component", url="http://localhost:3001") # dev
 
-# _vite_vanilla_component = components.declare_component("vite_vanilla_component", path=os.path.join(base_dir, "..", "component-template", "template-vite", "vite_vanilla_component" , "frontend" ,"dist"))
-_vite_vanilla_component = components.declare_component( "vite_vanilla_component", url="http://localhost:3000") # dev
+_vite_vanilla_component = components.declare_component("vite_vanilla_component", path=os.path.join(base_dir, "..", "component-template", "template-vite", "vite_vanilla_component" , "frontend" ,"dist"))
+# _vite_vanilla_component = components.declare_component( "vite_vanilla_component", url="http://localhost:3000") # dev
 
 _vite_vue_component = components.declare_component("vite_vue_component", path=os.path.join(base_dir, "..", "component-template", "template-vite", "vite_vue_component" , "frontend" ,"dist"))
 # _vite_vue_component = components.declare_component( "vite_vue_component", url="http://localhost:3000") # dev

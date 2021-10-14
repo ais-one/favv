@@ -98,7 +98,9 @@ if not _RELEASE:
   }
 
   st.subheader("Component Test")
-  rv = my_component(name="NameViteVanilla", config=config, nodes=nodes, edges=edges)
+  rv = my_component(name="NameViteVanilla", key="K1", config=config, nodes=nodes, edges=edges)
+  my_component(name="NameViteVanilla", key="K2", config=config, nodes=nodes, edges=edges)
+  my_component(name="NameViteVanilla", key="K3", config=config, nodes=nodes, edges=edges)
   st.write(rv)
   # st.markdown("You've clicked %s times!" % int(rv['numClicks']))
   # st.markdown(f'Selected Node Is: {rv['selectedNode']}')

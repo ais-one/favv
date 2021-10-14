@@ -103,6 +103,7 @@ def app_run():
     gridOptions = gb.build()
     grid_data = AgGrid(
         titanic_data,
+        key="ag1",
         gridOptions=gridOptions,
         # enable_enterprise_modules=True,
         # allow_unsafe_jscode=True,
@@ -110,10 +111,15 @@ def app_run():
         input_mode=DataReturnMode.FILTERED # only one?
     )
 
+    grid_data2 = AgGrid(titanic_data, key="ag2", gridOptions=gridOptions)
+    grid_data3 = AgGrid(titanic_data, key="ag3", gridOptions=gridOptions)
+
     st.write(DataReturnMode.__members__)
     st.write(GridUpdateMode.__members__)
 
     st.write(grid_data)
+    st.write(grid_data2)
+    st.write(grid_data3)
 
     selected_rows = grid_data["selected_rows"]
     selected_rows = pd.DataFrame(selected_rows)
