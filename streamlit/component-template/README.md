@@ -14,7 +14,7 @@ If you are not familiar with creating a streamlit custom component, refer to the
 
 1. Frontend - Install dependencies and run
 
-From template-vite folder
+From vite-template folder
 
 ```
 cd vite_vanilla_compoent
@@ -25,13 +25,13 @@ npm run dev
 
 2. Backend - Install dependencies and run
 
-From template-vite folder
+From vite-template folder
 
 Create and activate your venv
 
 ```
 pip install -r requirements.txt
-streamlit run vite_vanilla_component/__init__.py
+streamlit run vanilla_component/__init__.py
 ```
 
 3. Test

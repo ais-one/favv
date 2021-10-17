@@ -5,13 +5,13 @@ _RELEASE = False
 
 if not _RELEASE:
   _component_func = components.declare_component(
-    "vite_vanilla_component",
+    "vanilla_component",
     url="http://localhost:3000", # vite dev server port
   )
 else:
   parent_dir = os.path.dirname(os.path.abspath(__file__))
   build_dir = os.path.join(parent_dir, "frontend/dist")
-  _component_func = components.declare_component("vite_vanilla_component", path=build_dir)
+  _component_func = components.declare_component("vanilla_component", path=build_dir)
 
 def my_component(name, config, nodes, edges, key=None):
   component_value = _component_func(name=name, config=config, nodes=nodes, edges=edges, key=key, default=0)
@@ -28,7 +28,7 @@ if not _RELEASE:
     dataset = pd.read_csv(csv_file_path, index_col=0)
     return dataset
 
-  df = load_dataset("vite_vanilla_component/g6test.txt")
+  df = load_dataset("vanilla_component/g6test.txt")
   nodes = []
   edges = []
   for col in df.columns:
