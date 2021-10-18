@@ -10,8 +10,8 @@ else:
   build_dir = os.path.join(parent_dir, "frontend/dist")
   _component_func = components.declare_component("dropdownmenu", path=build_dir)
 
-def my_component(name, key=None):
-  component_value = _component_func(name=name, key=key, default=0)
+def my_component(name, items, key=None):
+  component_value = _component_func(name=name, items=items, key=key, default=0)
   return component_value
 
 if not _RELEASE:
@@ -19,12 +19,22 @@ if not _RELEASE:
 
   print("START COMPONENT")
 
+  my_items = [
+    { 'label': 'About' },
+    { 'label': 'Services' },
+    { 'label': 'A very very very very very very very very very long Clients' },
+    { 'label': 'Contact' },
+    {
+      'label': 'Dropdown V',
+      'children': [
+        { 'label': 'Link 1' },
+        { 'label': 'Link 2' },
+        { 'label': 'Link 3' },
+      ]
+    },
+    { 'label': 'Search' },
+  ]
+
   st.subheader("Dropdown Menu Test")
   with st.sidebar:
-    rv = my_component(name="dropdownmenu", key="K1")
-
-  # page = st.sidebar.radio(
-  #   "Choose An Item",
-  #   ['Demos', 'Titanic', 'NYC Car Accidents']
-  # )
-  # st.write(rv)
+    rv = my_component(name="dropdownmenu", items=my_items, key="K1")

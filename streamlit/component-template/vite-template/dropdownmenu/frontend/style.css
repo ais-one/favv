@@ -1,17 +1,20 @@
 body {
   margin: 0;
-  height: 100vh !important;
+  /* height: 100vh !important; */
 }
 
 #app {
   margin: 0;
-  height: 500px !important;
+  /* height: auto; */
+  /* overflow: auto; */
+  /* height: 1000px; */
+  /* height: 100vh !important; */
 }
 
 /* Fixed sidenav, full height */
 .sidenav {
   font-family: Arial;
-  height: 100vh !important;
+  height: 100%;
   width: 100%;
   position: fixed;
   z-index: 1;
@@ -19,7 +22,7 @@ body {
   left: 0;
   background-color: #111;
   overflow-x: hidden;
-  padding-top: 20px;
+  /* padding-top: 20px; */
 }
 
 /* Style the sidenav links and the dropdown button */
