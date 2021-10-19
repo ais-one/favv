@@ -23,6 +23,9 @@ if not _RELEASE:
 
   print("START COMPONENT")
 
+  qp = st.experimental_get_query_params()
+  print(qp)
+
   my_items = [
     { 'label': 'About' },
     { 'label': 'Services' },

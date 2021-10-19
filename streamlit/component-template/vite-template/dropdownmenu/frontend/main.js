@@ -62,7 +62,7 @@ function onRender(event) {
         }
       }
       root.appendChild(btnTag)
-        item.children.forEach((child) => {
+      item.children.forEach((child) => {
         const childATag = document.createElement('a')
         childATag.onclick = () => returnItem(child.label)
         childATag.innerHTML = child.label
@@ -99,7 +99,6 @@ window.parent.addEventListener('resize', function() {
   clearTimeout(timeoutId)
   timeoutId = setTimeout(() => setHeight(window.outerHeight), 500)
 })
-// window.parent.addEventListener('resize', () => console.log('aaaaaa'))
 
 // Streamlit.events.addEventListener(Streamlit.RENDER_EVENT, onRender)
 // https://github.com/streamlit/streamlit/issues/3889
