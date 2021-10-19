@@ -20,20 +20,26 @@ import { Streamlit } from "streamlit-component-lib"
 //   Streamlit.setComponentValue({ numClicks, selectedNodes, selectedEdges })
 // }
 let rendered = false
+
+function getDimensions() {
+  console.log('getDimensions', window.outerHeight)
+}
+
 function onRender(event) {
-  // console.log(document.body.scrollHeight, document.body.clientHeight)
-  // console.log('zzzzzzzzzzz', parent.document.body.scrollHeight)
+  // NOSONAR
   // document.body.height = 1000
   // document.getElementById('app').height = '500px'
 
   if (rendered) return
   else rendered = true
 
-  console.log('Render')
+  console.log('Render', event)
+  console.log('document.body', window.outerHeight)
 
   // TBD create based on table NOSONAR
   const data = event.detail
   const items = data.args["items"]
+  // const styles = data.args["styles"]
 
   const root = document.createElement('div')
   root.classList.add('sidenav')
@@ -120,3 +126,16 @@ function onRender(event) {
 Streamlit.events.addEventListener(Streamlit.RENDER_EVENT, onRender)
 Streamlit.setComponentReady()
 Streamlit.setFrameHeight()
+
+// https://stackoverflow.com/questions/25098021/securityerror-blocked-a-frame-with-origin-from-accessing-a-cross-origin-frame
+let timeoutId = null
+window.parent.addEventListener('resize', function() {
+  clearTimeout(timeoutId)
+  timeoutId = setTimeout(() => console.log(window.outerHeight), 500)
+})
+// window.parent.addEventListener('resize', () => console.log('aaaaaa'))
+
+
+
+// Streamlit.events.addEventListener(Streamlit.RENDER_EVENT, onRender)
+// https://github.com/streamlit/streamlit/issues/3889
