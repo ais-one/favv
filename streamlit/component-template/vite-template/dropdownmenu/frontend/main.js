@@ -16,25 +16,24 @@ import { Streamlit } from "streamlit-component-lib"
 </div>
 */
 
-// button.onclick = function() {
-//   Streamlit.setComponentValue({ numClicks, selectedNodes, selectedEdges })
-// }
 let rendered = false
 
-function getDimensions() {
-  console.log('getDimensions', window.outerHeight)
+function setHeight(height) {
+  let menuVisibleHeight = height - 280
+  if (menuVisibleHeight < 0) menuVisibleHeight = 240
+  document.getElementById('app').style.height = menuVisibleHeight + 'px'
+  Streamlit.setFrameHeight()
+}
+
+function returnItem(item) {
+  Streamlit.setComponentValue({ item })
 }
 
 function onRender(event) {
-  // NOSONAR
-  // document.body.height = 1000
-  // document.getElementById('app').height = '500px'
-
   if (rendered) return
   else rendered = true
 
   console.log('Render', event)
-  console.log('document.body', window.outerHeight)
 
   // TBD create based on table NOSONAR
   const data = event.detail
@@ -65,14 +64,14 @@ function onRender(event) {
       root.appendChild(btnTag)
         item.children.forEach((child) => {
         const childATag = document.createElement('a')
-        childATag.onclick = console.log('child', child.label)
+        childATag.onclick = () => returnItem(child.label)
         childATag.innerHTML = child.label
         divContainerDd.appendChild(childATag)
       })
       root.appendChild(divContainerDd)
     } else {
       const aTag = document.createElement('a')
-      aTag.onclick = console.log('parent', item.label)
+      aTag.onclick = () => returnItem(item.label)
       aTag.innerHTML = item.label
       root.appendChild(aTag)
     }
@@ -80,46 +79,13 @@ function onRender(event) {
 
   document.getElementById('app').appendChild(root)
 
-  document.getElementById('app').style.height = '240px' // TBD set the height here
+  setHeight(window.outerHeight)
   document.getElementById('app').style.overflow = 'auto'
-  // document.getElementById('app').style.height = '500px'
-
-  // const div = document.createElement('span')
-  // div.innerHTML = `
-  //   <div class="sidenav">
-  //   <a href="#about">About</a>
-  //   <a href="#services">Services</a>
-  //   <a href="#clients">Clients</a>
-  //   <a href="#contact">Contact</a>
-  //   <button class="dropdown-btn">Dropdown V</button>
-  //   <div class="dropdown-container">
-  //     <a href="#">Link 1</a>
-  //     <a href="#">Link 2</a>
-  //     <a href="#">Link 3</a>
-  //   </div>
-  //   <a href="#contact">Search</a>
-  //   </div>
-  // `
-  // document.getElementById('app').appendChild(div)
   
   //* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
   // var dropdown = document.getElementsByClassName("dropdown-btn");
   // console.log('dropdown', dropdown)
   // var i;
-
-  // for (i = 0; i < dropdown.length; i++) {
-  //   dropdown[i].addEventListener("click", function () {
-  //     console.log('click click')
-  //     this.classList.toggle("active");
-  //     var dropdownContent = this.nextElementSibling;
-  //     if (dropdownContent.style.display === "block") {
-  //       dropdownContent.style.display = "none";
-  //     } else {
-  //       dropdownContent.style.display = "block";
-  //     }
-  //   });
-  // }
-
   Streamlit.setFrameHeight()
 }
 
@@ -131,11 +97,9 @@ Streamlit.setFrameHeight()
 let timeoutId = null
 window.parent.addEventListener('resize', function() {
   clearTimeout(timeoutId)
-  timeoutId = setTimeout(() => console.log(window.outerHeight), 500)
+  timeoutId = setTimeout(() => setHeight(window.outerHeight), 500)
 })
 // window.parent.addEventListener('resize', () => console.log('aaaaaa'))
-
-
 
 // Streamlit.events.addEventListener(Streamlit.RENDER_EVENT, onRender)
 // https://github.com/streamlit/streamlit/issues/3889

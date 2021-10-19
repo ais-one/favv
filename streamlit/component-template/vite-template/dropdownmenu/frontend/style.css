@@ -1,14 +1,9 @@
 body {
   margin: 0;
-  /* height: 100vh !important; */
 }
 
 #app {
   margin: 0;
-  /* height: auto; */
-  /* overflow: auto; */
-  /* height: 1000px; */
-  /* height: 100vh !important; */
 }
 
 /* Fixed sidenav, full height */

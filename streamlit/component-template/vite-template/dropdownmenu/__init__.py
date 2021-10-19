@@ -14,8 +14,8 @@ parent_dir = os.path.dirname(os.path.abspath(__file__))
 build_dir = os.path.join(parent_dir, "frontend/dist")
 _component_func = components.declare_component("dropdownmenu", path=build_dir)
 
-def my_component(name, items, styles=None, key=None):
-  component_value = _component_func(name=name, items=items, key=key, default=0)
+def my_component(name, items, selected, styles=None, key=None):
+  component_value = _component_func(name=name, items=items, selected=selected, key=key, default=0)
   return component_value
 
 if not _RELEASE:
@@ -26,7 +26,7 @@ if not _RELEASE:
   my_items = [
     { 'label': 'About' },
     { 'label': 'Services' },
-    { 'label': 'A very very very very very very very very very long Clients' },
+    { 'label': 'A very very very very very very very very very long item' },
     { 'label': 'Contact' },
     {
       'label': 'Dropdown V',
@@ -45,4 +45,5 @@ if not _RELEASE:
 
   st.subheader("Dropdown Menu Test")
   with st.sidebar:
-    rv = my_component(name="dropdownmenu", items=my_items, styles=my_styles, key="K1")
+    rv = my_component(name="dropdownmenu", items=my_items, selected=None, styles=my_styles, key="K1")
+    st.write(rv)
