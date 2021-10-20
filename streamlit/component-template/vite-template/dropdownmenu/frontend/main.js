@@ -25,8 +25,11 @@ function setHeight(height) {
   Streamlit.setFrameHeight()
 }
 
-function returnItem(item) {
-  Streamlit.setComponentValue({ item })
+function returnState(selected, opened) {
+  Streamlit.setComponentValue({
+    selected,
+    opened
+  })
 }
 
 function onRender(event) {
@@ -38,22 +41,41 @@ function onRender(event) {
   // TBD create based on table NOSONAR
   const data = event.detail
   const items = data.args["items"]
+  let selected = data.args["selected"] || ''
+  const opened = data.args["opened"] || []
+
   // const styles = data.args["styles"]
 
   const root = document.createElement('div')
   root.classList.add('sidenav')
+
+  function setupMenuItem(menuItem) {
+    const aTag = document.createElement('a') // to refactor duplicate
+    // TBD set style - background color, text color, bold?, size?
+    aTag.onclick = () => {
+      selected = menuItem.label // No need to update style
+      returnState(selected, opened)
+    }
+    aTag.innerHTML = menuItem.label
+    return aTag
+  }
+
   items.forEach((item) => {
-    if (item.children) {
+    if (item.children) { // menu group
       const btnTag = document.createElement('button')
       btnTag.classList.add('dropdown-btn')
       btnTag.innerHTML = item.label
 
-        //   <div class="dropdown-container">
+      // <div class="dropdown-container">
       const divContainerDd = document.createElement('div')
       divContainerDd.classList.add('dropdown-container')
 
+      // initialize menu group state
+      // TBD set style - background color, text color, bold?, size?
+      // set icon expanded or not
+      // divContainerDd.style.display = true ? 'block' : 'none'
+
       btnTag.onclick = (e) => {
-        // const dropdownContent = btnTag.nextElementSibling
         const dropdownContent = divContainerDd
         if (dropdownContent.style.display === "block") {
           dropdownContent.style.display = "none";
@@ -63,16 +85,12 @@ function onRender(event) {
       }
       root.appendChild(btnTag)
       item.children.forEach((child) => {
-        const childATag = document.createElement('a')
-        childATag.onclick = () => returnItem(child.label)
-        childATag.innerHTML = child.label
+        const childATag = setupMenuItem(child)
         divContainerDd.appendChild(childATag)
       })
       root.appendChild(divContainerDd)
-    } else {
-      const aTag = document.createElement('a')
-      aTag.onclick = () => returnItem(item.label)
-      aTag.innerHTML = item.label
+    } else { // menu item
+      const aTag = setupMenuItem(item)
       root.appendChild(aTag)
     }
   })
