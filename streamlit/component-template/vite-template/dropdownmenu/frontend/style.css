@@ -48,7 +48,7 @@ body {
 }
 
 /* Add an active class to the active dropdown button */
-.active {
+.sidenav a.selected {
   background-color: green;
   color: white;
 }
