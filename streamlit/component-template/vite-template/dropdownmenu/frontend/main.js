@@ -103,7 +103,7 @@ function returnState(selected, opened) {
 }
 
 function onRender(event) {
-  if (rendered) return
+  if (rendered) return // why does render fire twice ?
   else rendered = true
 
   const styleTag = document.createElement('style') // hopefully this does not keep getting created...
@@ -117,6 +117,8 @@ function onRender(event) {
   const items = data.args["items"]
   let selected = data.args["selected"] || ''
   let opened = data.args["opened"] || []
+  console.log('args.opened', data.args.opened)
+  console.log('args.selected', data.args.selected)
   // const styles = data.args["styles"]
 
   const root = document.createElement('div')

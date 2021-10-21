@@ -57,8 +57,20 @@ if not _RELEASE:
 
   selected = 'Link A'
   opened = ['Dropdown 2']
+  try:
+    print('before1')
+    # print('st.session_state.menu', st.session_state.menu['selected'])
+    selected = st.session_state.menu['selected']
+    opened = st.session_state.menu['opened']
+    print('selected', selected)
+    print('opened', opened)
+  except:
+    print('hellooooo')
+    # print(st.session_state)
+    pass
 
   st.subheader("Dropdown Menu Test")
   with st.sidebar:
-    rv = my_component(name="dropdownmenu", items=my_items, selected=selected, opened=opened, styles=my_styles, key="K1")
+    rv = my_component(name="dropdownmenu", items=my_items, selected=selected, opened=opened, styles=my_styles, key="menu")
     st.write(rv)
+    st.write(st.session_state.menu)
