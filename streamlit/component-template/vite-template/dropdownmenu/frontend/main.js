@@ -103,8 +103,8 @@ function returnState(selected, opened) {
 }
 
 function onRender(event) {
-  if (rendered) return // why does render fire twice ?
-  else rendered = true
+  // if (rendered) return // why does render fire twice ?
+  // else rendered = true
 
   const styleTag = document.createElement('style') // hopefully this does not keep getting created...
   styleTag.innerText = defaultStyle
