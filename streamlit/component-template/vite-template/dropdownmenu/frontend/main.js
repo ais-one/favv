@@ -96,6 +96,7 @@ function setHeight(height) {
 }
 
 function returnState(selected, opened) {
+  console.log('sssssssssssssssssssssssssssssss')
   Streamlit.setComponentValue({
     selected,
     opened
@@ -103,23 +104,18 @@ function returnState(selected, opened) {
 }
 
 function onRender(event) {
-  // if (rendered) return // why does render fire twice ?
+  // if (rendered) return // why does render fire twice ? It also happens in example code
   // else rendered = true
-
-  const styleTag = document.createElement('style') // hopefully this does not keep getting created...
-  styleTag.innerText = defaultStyle
-  document.head.appendChild(styleTag)
-
   console.log('Render', event)
 
-  // TBD create based on table NOSONAR
   const data = event.detail
   const items = data.args["items"]
   let selected = data.args["selected"] || ''
   let opened = data.args["opened"] || []
-  console.log('args.opened', data.args.opened)
-  console.log('args.selected', data.args.selected)
-  // const styles = data.args["styles"]
+  const styles = data.args["styles"] || defaultStyle
+  const styleTag = document.createElement('style') // hopefully this does not keep getting created...
+  styleTag.innerText = styles
+  document.head.appendChild(styleTag)
 
   const root = document.createElement('div')
   root.classList.add('sidenav')
@@ -200,11 +196,11 @@ Streamlit.setComponentReady()
 Streamlit.setFrameHeight()
 
 // https://stackoverflow.com/questions/25098021/securityerror-blocked-a-frame-with-origin-from-accessing-a-cross-origin-frame
-let timeoutId = null
-window.parent.addEventListener('resize', function() {
-  clearTimeout(timeoutId)
-  timeoutId = setTimeout(() => setHeight(window.outerHeight), 500)
-})
+// let timeoutId = null
+// window.parent.addEventListener('resize', function() {
+//   clearTimeout(timeoutId)
+//   timeoutId = setTimeout(() => setHeight(window.outerHeight), 500)
+// })
 
 // Streamlit.events.addEventListener(Streamlit.RENDER_EVENT, onRender)
 // https://github.com/streamlit/streamlit/issues/3889
