@@ -1,3 +1,0 @@
-# recursive-include package/frontend/build *
-recursive-include vite_vanilla_component/frontend/dist *
-recursive-include vite_vite_component/frontend/dist *
