@@ -1,1 +1,3 @@
-recursive-include streamlit_sidemenu/frontend/build *
+recursive-include streamlit_sidemenu/frontend/dist *
+recursive-include vite_vanilla_component/frontend/dist *
+recursive-include vite_vue_component/frontend/dist *

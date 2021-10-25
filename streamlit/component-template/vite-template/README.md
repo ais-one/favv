@@ -1,3 +1,20 @@
+# Streamlit - Sidemenu
+
+A streamlit component to implement collapsible menu on st_sidebar.
+
+## Installation
+
+```
+pip install streamlit-sidemenu
+```
+
+## Usage
+
+Refer to `__init__.py` file
+
+
+## Frontend Notes
+
 # npm 6.x
 
 ```

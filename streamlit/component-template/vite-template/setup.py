@@ -5,19 +5,19 @@ from os.path import join
 
 setuptools.setup(
   name="streamlit_sidemenu", # should match the package folder
-  version="0.0.1",
+  version="0.0.3",
   author="Aaron Gong",
   author_email="aaronjxz@gmail.com",
-  license='MIT', # should match your chosen license
-  description='Testing installation of Package',
+  license='Apache Software License', # should match your chosen license
+  description='Sidebar Menu custom component for Streamlit',
   long_description=open(join(dirname(__file__), "README.md")).read(), # loads your README.md
   long_description_content_type="text/markdown",
   url="https://github.com/ais-one/favv",
   project_urls = { # Optional
     "Bug Tracker": "https://github.com/ais-one/favv/issues"
   },
-  # packages=setuptools.find_packages(),
-  packages=['streamlit_sidemenu'], # should match the package folder
+  packages=setuptools.find_packages(),
+  # packages=['streamlit_sidemenu'], # should match the package folder
   include_package_data=True,
   python_requires=">=3.6",
   install_requires=[
@@ -26,7 +26,7 @@ setuptools.setup(
     # them here.
     "streamlit >= 0.63",
   ],
-  keywords=["streamlit", "menu"], #descriptive meta-data
+  keywords=["streamlit", "sidebar", "menu"], #descriptive meta-data
   classifiers=[ # https://pypi.org/classifiers
     'Development Status :: 2 - Pre-Alpha',
     'Intended Audience :: Developers',

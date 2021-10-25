@@ -46,7 +46,11 @@ https://docs.streamlit.io/library/components/publish
 
 
 ```
-pip install wheel 
+pip install wheel twine
 ```
 
+python setup.py sdist bdist_wheel
+
 python -m twine upload --repository testpypi dist/*
+
+pip install -i https://test.pypi.org/simple/ streamlit-sidemenu==0.0.3
