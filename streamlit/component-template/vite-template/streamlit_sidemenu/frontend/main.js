@@ -137,7 +137,6 @@ function onRender(event) {
       btnTag.classList.add('dropdown-btn')
       btnTag.innerHTML = item.label
 
-      // <div class="dropdown-container">
       const divContainerDd = document.createElement('div')
       divContainerDd.classList.add('dropdown-container')
 
@@ -147,11 +146,6 @@ function onRender(event) {
       } else {
         // set close icon
       }
-
-      // initialize menu group state
-      // TBD set style - background color, text color, bold?, size?
-      // set icon expanded or not
-      // divContainerDd.style.display = true ? 'block' : 'none'
 
       btnTag.onclick = (e) => {
         const dropdownContent = divContainerDd
@@ -196,11 +190,10 @@ Streamlit.setComponentReady()
 Streamlit.setFrameHeight()
 
 // https://stackoverflow.com/questions/25098021/securityerror-blocked-a-frame-with-origin-from-accessing-a-cross-origin-frame
-// let timeoutId = null
-// window.parent.addEventListener('resize', function() {
-//   clearTimeout(timeoutId)
-//   timeoutId = setTimeout(() => setHeight(window.outerHeight), 500)
-// })
+let timeoutId = null
+window.parent.addEventListener('resize', function() {
+  clearTimeout(timeoutId)
+  timeoutId = setTimeout(() => setHeight(window.outerHeight), 500)
+})
 
-// Streamlit.events.addEventListener(Streamlit.RENDER_EVENT, onRender)
 // https://github.com/streamlit/streamlit/issues/3889

@@ -38,3 +38,15 @@ streamlit run vanilla_component/__init__.py
 
 Navigate to URL indicated by streamlit (usually http://localhost:8501)
 
+
+
+## Publishing
+
+https://docs.streamlit.io/library/components/publish
+
+
+```
+pip install wheel 
+```
+
+python -m twine upload --repository testpypi dist/*

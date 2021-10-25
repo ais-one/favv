@@ -1,17 +1,32 @@
 import os
 import streamlit.components.v1 as components
 
-_RELEASE = False
+_RELEASE = False # set to True for deployment
 
-# if not _RELEASE:
-_component_func = components.declare_component("dropdownmenu", url="http://localhost:3000")
-# else:
-#   parent_dir = os.path.dirname(os.path.abspath(__file__))
-#   build_dir = os.path.join(parent_dir, "frontend/dist")
-#   _component_func = components.declare_component("dropdownmenu", path=build_dir)
+if not _RELEASE:
+  _component_func = components.declare_component("streamlit_sidemenu", url="http://localhost:3000")
+else:
+  parent_dir = os.path.dirname(os.path.abspath(__file__))
+  build_dir = os.path.join(parent_dir, "frontend/dist")
+  _component_func = components.declare_component("streamlit_sidemenu", path=build_dir)
 
-def my_component(name, items, selected, opened, styles=None, key=None):
-  component_value = _component_func(name=name, items=items, selected=selected, opened=opened, key=key)
+def st_sidemenu(items, selected, opened, styles=None, key=None):
+  """Display a menu on the sidebar. Nesting is to child only, no grand-child or lower descendents 
+  Parameters
+  ----------
+  options: Dict
+    list of menu items.
+  selected: str
+    selected menu item.
+  opened: List
+    list of menu groups that are open/expanded
+  styles: str
+    CSS styling
+  key: str
+    An optional string to use as the unique key for the widget. 
+    Assign a key so the component is not remount every time the script is rerun.
+  """
+  component_value = _component_func(items=items, selected=selected, opened=opened, key=key)
   return component_value
 
 if not _RELEASE:
@@ -67,6 +82,6 @@ if not _RELEASE:
 
   st.subheader("Dropdown Menu Test")
   with st.sidebar:
-    rv = my_component(name="dropdownmenu", items=my_items, selected=selected, opened=opened, styles=my_styles, key="menu")
+    rv = st_sidemenu(items=my_items, selected=selected, opened=opened, styles=my_styles, key="menu")
     st.write(rv)
     st.write(st.session_state.menu)
