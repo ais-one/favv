@@ -45,12 +45,28 @@ Navigate to URL indicated by streamlit (usually http://localhost:8501)
 https://docs.streamlit.io/library/components/publish
 
 
-```
+Need to install the packages below
+
+```bash
 pip install wheel twine
 ```
 
-python setup.py sdist bdist_wheel
+Refer to [upload.sh](./vite-template/upload.sh) file on how the commands are run
 
-python -m twine upload --repository testpypi dist/*
+To deploy to pypi test
 
-pip install -i https://test.pypi.org/simple/ streamlit-sidemenu==0.0.3
+```bash
+./upload.sh test
+```
+
+To deploy to pypi
+
+```bash
+./upload.sh production
+```
+
+To install from pypi test
+
+```bash
+pip install -i https://test.pypi.org/simple/ streamlit-sidemenu==version
+```

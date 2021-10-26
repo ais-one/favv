@@ -1,0 +1,52 @@
+name: Publish Python 🐍 distributions 📦 to PyPI and TestPyPI
+
+on:
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      service:
+        description: 'Service to deploy (APP_NAME)'
+        default: 'app-template'
+        required: true
+      environment:
+        description: 'The environment (uat, prod)'
+        default: 'uat'
+        required: true
+
+jobs:
+  build-n-publish:
+    name: Build and publish Python 🐍 distributions 📦 to PyPI and TestPyPI
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up NodeJS
+      uses: actions/setup-node@v2
+        # with:
+        #   node-version: '16'
+    # TBD use correct folder
+    - name: Install node modules and build
+      run: |
+        npm install
+        npm run build
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.9
+    # TBD use correct folder
+    - name: Install pypa/build
+      # run: pip install wheel twine
+      run: python -m pip wheel twine --user
+    - name: Build a binary wheel and a source tarball
+      run: python setup.py sdist bdist_wheel
+    # to fix the code below
+    - name: Publish distribution 📦 to Test PyPI
+      run: TWINE_USERNAME=__token__ TWINE_PASSWORD=${{ secrets.TEST_PYPI_API_TOKEN }} python -m twine upload --repository testpypi dist/*
+      # uses: pypa/gh-action-pypi-publish@master
+      # with:
+      #   password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+      #   repository_url: https://test.pypi.org/legacy/
+    - name: Publish distribution 📦 to PyPI
+      if: startsWith(github.ref, 'refs/tags')
+      uses: pypa/gh-action-pypi-publish@master
+      with:
+        password: ${{ secrets.PYPI_API_TOKEN }}
