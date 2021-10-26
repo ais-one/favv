@@ -5,7 +5,7 @@ from os.path import join
 
 setuptools.setup(
   name="streamlit_sidemenu", # should match the package folder
-  version="0.0.3",
+  version="0.0.4",
   author="Aaron Gong",
   author_email="aaronjxz@gmail.com",
   license='Apache Software License', # should match your chosen license
@@ -16,8 +16,8 @@ setuptools.setup(
   project_urls = { # Optional
     "Bug Tracker": "https://github.com/ais-one/favv/issues"
   },
-  packages=setuptools.find_packages(),
-  # packages=['streamlit_sidemenu'], # should match the package folder
+  # packages=setuptools.find_packages(),
+  packages=['streamlit_sidemenu'], # should match the package folder
   include_package_data=True,
   python_requires=">=3.6",
   install_requires=[
