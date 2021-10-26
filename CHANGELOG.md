@@ -1,6 +1,5 @@
 ## TODO
 - V0.0.7
-  - [streamlit] state & sessions, aggrid
   - [fastapi] allow for multiple services (alchemy mongodb, s3, upload folders)
   - [fastapi] websockets - need to monitor resolution of the following
     - https://github.com/tiangolo/fastapi/pull/3280
@@ -20,6 +19,10 @@
 
 ## DONE
 - V0.0.7
+  - 2021-10-25
+    - [streamlit] create sidebar (alpha) and also publishing to pypi
+  - 2021-10-18
+    - [streamlit] state & sessions, aggrid example
   - 2021-10-07
     - [viteuve] maintained in seperate repository
 - V0.0.6

@@ -90,26 +90,6 @@ body {
 
 ---
 
-## .pypirc File
-
-Place the file in $HOME / ~ directory
-
-```
-[distutils]
-index-servers =
-  pypi
-  testpypi
-
-[pypi]
-username = __token__
-password = pypi-xxx
-
-[testpypi]
-username = __token__
-password = pypi-yyy
-repository = https://test.pypi.org/legacy/
-```
-
 ## Frontend Notes
 
 # npm 6.x
