@@ -15,14 +15,13 @@ import os
 # https://docs.streamlit.io/en/stable/publish_streamlit_components.html
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
-build_dir = os.path.join(base_dir, "..", "component-template", "cra-template", "my_component" , "frontend" ,"build")
-_my_component = components.declare_component("my_component", path=build_dir)
+_my_component = components.declare_component("my_component", os.path.join(base_dir, "..", "component-template", "sample", "my_component" , "frontend" ,"build"))
 # _my_component = components.declare_component( "my_component", url="http://localhost:3001") # dev
 
-_vanilla_component = components.declare_component("vanilla_component", path=os.path.join(base_dir, "..", "component-template", "vite-template", "vanilla_component" , "frontend" ,"dist"))
+_vanilla_component = components.declare_component("vanilla_component", path=os.path.join(base_dir, "..", "component-template", "sample", "vite_vanilla_component" , "frontend" ,"dist"))
 # _vanilla_component = components.declare_component( "vanilla_component", url="http://localhost:3000") # dev
 
-_vue_component = components.declare_component("vue_component", path=os.path.join(base_dir, "..", "component-template", "vite-template", "vue_component" , "frontend" ,"dist"))
+_vue_component = components.declare_component("vue_component", path=os.path.join(base_dir, "..", "component-template", "sample", "vite_vue_component" , "frontend" ,"dist"))
 # _vue_component = components.declare_component( "vue_component", url="http://localhost:3000") # dev
 
 

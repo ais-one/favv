@@ -19,6 +19,8 @@
 
 ## DONE
 - V0.0.7
+  - 2021-11-05
+    - [streamlit] refactor for multiple custom components
   - 2021-10-25
     - [streamlit] create sidebar (alpha) and also publishing to pypi
   - 2021-10-18

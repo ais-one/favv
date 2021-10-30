@@ -10,11 +10,36 @@ Refer to this [article](https://dev.to/aisone/streamlit-custom-components-vite-4
 
 If you are not familiar with creating a streamlit custom component, refer to the [README.md](https://github.com/streamlit/component-template#readme) document of [https://github.com/streamlit/component-template](https://github.com/streamlit/component-template) where this repo is derived from.
 
-## Development Usage - Vite Vanilla Component
+## Development Usage - Vite Vanilla Component - TBD
+
+### npm 6.x
+
+```
+cd <component_name_vanilla>
+npm init vite@latest frontend --template vanilla
+cd <component_name_vue>
+npm init vite@latest frontend --template vue
+```
+
+### npm 8+
+
+```
+cd <component_name>
+npm init vite@latest frontend -- --template vanilla
+```
+
+```
+cd frontend
+npm i streamlit-component-lib
+```
+
+take note of vite.config.js
+
+
 
 1. Frontend - Install dependencies and run
 
-From vite-template folder
+From `sample` folder
 
 ```
 cd vite_vanilla_compoent
@@ -25,7 +50,7 @@ npm run dev
 
 2. Backend - Install dependencies and run
 
-From vite-template folder
+From `sample` folder
 
 Create and activate your venv
 
@@ -52,7 +77,7 @@ pip install wheel twine
 
 2. Preparing the upload
 
-Refer to [upload.sh](./vite-template/upload.sh) file on how the commands are run. The script will also echo the pre-requisites (to run this on windows, use git bash)
+Refer to [upload.sh](./streamlit-es-labs-ui/upload.sh) file on how the commands are run. The script will also echo the pre-requisites (to run this on windows, use git bash)
 
 Setup `.pypirc` file in your `$HOME` or `~` directory with the contents below
 

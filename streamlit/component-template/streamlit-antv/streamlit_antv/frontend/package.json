@@ -1,0 +1,16 @@
+{
+  "name": "frontend",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^2.6.11"
+  },
+  "dependencies": {
+    "@antv/g6": "^4.3.11",
+    "streamlit-component-lib": "^1.4.0"
+  }
+}

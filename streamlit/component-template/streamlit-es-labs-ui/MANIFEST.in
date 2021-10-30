@@ -1,0 +1,2 @@
+recursive-include streamlit_placeholder/frontend/dist *
+recursive-include streamlit_sidemenu/frontend/dist *

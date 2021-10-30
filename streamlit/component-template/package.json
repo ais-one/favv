@@ -9,8 +9,13 @@
   "keywords": [],
   "author": "",
   "workspaces": [
-    "./cra-template/*",
     "./vite-template/*"
+  ],
+  "dummy": [
+    "./cra-template/my_component/*",
+    "./vite-template/streamlit_antv",
+    "./vite-template/vite_vanilla_component",
+    "./vite-template/vite_vue_component"    
   ],
   "license": "ISC"
 }
