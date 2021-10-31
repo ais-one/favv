@@ -1,10 +1,13 @@
 {
-  "name": "frontend",
+  "name": "sample_vanilla_component",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview"
+  },
+  "dependencies": {
+    "streamlit-component-lib": "^1.4.0"
   },
   "devDependencies": {
     "vite": "^2.6.4"

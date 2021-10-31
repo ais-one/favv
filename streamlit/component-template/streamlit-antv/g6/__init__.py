@@ -1,7 +1,7 @@
 import os
 import streamlit.components.v1 as components
 
-_RELEASE = True
+_RELEASE = False
 
 if not _RELEASE:
   _component_func = components.declare_component("streamlit-antv_g6", url="http://localhost:3000") # vite dev server port

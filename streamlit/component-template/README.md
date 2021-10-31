@@ -89,3 +89,9 @@ streamlit run vanilla_component/__init__.py
 
 Navigate to URL indicated by streamlit (usually http://localhost:8501)
 
+
+
+npm i
+npm run build --workspace=sample/*
+npm run dev --workspace=sample/vanilla_component
+

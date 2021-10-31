@@ -1,14 +1,12 @@
 import os
 import streamlit.components.v1 as components
 
-_RELEASE = True # set to True for deployment
+_RELEASE = False # set to True for deployment
 
 if not _RELEASE:
   _component_func = components.declare_component("streamlit_xui_sidemenu", url="http://localhost:3000")
 else:
-  parent_dir = os.path.dirname(os.path.abspath(__file__))
-  build_dir = os.path.join(parent_dir, "frontend/dist")
-  _component_func = components.declare_component("streamlit_xui_sidemenu", path=build_dir)
+  _component_func = components.declare_component("streamlit_xui_sidemenu", path=os.path.join(os.path.dirname(os.path.abspath(__file__)), "frontend/dist"))
 
 def st_xui_sidemenu(items, selected, opened, styles=None, key=None):
   """Display a menu on the sidebar. Nesting is to child only, no grand-child or lower descendents 

@@ -7,9 +7,8 @@
 mkdir streamlit-<component_group_name>
 ```
 
-Copy the `LICENSE`, `MANIFEST.in`, `setup.py`, `README.md` files from [streamlit-antv](streamlit-antv) as an example
+Copy the `MANIFEST.in`, `setup.py`, `README.md` files from [streamlit-antv](streamlit-antv) as an example
 
-You will need to modify all files later except `LICENSE`
 
 ## Creating the vanilla component using vite js
 

@@ -1,5 +1,5 @@
 {
-  "name": "vue_component-frontend",
+  "name": "sample_vue_component",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
