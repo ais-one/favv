@@ -1,16 +1,17 @@
 {
-  "name": "vite_vanilla_component-frontend",
+  "name": "vue_component-frontend",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview"
   },
-  "devDependencies": {
-    "vite": "^2.6.11"
-  },
   "dependencies": {
-    "@antv/g6": "^4.3.11",
-    "streamlit-component-lib": "^1.4.0"
+    "streamlit-component-lib": "^1.4.0",
+    "vue": "^3.2.20"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.9.3",
+    "vite": "^2.6.11"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "streamlit_sidemenu-frontend",
+  "name": "streamlit-xui_placeholder-frontend",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --force",

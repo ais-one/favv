@@ -4,13 +4,11 @@ import streamlit.components.v1 as components
 _RELEASE = True
 
 if not _RELEASE:
-  _component_func = components.declare_component("vanilla_component", url="http://localhost:3000") # vite dev server port
+  _component_func = components.declare_component("streamlit-antv_g6", url="http://localhost:3000") # vite dev server port
 else:
-  parent_dir = os.path.dirname(os.path.abspath(__file__))
-  build_dir = os.path.join(parent_dir, "frontend/dist")
-  _component_func = components.declare_component("vanilla_component", path=build_dir)
+  _component_func = components.declare_component("streamlit-antv_g6", path=os.path.join(os.path.dirname(os.path.abspath(__file__)), "frontend/dist"))
 
-def vanilla_component(name, config, nodes, edges, key=None):
+def st_antv_g6(name, config, nodes, edges, key=None):
   component_value = _component_func(name=name, config=config, nodes=nodes, edges=edges, key=key, default=0)
   return component_value
 
@@ -95,9 +93,9 @@ if not _RELEASE:
   }
 
   st.subheader("Component Test")
-  rv = vanilla_component(name="NameViteVanilla", key="K1", config=config, nodes=nodes, edges=edges)
-  vanilla_component(name="NameViteVanilla", key="K2", config=config, nodes=nodes, edges=edges)
-  vanilla_component(name="NameViteVanilla", key="K3", config=config, nodes=nodes, edges=edges)
+  rv = st_antv_g6(name="NameViteVanilla", key="K1", config=config, nodes=nodes, edges=edges)
+  st_antv_g6(name="NameViteVanilla", key="K2", config=config, nodes=nodes, edges=edges)
+  st_antv_g6(name="NameViteVanilla", key="K3", config=config, nodes=nodes, edges=edges)
   st.write(rv)
   # st.markdown("You've clicked %s times!" % int(rv['numClicks']))
   # st.markdown(f'Selected Node Is: {rv['selectedNode']}')

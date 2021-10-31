@@ -1,0 +1,2 @@
+recursive-include placeholder/frontend/dist *
+recursive-include sidemenu/frontend/dist *

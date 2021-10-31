@@ -10,7 +10,33 @@ Refer to this [article](https://dev.to/aisone/streamlit-custom-components-vite-4
 
 If you are not familiar with creating a streamlit custom component, refer to the [README.md](https://github.com/streamlit/component-template#readme) document of [https://github.com/streamlit/component-template](https://github.com/streamlit/component-template) where this repo is derived from.
 
-## Development Usage - Vite Vanilla Component - TBD
+
+## NPM Usage (NPM 8+)
+
+```bash
+# everything
+npm <command> -- <script arguments>
+
+# per component group
+npm <command> --workspace=sample -- <script arguments>
+
+# per component
+npm <command> --workspace=sample/vue_component -- <script arguments>
+```
+
+
+## Creation
+
+Refer to [README-CREATE.md](README-CREATE.md)
+
+## Publish to PyPI
+
+Refer to [README-PUBLISH.md](README-PUBLISH.md)
+
+
+## Development - Vite Vanilla Component - TBD
+
+Use `sample` folder as reference for creating a group of components
 
 ### npm 6.x
 
@@ -63,54 +89,3 @@ streamlit run vanilla_component/__init__.py
 
 Navigate to URL indicated by streamlit (usually http://localhost:8501)
 
-## Publishing To PyPI
-
-Reference:
-- https://docs.streamlit.io/library/components/publish
-- https://packaging.python.org/
-
-1. Need to install the packages below in you environment
-
-```bash
-pip install wheel twine
-```
-
-2. Preparing the upload
-
-Refer to [upload.sh](./streamlit-es-labs-ui/upload.sh) file on how the commands are run. The script will also echo the pre-requisites (to run this on windows, use git bash)
-
-Setup `.pypirc` file in your `$HOME` or `~` directory with the contents below
-
-```
-[distutils]
-index-servers =
-  pypi
-  testpypi
-
-[pypi]
-username = __token__
-password = <your pypi API Key>
-
-[testpypi]
-username = __token__
-password = <your testpypi API Key>
-repository = https://test.pypi.org/legacy/
-```
-
-3. To deploy to pypi test
-
-```bash
-./upload.sh test
-```
-
-4. To deploy to pypi
-
-```bash
-./upload.sh production
-```
-
-5. To install from pypi test for use in your streamlit application
-
-```bash
-pip install -i https://test.pypi.org/simple/ streamlit-sidemenu==<version number>
-```

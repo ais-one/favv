@@ -1,21 +1,16 @@
 {
   "name": "component-template",
   "version": "1.0.0",
-  "description": "## Introduction",
+  "description": "Collection of components for streamlit",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "workspaces": [
-    "./vite-template/*"
-  ],
-  "dummy": [
-    "./cra-template/my_component/*",
-    "./vite-template/streamlit_antv",
-    "./vite-template/vite_vanilla_component",
-    "./vite-template/vite_vue_component"    
+    "./sample/*/*",
+    "./streamlit-antv/*/*",
+    "./streamlit-xui/*/*"
   ],
   "license": "ISC"
 }

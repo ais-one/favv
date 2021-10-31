@@ -4,13 +4,13 @@ import streamlit.components.v1 as components
 _RELEASE = True # set to True for deployment
 
 if not _RELEASE:
-  _component_func = components.declare_component("streamlit_sidemenu", url="http://localhost:3000")
+  _component_func = components.declare_component("streamlit_xui_sidemenu", url="http://localhost:3000")
 else:
   parent_dir = os.path.dirname(os.path.abspath(__file__))
   build_dir = os.path.join(parent_dir, "frontend/dist")
-  _component_func = components.declare_component("streamlit_sidemenu", path=build_dir)
+  _component_func = components.declare_component("streamlit_xui_sidemenu", path=build_dir)
 
-def st_sidemenu(items, selected, opened, styles=None, key=None):
+def st_xui_sidemenu(items, selected, opened, styles=None, key=None):
   """Display a menu on the sidebar. Nesting is to child only, no grand-child or lower descendents 
   Parameters
   ----------
@@ -146,6 +146,6 @@ if not _RELEASE:
 
   st.subheader("Dropdown Menu Test")
   with st.sidebar:
-    rv = st_sidemenu(items=my_items, selected=selected, opened=opened, styles=my_styles, key="menu")
+    rv = st_xui_sidemenu(items=my_items, selected=selected, opened=opened, styles=my_styles, key="menu")
     st.write(rv)
     st.write(st.session_state.menu)
