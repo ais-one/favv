@@ -1,31 +1,75 @@
 # Streamlit Custom Components
 
-## Introduction
+This project shows how to architecture multiple component_groups with multiple custom streamlit components
 
-The folder contains template and example code for creating [Streamlit](https://streamlit.io) Components using
-- [Vite](https://github.com/vitejs/vite).
-- Create React App
+e.g.
 
-Refer to this [article](https://dev.to/aisone/streamlit-custom-components-vite-4bj7) for more information on the motivation and why Vite is used and how this repo was created.
++-streamlit-antv (component_group)
+| +- g2 (component)
+| |  +- frontend
+| +- g2plot
+| |  +- frontend
+| +- g6
+|    +- frontend
++-streamlit-xui
+  +- sidemenu
+  |  +- frontend
+  +- placeholder
+     +- frontend
 
-If you are not familiar with creating a streamlit custom component, refer to the [README.md](https://github.com/streamlit/component-template#readme) document of [https://github.com/streamlit/component-template](https://github.com/streamlit/component-template) where this repo is derived from.
+The packaging tool [Vite](https://github.com/vitejs/vite), is used to create React, Vue or Vanilla JS frontends.
+
+NPM workspace features is used
+
+## References
+
+- [Streamlit](https://streamlit.io)
+- Streamlit component [README.md](https://github.com/streamlit/component-template#readme)
+- dev.to [article](https://dev.to/aisone/streamlit-custom-components-vite-4bj7) for more information on the motivation and why Vite is used.
 
 
-## NPM Usage (NPM 8+)
+## Quick Test
 
-```bash
-# everything
-npm <command> -- <script arguments>
+Test `vanilla_component` in `sample` component_group folder
 
-# per component group
-npm <command> --workspace=sample -- <script arguments>
+1. Install and run frontend component run dev server
 
-# per component
-npm <command> --workspace=sample/vue_component -- <script arguments>
+From `<project root>/streamlit/component-tamplate` folder
+
+```
+npm i --workspace=sample/vanilla_component
+npm run dev --workspace=sample/vanilla_component
 ```
 
+2. Run python side
 
-## Creation
+From `<project root>/streamlit` folder
+
+**Note:** ensure `venv` set is set and python libraries such as `streamlit` are installed.
+
+```cmd
+python -m venv dev
+dev\Scripts\activate.bat
+pip install -r requirements.txt
+```
+
+From `<project root>/streamlit/component-tamplate/sample` (component_group) folder
+
+```bash
+streamlit run vanilla_component/__init__.py
+```
+
+**Note:** make sure `_RELEASE = False` in `__init__.py` file
+
+
+3. View on browser
+
+Navigate to URL indicated by streamlit (usually http://localhost:8501)
+
+
+---
+
+## Create new component_group and component in the component_group
 
 Refer to [README-CREATE.md](README-CREATE.md)
 
@@ -33,65 +77,15 @@ Refer to [README-CREATE.md](README-CREATE.md)
 
 Refer to [README-PUBLISH.md](README-PUBLISH.md)
 
+## NPM Workspace Notes
 
-## Development - Vite Vanilla Component - TBD
+```bash
+# install all
+npm i -- <script arguments if any>
 
-Use `sample` folder as reference for creating a group of components
+# build all in a workspace (a component group)
+npm run build --workspace=sample/* -- <script arguments if any>
 
-### npm 6.x
-
+# run dev a project (component) in a workspace
+npm run dev --workspace=sample/vanilla_component -- <script arguments if any>
 ```
-cd <component_name_vanilla>
-npm init vite@latest frontend --template vanilla
-cd <component_name_vue>
-npm init vite@latest frontend --template vue
-```
-
-### npm 8+
-
-```
-cd <component_name>
-npm init vite@latest frontend -- --template vanilla
-```
-
-```
-cd frontend
-npm i streamlit-component-lib
-```
-
-take note of vite.config.js
-
-
-
-1. Frontend - Install dependencies and run
-
-From `sample` folder
-
-```
-cd vite_vanilla_compoent
-cd frontend
-npm i
-npm run dev
-```
-
-2. Backend - Install dependencies and run
-
-From `sample` folder
-
-Create and activate your venv
-
-```
-pip install -r requirements.txt
-streamlit run vanilla_component/__init__.py
-```
-
-3. Test
-
-Navigate to URL indicated by streamlit (usually http://localhost:8501)
-
-
-
-npm i
-npm run build --workspace=sample/*
-npm run dev --workspace=sample/vanilla_component
-

@@ -1,41 +1,66 @@
 # Creation
 
+Use `sample` folder as reference
+
 ## Create The Component Group Folder
 
 
 ```bash
 mkdir streamlit-<component_group_name>
+cd streamlit-<component_group_name>
 ```
 
-Copy the `MANIFEST.in`, `setup.py`, `README.md` files from [streamlit-antv](streamlit-antv) as an example
+Copy the `MANIFEST.in`, `setup.py`, `README.md` files from [sample](sample) and edit accordingly
 
+## Create The Component Folder
 
-## Creating the vanilla component using vite js
+In the `streamlit-<component_group_name>` folder
 
 ```bash
-mkdir vanilla_component
-cd vanilla_component
-npm init vite@latest frontend --template vanilla
+mkdir <component_name>
+cd <component_name>
 ```
-# npm 6.x
 
-```
-cd <component_name_vanilla>
-cd <component_name_vue>
-npm init vite@latest frontend --template vue
-```
+Copy the `__init__.py` file from [sample](sample) and edit accordingly
+
+## Create the Component
+
+1. Create using vite
+
+```bash
+# npm 6.x
+npm init vite@latest frontend --template vanilla
 
 # npm 7+
-
-```
-cd <component_name>
 npm init vite@latest frontend -- --template vanilla
-```
 
-```
 cd frontend
-npm i streamlit-component-lib
 ```
 
-take note of vite.config.js
+You can replace `vanilla` with `vue` or `react`. Refer to [vite documentation](https://vitejs.dev/guide/)
+
+2. Create vite.config.js with the following:
+
+```js
+export default {
+  base: './'
+}
+```
+
+3. Set package.json name property
+
+Note this will be used by npm workspaces to identify a workspace
+
+```json
+{
+  "name": "<component_group_name>_<component_name>"
+}
+```
+
+3. Install your libraries
+
+```
+npm i streamlit-component-lib --workspaces="--workspace=<component_group_name>/<component_name>"
+```
+
 
