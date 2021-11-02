@@ -21,6 +21,12 @@ The packaging tool [Vite](https://github.com/vitejs/vite), is used to create Rea
 
 NPM workspace features is used
 
+## Requirements
+
+- NodeJS 16+
+- NPM 8+
+- Python 3.8+
+
 ## References
 
 - [Streamlit](https://streamlit.io)
@@ -30,15 +36,15 @@ NPM workspace features is used
 
 ## Quick Test
 
-Test `vanilla_component` in `sample` component_group folder
+Test `vanilla_component` in `streamlit-vite` component_group folder
 
 1. Install and run frontend component run dev server
 
 From `<project root>/streamlit/component-tamplate` folder
 
 ```
-npm i --workspace=sample/vanilla_component
-npm run dev --workspace=sample/vanilla_component
+npm i --workspace=streamlit-vite/vanilla_component
+npm run dev --workspace=streamlit-vite/vanilla_component
 ```
 
 2. Run python side
@@ -53,7 +59,7 @@ dev\Scripts\activate.bat
 pip install -r requirements.txt
 ```
 
-From `<project root>/streamlit/component-tamplate/sample` (component_group) folder
+From `<project root>/streamlit/component-tamplate/streamlit-vite` (component_group) folder
 
 ```bash
 streamlit run vanilla_component/__init__.py
@@ -84,8 +90,8 @@ Refer to [README-PUBLISH.md](README-PUBLISH.md)
 npm i -- <script arguments if any>
 
 # build all in a workspace (a component group)
-npm run build --workspace=sample/* -- <script arguments if any>
+npm run build --workspace=streamlit-vite/* -- <script arguments if any>
 
 # run dev a project (component) in a workspace
-npm run dev --workspace=sample/vanilla_component -- <script arguments if any>
+npm run dev --workspace=streamlit-vite/vanilla_component -- <script arguments if any>
 ```

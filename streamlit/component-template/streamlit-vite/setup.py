@@ -4,11 +4,11 @@ from os.path import dirname
 from os.path import join
 
 setuptools.setup(
-  name="sample", # should match the package folder
+  name="streamlit-vite", # should match the package folder
   version="0.0.1",
   author="Aaron Gong",
   author_email="aaronjxz@gmail.com",
-  license='Apache Software License', # should match your chosen license
+  license='MIT License', # should match your chosen license
   description='Sidebar Menu custom component for Streamlit',
   long_description=open(join(dirname(__file__), "README.md")).read(), # loads your README.md
   long_description_content_type="text/markdown",
@@ -26,7 +26,7 @@ setuptools.setup(
   classifiers=[ # https://pypi.org/classifiers
     'Development Status :: 2 - Pre-Alpha',
     'Intended Audience :: Developers',
-    'License :: OSI Approved :: Apache Software License',
+    'License :: OSI Approved :: MIT License',
     'Programming Language :: Python :: 3'
     # TBD add when ready 'Framework :: Streamlit'
   ]

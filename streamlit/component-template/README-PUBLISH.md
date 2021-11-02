@@ -4,6 +4,24 @@ Reference:
 - https://docs.streamlit.io/library/components/publish
 - https://packaging.python.org/
 
+
+## Prerequisite
+
+1. Build Frontend
+
+```
+npm run build --workspace=<component_group>/<component>
+```
+
+```
+npm run build --workspace=./streamlit-vite/vanilla_component
+npm run build --workspace=./streamlit-vite/vue_component
+```
+
+2. Set _RELEASE Flag in `__init__.py` == `True`
+
+## Setup For PyPY publishing
+
 1. Need to install the packages below in you environment
 
 ```bash
@@ -32,20 +50,22 @@ password = <your testpypi API Key>
 repository = https://test.pypi.org/legacy/
 ```
 
+## Perform Deployment
+
 3. To deploy to pypi test
 
 ```bash
-./upload.sh test
+./upload.sh test <component_group>
 ```
 
 4. To deploy to pypi
 
 ```bash
-./upload.sh production
+./upload.sh production <component_group>
 ```
 
 5. To install from pypi test for use in your streamlit application
 
 ```bash
-pip install -i https://test.pypi.org/simple/ streamlit-sidemenu==<version number>
+pip install -i https://test.pypi.org/simple/ streamlit-xui==<version number>
 ```

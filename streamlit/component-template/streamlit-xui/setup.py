@@ -8,8 +8,8 @@ setuptools.setup(
   version="0.0.1",
   author="Aaron Gong",
   author_email="aaronjxz@gmail.com",
-  license='Apache Software License', # should match your chosen license
-  description='Sidebar Menu custom component for Streamlit',
+  license='MIT License', # should match your chosen license
+  description='Extended UI components for Streamlit',
   long_description=open(join(dirname(__file__), "README.md")).read(), # loads your README.md
   long_description_content_type="text/markdown",
   url="https://github.com/ais-one/favv",
@@ -26,7 +26,7 @@ setuptools.setup(
   classifiers=[ # https://pypi.org/classifiers
     'Development Status :: 2 - Pre-Alpha',
     'Intended Audience :: Developers',
-    'License :: OSI Approved :: Apache Software License',
+    'License :: OSI Approved :: MIT License',
     'Programming Language :: Python :: 3'
     # TBD add when ready 'Framework :: Streamlit'
   ]

@@ -1,6 +1,6 @@
 # Creation
 
-Use `sample` folder as reference
+Use `streamlit-vite` folder as reference
 
 ## Create The Component Group Folder
 
@@ -10,7 +10,7 @@ mkdir streamlit-<component_group_name>
 cd streamlit-<component_group_name>
 ```
 
-Copy the `MANIFEST.in`, `setup.py`, `README.md` files from [sample](sample) and edit accordingly
+Copy the `MANIFEST.in`, `setup.py`, `README.md` files from [streamlit-vite](streamlit-vite) and edit accordingly
 
 ## Create The Component Folder
 
@@ -21,11 +21,13 @@ mkdir <component_name>
 cd <component_name>
 ```
 
-Copy the `__init__.py` file from [sample](sample) and edit accordingly
+Copy the `__init__.py` file from [streamlit-vite](streamlit-vite) and edit accordingly
 
 ## Create the Component
 
 1. Create using vite
+
+Example command for creating a vanilla JS application using Vite
 
 ```bash
 # npm 6.x

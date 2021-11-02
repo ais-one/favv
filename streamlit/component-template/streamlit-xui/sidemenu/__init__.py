@@ -1,7 +1,7 @@
 import os
 import streamlit.components.v1 as components
 
-_RELEASE = False # set to True for deployment
+_RELEASE = True # set to True for deployment
 
 if not _RELEASE:
   _component_func = components.declare_component("streamlit_xui_sidemenu", url="http://localhost:3000")

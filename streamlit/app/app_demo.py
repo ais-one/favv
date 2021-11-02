@@ -15,10 +15,10 @@ import os
 # https://docs.streamlit.io/en/stable/publish_streamlit_components.html
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
-_vanilla_component = components.declare_component("vanilla_component", os.path.join(base_dir, "..", "component-template", "sample", "vanilla_component" , "frontend" ,"dist"))
+_vanilla_component = components.declare_component("vanilla_component", os.path.join(base_dir, "..", "component-template", "streamlit-vite", "vanilla_component" , "frontend" ,"dist"))
 # _vanilla_component = components.declare_component( "vanilla_component", url="http://localhost:3000") # dev
 
-_vue_component = components.declare_component("vue_component", path=os.path.join(base_dir, "..", "component-template", "sample", "vue_component" , "frontend" ,"dist"))
+_vue_component = components.declare_component("vue_component", path=os.path.join(base_dir, "..", "component-template", "streamlit-vite", "vue_component" , "frontend" ,"dist"))
 # _vue_component = components.declare_component( "vue_component", url="http://localhost:3000") # dev
 
 

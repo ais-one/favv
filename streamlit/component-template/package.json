@@ -8,8 +8,8 @@
   "keywords": [],
   "author": "",
   "workspaces": [
-    "./sample/*/*",
     "./streamlit-antv/*/*",
+    "./streamlit-vite/*/*",
     "./streamlit-xui/*/*"
   ],
   "license": "ISC"
