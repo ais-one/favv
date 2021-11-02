@@ -1,0 +1,2 @@
+recursive-include vanilla_component/frontend/dist *
+recursive-include vue_component/frontend/dist *

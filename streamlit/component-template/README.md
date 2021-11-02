@@ -1,91 +1,97 @@
 # Streamlit Custom Components
 
-## Introduction
+This project shows how to architecture multiple component_groups with multiple custom streamlit components
 
-The folder contains template and example code for creating [Streamlit](https://streamlit.io) Components using
-- [Vite](https://github.com/vitejs/vite).
-- Create React App
+e.g.
 
-Refer to this [article](https://dev.to/aisone/streamlit-custom-components-vite-4bj7) for more information on the motivation and why Vite is used and how this repo was created.
++-streamlit-antv (component_group)
+| +- g2 (component)
+| |  +- frontend
+| +- g2plot
+| |  +- frontend
+| +- g6
+|    +- frontend
++-streamlit-xui
+  +- sidemenu
+  |  +- frontend
+  +- placeholder
+     +- frontend
 
-If you are not familiar with creating a streamlit custom component, refer to the [README.md](https://github.com/streamlit/component-template#readme) document of [https://github.com/streamlit/component-template](https://github.com/streamlit/component-template) where this repo is derived from.
+The packaging tool [Vite](https://github.com/vitejs/vite), is used to create React, Vue or Vanilla JS frontends.
 
-## Development Usage - Vite Vanilla Component
+NPM workspace features is used
 
-1. Frontend - Install dependencies and run
+## Requirements
 
-From vite-template folder
+- NodeJS 16+
+- NPM 8+
+- Python 3.8+
+
+## References
+
+- [Streamlit](https://streamlit.io)
+- Streamlit component [README.md](https://github.com/streamlit/component-template#readme)
+- dev.to [article](https://dev.to/aisone/streamlit-custom-components-vite-4bj7) for more information on the motivation and why Vite is used.
+
+
+## Quick Test
+
+Test `vanilla_component` in `streamlit-vite` component_group folder
+
+1. Install and run frontend component run dev server
+
+From `<project root>/streamlit/component-tamplate` folder
 
 ```
-cd vite_vanilla_compoent
-cd frontend
-npm i
-npm run dev
+npm i --workspace=streamlit-vite/vanilla_component
+npm run dev --workspace=streamlit-vite/vanilla_component
 ```
 
-2. Backend - Install dependencies and run
+2. Run python side
 
-From vite-template folder
+From `<project root>/streamlit` folder
 
-Create and activate your venv
+**Note:** ensure `venv` set is set and python libraries such as `streamlit` are installed.
 
-```
+```cmd
+python -m venv dev
+dev\Scripts\activate.bat
 pip install -r requirements.txt
+```
+
+From `<project root>/streamlit/component-tamplate/streamlit-vite` (component_group) folder
+
+```bash
 streamlit run vanilla_component/__init__.py
 ```
 
-3. Test
+**Note:** make sure `_RELEASE = False` in `__init__.py` file
+
+
+3. View on browser
 
 Navigate to URL indicated by streamlit (usually http://localhost:8501)
 
-## Publishing To PyPI
 
-Reference:
-- https://docs.streamlit.io/library/components/publish
-- https://packaging.python.org/
+---
 
-1. Need to install the packages below in you environment
+## Create new component_group and component in the component_group
 
-```bash
-pip install wheel twine
-```
+Refer to [README-CREATE.md](README-CREATE.md)
 
-2. Preparing the upload
+## Publish to PyPI
 
-Refer to [upload.sh](./vite-template/upload.sh) file on how the commands are run. The script will also echo the pre-requisites (to run this on windows, use git bash)
+Refer to [README-PUBLISH.md](README-PUBLISH.md)
 
-Setup `.pypirc` file in your `$HOME` or `~` directory with the contents below
-
-```
-[distutils]
-index-servers =
-  pypi
-  testpypi
-
-[pypi]
-username = __token__
-password = <your pypi API Key>
-
-[testpypi]
-username = __token__
-password = <your testpypi API Key>
-repository = https://test.pypi.org/legacy/
-```
-
-3. To deploy to pypi test
+## NPM Workspace Notes
 
 ```bash
-./upload.sh test
-```
+# install all
+npm i -- <script arguments if any>
 
-4. To deploy to pypi
+# build all in a workspace (a component group)
+npm run build --workspace=streamlit-vite/* -- <script arguments if any>
 
-```bash
-./upload.sh production
-```
-
-5. To install from pypi test for use in your streamlit application
-
-```bash
-pip install -i https://test.pypi.org/simple/ streamlit-sidemenu==<version number>
+# run dev a project (component) in a workspace
+npm run dev --workspace=streamlit-vite/vanilla_component -- <script arguments if any>
 ```

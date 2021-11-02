@@ -14,17 +14,8 @@ import os
 
 # https://docs.streamlit.io/en/stable/publish_streamlit_components.html
 base_dir = os.path.dirname(os.path.abspath(__file__))
-
-build_dir = os.path.join(base_dir, "..", "component-template", "cra-template", "my_component" , "frontend" ,"build")
-_my_component = components.declare_component("my_component", path=build_dir)
-# _my_component = components.declare_component( "my_component", url="http://localhost:3001") # dev
-
-_vanilla_component = components.declare_component("vanilla_component", path=os.path.join(base_dir, "..", "component-template", "vite-template", "vanilla_component" , "frontend" ,"dist"))
-# _vanilla_component = components.declare_component( "vanilla_component", url="http://localhost:3000") # dev
-
-_vue_component = components.declare_component("vue_component", path=os.path.join(base_dir, "..", "component-template", "vite-template", "vue_component" , "frontend" ,"dist"))
-# _vue_component = components.declare_component( "vue_component", url="http://localhost:3000") # dev
-
+_vanilla_component = components.declare_component("vanilla_component", os.path.join(base_dir, "..", "component-template", "streamlit-vite", "vanilla_component" , "frontend" ,"dist"))
+_vue_component = components.declare_component("vue_component", path=os.path.join(base_dir, "..", "component-template", "streamlit-vite", "vue_component" , "frontend" ,"dist"))
 
 ## SESSIONS
 def init_sessions():
@@ -88,16 +79,16 @@ def app_run():
   for x in range(5):
     edges.append({ "source": "node2", "target": "node3", "label": f'{x}th edge of B-C', })
 
-  rv0 = _vanilla_component(name="NameViteVanilla", config=config, nodes=nodes, edges=edges, key="c0")
-  st.write(rv0)
+  # rv0 = g6(name="NameViteVanilla", config=config, nodes=nodes, edges=edges, key="c0")
+  # st.write(rv0)
 
-  rv1 = _my_component(key="c1", greeting="6Hello", name="Aaron") # create your component
+  rv1 = _vue_component(key="c1", name="ViteVue1") # create your component
   st.write(rv1)
 
-  rv2 = _my_component(key="c2", greeting="5Ola!", name="Gong")
+  rv2 = _vanilla_component(key="c2", name="ViteVanilla")
   st.write(rv2)
 
-  rv3 = _vue_component(key="c4", name="ViteVueName")
+  rv3 = _vue_component(key="c4", name="ViteVue2")
   st.write(rv3)
 
   with st.expander('File Demos'):

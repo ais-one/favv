@@ -1,16 +1,16 @@
 {
   "name": "component-template",
   "version": "1.0.0",
-  "description": "## Introduction",
+  "description": "Collection of components for streamlit",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "workspaces": [
-    "./cra-template/*",
-    "./vite-template/*"
+    "./streamlit-antv/*/*",
+    "./streamlit-vite/*/*",
+    "./streamlit-xui/*/*"
   ],
   "license": "ISC"
 }

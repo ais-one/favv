@@ -1,0 +1,3 @@
+recursive-include g6/frontend/dist *
+# recursive-include g2/frontend/dist *
+# recursive-include g2plot/frontend/dist *
