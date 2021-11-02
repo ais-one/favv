@@ -1,5 +1,7 @@
 import { Streamlit } from "streamlit-component-lib"
 
+const devMode = import.meta.env.MODE === 'development'
+
 const defaultStyle = /*css*/`
 body {
   margin: 0;
@@ -96,23 +98,21 @@ function setHeight(height) {
 }
 
 function returnState(selected, opened) {
-  console.log('sssssssssssssssssssssssssssssss')
-  Streamlit.setComponentValue({
-    selected,
-    opened
-  })
+  Streamlit.setComponentValue({ selected, opened })
 }
 
 function onRender(event) {
+  // NOSONAR
   // if (rendered) return // why does render fire twice ? It also happens in example code
   // else rendered = true
-  console.log('Render', event)
+  devMode && console.log('Render', event, import.meta.env.MODE)
 
   const data = event.detail
   const items = data.args["items"]
   let selected = data.args["selected"] || ''
   let opened = data.args["opened"] || []
-  const styles = data.args["styles"] || defaultStyle
+  const { customStyle = null, openIcon = '>+', closeIcon = '>-' } = data.args["options"]
+  const styles = customStyle || defaultStyle
   const styleTag = document.createElement('style') // hopefully this does not keep getting created...
   styleTag.innerText = styles
   document.head.appendChild(styleTag)
@@ -135,29 +135,27 @@ function onRender(event) {
     if (item.children) { // menu group
       const btnTag = document.createElement('button')
       btnTag.classList.add('dropdown-btn')
-      btnTag.innerHTML = item.label
+      // btnTag.innerHTML = item.label
 
       const divContainerDd = document.createElement('div')
       divContainerDd.classList.add('dropdown-container')
 
       if (opened.includes(item.label)) {
         divContainerDd.style.display = "block"
-        // set open icon
+        btnTag.innerHTML = closeIcon + item.label
       } else {
-        // set close icon
+        btnTag.innerHTML = openIcon + item.label 
       }
 
       btnTag.onclick = (e) => {
         const dropdownContent = divContainerDd
         if (dropdownContent.style.display === "block") {
           opened = opened.filter(open => item.label !== open)
-          console.log('aaa1', opened)
-          // set close icom
+          btnTag.innerHTML = openIcon + item.label 
           dropdownContent.style.display = "none"
         } else {
           opened.push(item.label)
-          console.log('aaa2', opened)
-          // set open icom
+          btnTag.innerHTML = closeIcon + item.label
           dropdownContent.style.display = "block"
         }
       }
@@ -177,11 +175,6 @@ function onRender(event) {
 
   setHeight(window.outerHeight)
   document.getElementById('app').style.overflow = 'auto'
-  
-  //* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-  // var dropdown = document.getElementsByClassName("dropdown-btn");
-  // console.log('dropdown', dropdown)
-  // var i;
   Streamlit.setFrameHeight()
 }
 

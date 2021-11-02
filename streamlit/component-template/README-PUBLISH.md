@@ -55,13 +55,13 @@ repository = https://test.pypi.org/legacy/
 3. To deploy to pypi test
 
 ```bash
-./upload.sh test <component_group>
+./upload.sh <component_group> test
 ```
 
 4. To deploy to pypi
 
 ```bash
-./upload.sh production <component_group>
+./upload.sh <component_group> production
 ```
 
 5. To install from pypi test for use in your streamlit application
