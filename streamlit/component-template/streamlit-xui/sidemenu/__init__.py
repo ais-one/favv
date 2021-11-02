@@ -1,7 +1,7 @@
 import os
 import streamlit.components.v1 as components
 
-_RELEASE = False # set to True for deployment
+_RELEASE = True # set to True for deployment
 
 if not _RELEASE:
   _component_func = components.declare_component("streamlit_xui_sidemenu", url="http://localhost:3000")
@@ -20,8 +20,10 @@ def st_xui_sidemenu(items, selected, opened, options=None, key=None):
     list of menu groups that are open/expanded
   options: Dict
     style: string for CSS styling
-    openIcon: icon for open
-    closeIcon: icon for close
+    OPEN_ICON: icon for open
+    CLOSE_ICON: icon for close
+    HEIGHT_FACTOR: scale the menu height (1.0 = window.outerHeight)
+    HEIGHT_REDUCE: number of pixels to reduce the menu height by
   key: str
     An optional string to use as the unique key for the widget. 
     Assign a key so the component is not remount every time the script is rerun.
@@ -61,8 +63,10 @@ if not _RELEASE:
   ]
 
   my_options = {
-    'openIcon': '+',
-    'closeIcon': '-',
+    'HEIGHT_REDUCE': 280,
+    'HEIGHT_FACTOR': 1.0,
+    'OPEN_ICON': '+',
+    'CLOSE_ICON': '-',
     'customStyle': """
     body {
       margin: 0;
@@ -137,7 +141,7 @@ if not _RELEASE:
   selected = 'Link A'
   opened = ['Dropdown 2']
   try:
-    print('before1')
+    print('before')
     # print('st.session_state.menu', st.session_state.menu['selected'])
     selected = st.session_state.menu['selected']
     opened = st.session_state.menu['opened']
@@ -150,6 +154,5 @@ if not _RELEASE:
 
   st.subheader("Dropdown Menu Test")
   with st.sidebar:
-    rv = st_xui_sidemenu(items=my_items, selected=selected, opened=opened, options=my_options, key="menu")
-    st.write(rv)
-    st.write(st.session_state.menu)
+    st_xui_sidemenu(items=my_items, selected=selected, opened=opened, options=my_options, key="menu")
+  st.write(st.session_state.menu)

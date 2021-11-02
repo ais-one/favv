@@ -72,27 +72,14 @@ body {
 }
 `
 
-/*
-<div class="sidenav">
-  <a href="#about">About</a>
-  <a href="#services">Services</a>
-  <a href="#clients">Clients</a>
-  <a href="#contact">Contact</a>
-  <button class="dropdown-btn">Dropdown V</button>
-  <div class="dropdown-container">
-    <a href="#">Link 1</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
-  </div>
-  <a href="#contact">Search</a>
-</div>
-*/
-
 let rendered = false
+let heightReduce = 280
+let heightFactor = 1.0
 
 function setHeight(height) {
-  let menuVisibleHeight = height - 280
-  if (menuVisibleHeight < 0) menuVisibleHeight = 240
+  height = height * heightFactor
+  let menuVisibleHeight = height - heightReduce
+  if (menuVisibleHeight < 0) menuVisibleHeight = heightReduce
   document.getElementById('app').style.height = menuVisibleHeight + 'px'
   Streamlit.setFrameHeight()
 }
@@ -111,7 +98,12 @@ function onRender(event) {
   const items = data.args["items"]
   let selected = data.args["selected"] || ''
   let opened = data.args["opened"] || []
-  const { customStyle = null, openIcon = '>+', closeIcon = '>-' } = data.args["options"]
+  const { customStyle = null, OPEN_ICON = '>+', CLOSE_ICON = '>-', HEIGHT_REDUCE = 280, HEIGHT_FACTOR = 1.0 } = data.args["options"]
+  heightReduce = HEIGHT_REDUCE
+  heightFactor = HEIGHT_FACTOR
+  const closeIcon = CLOSE_ICON
+  const openIcon = OPEN_ICON 
+
   const styles = customStyle || defaultStyle
   const styleTag = document.createElement('style') // hopefully this does not keep getting created...
   styleTag.innerText = styles

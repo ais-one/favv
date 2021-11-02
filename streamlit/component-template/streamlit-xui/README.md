@@ -14,6 +14,5 @@ pip install streamlit-xui
 ## Usage
 
 Refer to the following files for example usage
-- [placeholder](https://github.com/ais-one/favv/blob/master/streamlit/component-template/streamlit-xui/placeholder/__init__.py)
-- [sidemenu](https://github.com/ais-one/favv/blob/master/streamlit/component-template/streamlit-xui/sidemenu/__init__.py)
-
+- [placeholder](placeholder/README.md)
+- [sidemenu](sidemenu/README.md)
