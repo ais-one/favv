@@ -12,6 +12,7 @@ echo "Ensure that frontend folders are build"
 echo "Ensure that version number in setup.py is incremented"
 echo "Ensure that _RELEASE flag in __init__.py files are True"
 echo "For convenience, you can use .pypirc file in you local machine..."
+echo "Clear older version in the python dist"
 
 # navigate to the folder
 cd $1

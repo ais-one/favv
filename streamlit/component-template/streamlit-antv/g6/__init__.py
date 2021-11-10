@@ -1,7 +1,8 @@
 import os
 import streamlit.components.v1 as components
+import json
 
-_RELEASE = False
+_RELEASE = True
 
 if not _RELEASE:
   _component_func = components.declare_component("streamlit-antv_g6", url="http://localhost:3000") # vite dev server port
@@ -72,9 +73,10 @@ if not _RELEASE:
     "fitCenter": True,
     "linkCenter": True,
     "layout": {
-      "type": "random",
+      "type": "grid",
       "width": 1280,
       "height": 800,
+      "onLayoutEnd": json.dumps(['__#fn#__', 'alert("loaded chart with key=" + window.stProps.key());'])
     },
     "defaultNode": {
       "type": "circle",
@@ -101,6 +103,8 @@ if not _RELEASE:
 
   st.subheader("Component Test")
   rv = st_antv_g6(key="K1", config=config, nodes=nodes, edges=edges, options=options)
-  st_antv_g6(key="K2", config=config, nodes=nodes, edges=edges, options=options)
-  st_antv_g6(key="K3", config=config, nodes=nodes, edges=edges, options=options)
   st.write(rv)
+  rv2 = st_antv_g6(key="K2", config=config, nodes=nodes, edges=edges, options=options)
+  st.write(rv2)
+  rv3 = st_antv_g6(key="K3", config=config, nodes=nodes, edges=edges, options=options)
+  st.write(rv3)

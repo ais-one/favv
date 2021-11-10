@@ -2,9 +2,17 @@ import { Streamlit } from 'streamlit-component-lib'
 import { traverseJson } from '@es-labs/esm/util'
 import G6 from '@antv/g6'
 
+let key = ""
 let selectedNodes = []
 let selectedEdges = []
 let graph = null
+
+window.stProps = {
+  key: () => key,
+  Streamlit: () => Streamlit,
+  G6: () => G6,
+  graph: () => graph,
+}
 
 function onRender(event) {
   console.log('RENDER EVENT', Date.now())
@@ -14,6 +22,7 @@ function onRender(event) {
     selectEdges: 3, //0, 1, n
     clickClearAll: false, // clear all nodes if clicking on canvas
   }
+  key = data.args["key"]
   const gdata = { }
   gdata.nodes = data.args["nodes"] || []
   gdata.edges = data.args["edges"] || []
@@ -46,11 +55,25 @@ function onRender(event) {
       }
     }
   })
-  G6.Util.processParallelEdges(gdata.edges);
-
+  G6.Util.processParallelEdges(gdata.edges)
 
   if (!graph) {
     let config = data.args["config"]
+
+    traverseJson(config, (val) => {
+      try {
+        const json = JSON.parse(val)
+        if (json && json.length && json[0] === '__#fn#__') {
+          json.shift()
+          val = new Function( ...json )
+        }
+      } catch(e) {
+      }
+      return val
+    })
+
+    // console.log('config', config)
+
     const container = document.body.appendChild(document.createElement("div"))
     container.setAttribute('id', 'container')
   
@@ -88,7 +111,8 @@ function onRender(event) {
             _graph.fitView([20, 20]);
             break
           case 'sendData':
-            Streamlit.setComponentValue({ selectedNodes, selectedEdges })
+            console.log(key, selectedNodes, selectedEdges)
+            Streamlit.setComponentValue({ key, selectedNodes, selectedEdges })
             break
           default:
         }
@@ -174,6 +198,12 @@ function onRender(event) {
         graph.getNodes().forEach((node) => graph.clearItemStates(node))  
       }
     })
+    
+    if (options['canvas:dblclick']) {
+      const fn = new Function(...options['canvas:dblclick'])
+      graph.on('canvas:dblclick', fn)
+    }
+
   } else {
     // TBD set new width and height
   }
