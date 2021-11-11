@@ -95,7 +95,7 @@ Navigate to - http://127.0.0.1:3000/api-docs
 
 **Note:** if you use https and self-signed cert you may need to allow on browser
 
-# HTTPS
+## HTTPS
 
 Generate your private key and...
 
@@ -105,43 +105,28 @@ Create a self-signed cert, or get a signed cert
 openssl req -x509 -newkey rsa:4096 -keyout local.key.pem -out local.cert.pem -days 365 -nodes -subj '/CN=127.0.0.1'
 ```
 
+## Production Run (Docker)
+
+```bash
+cd ../fastapi
+docker build -t <your-image-name>:<tag> .
+docker run -it <your-image-name>:<tag>
+```
+
 ### Frontend
 
 - VueJS 3
 - Vite 2 [https://github.com/vuejs/vite](https://github.com/vuejs/vite)
 - Ant Design 2
 
-```bash
-# move to the vitevue folder
-cd ../../vitevue
+refer to [vitevue/README.md](vitevue/README.md)
 
-# install
-npm i
+### Streamlit
 
-# run UI on UI dev server
-npm run dev
-```
-
-Navigate to - http://127.0.0.1:8080
-
-
-**Notes:**
-- if you use https and self-signed cert for end point you may need navigate to API using browser first and allow on browser, then use the browser
-- in **package.json**, we specify using envrionment called **localdev**
-- **.env.<environment>** and **apploader.js** files are specific to each application and count in **src/web<your-web-app>/deploy** folder, and copied to root folder when switching app to work on
-- **src/web<your-web-app>/deploy** folder can also store app specific info which need not be copied to project folder (example deployment scripts)
-
-## Production Run (Docker)
-
-```bash
-cd vitevue
-deploy.sh
-cd ../fastapi
-docker build -t <your-image-name>:<tag> .
-docker run -it <your-image-name>:<tag>
-```
+See [streamlit/README.md](streamlit/README.md) for more information
 
 ---
+
 
 # Customization
 
@@ -164,21 +149,18 @@ docker run -it <your-image-name>:<tag>
   | + Dockerfile.example: DO NOT TOUCH THIS, use this as an example for your own Dockerfile
   | + install.sh: DO NOT TOUCH THIS 
   | + requirements.base.txt: DO NOT TOUCH THIS
+  + streamlit/
+  | + app/ : demo application
+  | + component-template/ : streamlit custom components
+  |   + streamlit-antv: using antv charts on streamlit
+  |   + streamlit-vite: basic example of using vite to build streamlit-components
+  |   + streamlit-xui: extended UI components for streamlit
   + vitevue/
-    + apploader.js: for loading specified custom folder
-    + .env.[MODE]: frontend build config (set DEV_SERVER_PORT, WEB_BASEPATH, environment level settings - API_URL, Websocket URL, etc.)
-    + src
-    | + web/:
-    | | + <YourCustomFrontend>-web/: folder with suffix "-web" are your custom frontend code (your frontend repo)
-    | |   + setup.js: frontend setup (set INITIAL_SECURE_PATH, ROUTES CONSTANTS here)
-    | |   + .gitignore: for your repo
-    + deploy.sh: to build into fastapi static folder for small scale app
+    + README.md
 ```
 
 **NOTES**
 - All folders and files prefixed with TBD can be ignored, they are not implemented and used for reference
-- MODE is set in package.json
-- .env.[MODE] file uses VITE_APPNAME to define <YourCustomFrontend>-web
 
 ## Backend Customization Notes
 
@@ -203,36 +185,7 @@ git clone <your backend project e.g. example_app>
 - NOTE: update **favv/fastapi/app/config.py** when **.env** entries change
 - NOTE: any code outside **favv/fastapi/app** will not auto reload
 
-## Frontend Customization Notes
-
-Setting up your custom frontend
-
-```bash
-# in favv/vitevue/src/
-# note that project name must end with suffix "Web"
-git clone <your frontend project e.g. ExampleWeb>
-```
-
-- see **favv/vitevue/.env.localdev** for defining vite.config.js and environment level (eg API URL) related configurations
-- see **favv/vitevue/apploader.js** for loading custom frontend
-- environment is selected using the --mode property (see package.json)
-- use **favv/vitevue/src/web/custom-web/** as reference on your custom frontend
-- see **favv/vitevue/src/web/custom-web/setup.js** on the frontend setup especially the ROUTES property
-- ROUTES property
-  - use kebab-case, will be converted to Capital Case in menu display
-  - only up to 1 submenu level
-    - /first-level
-    - /submenu/second-level
-  - paths
-    - '~/xxx.js' from **favv/vitevue/src** folder
-    - '/xxx.js' from **favv/vitevue** folder
-
-# Notes
+## Notes
 
 - use **fastapi/install.sh** to update python libraries
-- run npm install in **vitevue** to update npm packages
 - for favv/fastapi .env host is **redis** if using docker compose **127.0.0.1** otherwise
-
-# Streamlit
-
-See [streamlit/README.md](streamlit/README.md) for more information

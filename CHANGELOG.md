@@ -19,6 +19,9 @@
 
 ## DONE
 - V0.0.7
+  - 2021-11-10
+    - [streamlit] improve on streamlit-antv
+    - [chore] update documentation
   - 2021-11-05
     - [streamlit] refactor for multiple custom components
   - 2021-10-25
