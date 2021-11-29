@@ -21,10 +21,14 @@ PAGE_CONFIG = {
 st.set_page_config(**PAGE_CONFIG)
 
 # hide menu button
-st.markdown(""" <style>
+hide_streamlit_menu = False
+if hide_streamlit_menu:
+  st.markdown(
+""" <style>
 #MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
-</style> """, unsafe_allow_html=True)
+</style> """,
+  unsafe_allow_html=True)
 
 # columns
 # https://blog.streamlit.io/introducing-new-layout-options-for-streamlit/
