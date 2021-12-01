@@ -19,6 +19,8 @@
 
 ## DONE
 - V0.0.7
+  - 2021-12-02
+    - [streamlit] add example on preserving state between page changes
   - 2021-11-10
     - [streamlit] improve on streamlit-antv
     - [chore] update documentation

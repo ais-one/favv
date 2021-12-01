@@ -14,7 +14,7 @@ e.g.
 +-streamlit-xui
   +- sidemenu
   |  +- frontend
-  +- placeholder
+  +- hidden
      +- frontend
 
 The packaging tool [Vite](https://github.com/vitejs/vite), is used to create React, Vue or Vanilla JS frontends.

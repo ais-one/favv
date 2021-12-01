@@ -1,5 +1,5 @@
 {
-  "name": "sample_vanilla_component",
+  "name": "vanilla_component",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",

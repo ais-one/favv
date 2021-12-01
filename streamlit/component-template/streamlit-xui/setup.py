@@ -22,7 +22,7 @@ setuptools.setup(
     # them here.
     "streamlit >= 0.63",
   ],
-  keywords=["streamlit", "sidebar", "menu", "sidemenu", "placeholder"], #descriptive meta-data
+  keywords=["streamlit", "sidebar", "menu", "sidemenu", "hidden"], #descriptive meta-data
   classifiers=[ # https://pypi.org/classifiers
     'Development Status :: 2 - Pre-Alpha',
     'Intended Audience :: Developers',

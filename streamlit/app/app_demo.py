@@ -17,15 +17,6 @@ base_dir = os.path.dirname(os.path.abspath(__file__))
 _vanilla_component = components.declare_component("vanilla_component", os.path.join(base_dir, "..", "component-template", "streamlit-vite", "vanilla_component" , "frontend" ,"dist"))
 _vue_component = components.declare_component("vue_component", path=os.path.join(base_dir, "..", "component-template", "streamlit-vite", "vue_component" , "frontend" ,"dist"))
 
-## SESSIONS
-def init_sessions():
-  if 'my_hours_per_week' not in st.session_state:
-    st.session_state.my_hours_per_week = 40
-  if 'my_amount' not in st.session_state:
-    st.session_state.my_amount = 5
-  if 'expander_form' not in st.session_state:
-    st.session_state['expander_form'] = False
-
 ## METHODS
 def form3_callback():
   if 'my_amount' in st.session_state:
@@ -34,14 +25,9 @@ def form3_callback():
     st.write(st.session_state.my_hours_per_week)
 
 ## APP RUN
-init_sessions()
 def app_run():
   logger.info('In Demos')
   st.title("Demos")
-
-  # init_sessions()
-  if 'expander_form' in st.session_state:
-    st.write(st.session_state.expander_form)
 
   config = {
     "container": "container",
@@ -82,13 +68,13 @@ def app_run():
   # rv0 = g6(name="NameViteVanilla", config=config, nodes=nodes, edges=edges, key="c0")
   # st.write(rv0)
 
-  rv1 = _vue_component(key="c1", name="ViteVue1") # create your component
+  rv1 = _vue_component(key="cc1", name="ViteVue1", default=st.session_state.cc1) # create your component
   st.write(rv1)
 
-  rv2 = _vanilla_component(key="c2", name="ViteVanilla")
+  rv2 = _vanilla_component(key="cc2", name="ViteVanilla", default=st.session_state.cc2)
   st.write(rv2)
 
-  rv3 = _vue_component(key="c4", name="ViteVue2")
+  rv3 = _vue_component(key="cc3", name="ViteVue2", default=st.session_state.cc3)
   st.write(rv3)
 
   with st.expander('File Demos'):

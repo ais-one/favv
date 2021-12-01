@@ -44,20 +44,43 @@ footer {visibility: hidden;}
 #     ("Email", "Home phone", "Mobile phone")
 # )
 
-# expander
-optionals = st.expander("Search And Filter", False)
-optionals.checkbox("Active")
-optionals.radio("Pick Your Favourite", ["Apples", "Banaans", "Oranges"])
-
-name_cols = optionals.columns(3)
-first_name = name_cols[0].text_input("First Name")
-last_name = name_cols[1].text_input("Last Name")
-middle_name = name_cols[2].text_input("Middle Name")
+def init_sessions():
+  logger.info('Init Session')
+  if 'my_hours_per_week' not in st.session_state:
+    st.session_state.my_hours_per_week = 40
+  if 'my_amount' not in st.session_state:
+    st.session_state.my_amount = 5
+  if 'ag1' not in st.session_state:
+    st.session_state.ag1 = None
+  if 'ag2' not in st.session_state:
+    st.session_state.ag2 = None
+  if 'ag3' not in st.session_state:
+    st.session_state.ag3 = None
+  if 'cc1' not in st.session_state:
+    st.session_state.cc1 = 0
+  if 'cc2' not in st.session_state:
+    st.session_state.cc2 = 0
+  if 'cc3' not in st.session_state:
+    st.session_state.cc3 = 0
+  logger.info(st.session_state.cc1)
 
 # from streamlit import caching
 # caching.clear_cache()
 
 def main():
+  init_sessions()
+  st.write(st.session_state)
+
+  # expander
+  optionals = st.expander("Search And Filter", False)
+  optionals.checkbox("Active")
+  optionals.radio("Pick Your Favourite", ["Apples", "Banaans", "Oranges"])
+
+  name_cols = optionals.columns(3)
+  first_name = name_cols[0].text_input("First Name")
+  last_name = name_cols[1].text_input("Last Name")
+  middle_name = name_cols[2].text_input("Middle Name")
+
   st.sidebar.success("Menu")
   page = st.sidebar.radio(
     "Choose An Item",

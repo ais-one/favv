@@ -8,8 +8,8 @@ if not _RELEASE:
 else:
   _component_func = components.declare_component("vue_component", path=os.path.join(os.path.dirname(os.path.abspath(__file__)), "frontend/dist"))
 
-def vue_component(name, key=None):
-  component_value = _component_func(name=name, key=key, default=0)
+def vue_component(name, key=None, default=0):
+  component_value = _component_func(name=name, key=key, default=default)
   return component_value
 
 if not _RELEASE:

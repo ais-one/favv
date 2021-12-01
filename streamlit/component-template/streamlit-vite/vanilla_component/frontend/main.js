@@ -36,6 +36,7 @@ function onRender(event) {
   // Get the RenderData from the event
   const data = event.detail
 
+  numClicks = data.args['default']
   // Maintain compatibility with older versions of Streamlit that don't send
   // a theme object.
   if (data.theme) {
