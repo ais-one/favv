@@ -131,9 +131,9 @@ def app_run():
     with st.form(key='form3'):
       c1, c2, c3 = st.columns([3, 2, 1])
       with c1:
-        amount = st.number_input("Hourly Rate in $", 0, 50000, key='my_amount')
+        amount = st.number_input("Hourly Rate in $", 0, 50000, key='my_amount', value=st.session_state.my_amount)
       with c2:
-        hours_per_week = st.number_input("Hours Per Week", 1, 120, key='my_hours_per_week')
+        hours_per_week = st.number_input("Hours Per Week", 1, 120, key='my_hours_per_week', value=st.session_state.my_hours_per_week)
       with c3:
         st.text("Salary")
         submit_salary = st.form_submit_button(label="Calculate", on_click=form3_callback)

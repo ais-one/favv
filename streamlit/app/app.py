@@ -50,18 +50,18 @@ def init_sessions():
     st.session_state.my_hours_per_week = 40
   if 'my_amount' not in st.session_state:
     st.session_state.my_amount = 5
-  if 'ag1' not in st.session_state:
-    st.session_state.ag1 = None
-  if 'ag2' not in st.session_state:
-    st.session_state.ag2 = None
-  if 'ag3' not in st.session_state:
-    st.session_state.ag3 = None
   if 'cc1' not in st.session_state:
     st.session_state.cc1 = 0
   if 'cc2' not in st.session_state:
     st.session_state.cc2 = 0
   if 'cc3' not in st.session_state:
     st.session_state.cc3 = 0
+  if 'ag1' not in st.session_state:
+    st.session_state.ag1 = None
+  if 'ag2' not in st.session_state:
+    st.session_state.ag2 = None
+  if 'ag3' not in st.session_state:
+    st.session_state.ag3 = None
   logger.info(st.session_state.cc1)
 
 # from streamlit import caching
