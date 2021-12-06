@@ -10,9 +10,6 @@ import os
 import streamlit.components.v1 as components
 from logger import logger
 
-base_dir = os.path.dirname(os.path.abspath(__file__))
-streamlit_xui_hidden = components.declare_component("streamlit_xui_hidden", os.path.join(base_dir, "..", "..", "component-template", "streamlit-xui", "hidden" , "frontend" ,"dist"))
-
 cellsytle_jscode = JsCode(
 """
 function(params) {
@@ -137,8 +134,6 @@ def app_run():
 
   # set your session states here...
   if 'cc1' in st.session_state:
-    # logger.info(f"TITANIC CC1 is {st.session_state.cc1}")
-    # streamlit_xui_hidden(key="cc1", value=st.session_state.cc1)
     st.session_state.cc1 = st.session_state.cc1 # this is not useless, it sets the session data...
   if 'cc2' in st.session_state:
     st.session_state.cc2 = st.session_state.cc2

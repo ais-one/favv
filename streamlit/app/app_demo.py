@@ -13,9 +13,9 @@ import os
 ## CUSTOM COMPONENTS
 
 # https://docs.streamlit.io/en/stable/publish_streamlit_components.html
-base_dir = os.path.dirname(os.path.abspath(__file__))
-_vanilla_component = components.declare_component("vanilla_component", os.path.join(base_dir, "..", "component-template", "streamlit-vite", "vanilla_component" , "frontend" ,"dist"))
-_vue_component = components.declare_component("vue_component", path=os.path.join(base_dir, "..", "component-template", "streamlit-vite", "vue_component" , "frontend" ,"dist"))
+# base_dir = os.path.dirname(os.path.abspath(__file__))
+# _vanilla_component = components.declare_component("vanilla_component", os.path.join(base_dir, "..", "component-template", "streamlit-vite", "vanilla_component" , "frontend" ,"dist"))
+# _vue_component = components.declare_component("vue_component", path=os.path.join(base_dir, "..", "component-template", "streamlit-vite", "vue_component" , "frontend" ,"dist"))
 
 ## METHODS
 def form3_callback():
@@ -68,14 +68,12 @@ def app_run():
   # rv0 = g6(name="NameViteVanilla", config=config, nodes=nodes, edges=edges, key="c0")
   # st.write(rv0)
 
-  rv1 = _vue_component(key="cc1", name="ViteVue1", default=st.session_state.cc1) # create your component
-  st.write(rv1)
-
-  rv2 = _vanilla_component(key="cc2", name="ViteVanilla", default=st.session_state.cc2)
-  st.write(rv2)
-
-  rv3 = _vue_component(key="cc3", name="ViteVue2", default=st.session_state.cc3)
-  st.write(rv3)
+  # rv1 = _vue_component(key="cc1", name="ViteVue1", default=st.session_state.cc1) # create your component
+  # st.write(rv1)
+  # rv2 = _vanilla_component(key="cc2", name="ViteVanilla", default=st.session_state.cc2)
+  # st.write(rv2)
+  # rv3 = _vue_component(key="cc3", name="ViteVue2", default=st.session_state.cc3)
+  # st.write(rv3)
 
   with st.expander('File Demos'):
     st.subheader("CSV Files")
