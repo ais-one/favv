@@ -141,6 +141,27 @@ def app_run():
       df = pd.DataFrame({ 'hourly': amount, 'daily': daily, 'weekly': weekly })
       st.dataframe(df)
 
+  with st.expander('Cascading/Dependent Dropdown'):
+    st.subheader("The Americas")
+
+    list_americas = ["North America", "South America"]
+    list_na = ["United States", "Canada"]
+    list_sa = ["Brazil", "Argentina", "Chile"]
+
+    map_americas = {
+      "North America": list_na,
+      "South America": list_sa
+    }
+
+    america = st.selectbox("Select Americas Region", list_americas)
+    country_list = map_americas[america]
+
+    country = st.selectbox("Select Country In Americas Region", country_list)
+
+    if st.button("Selected Options"):
+      st.write(america)
+      st.write(country)
+
   with st.expander('Streamlit Components Static'):
     stc.html("<p style='color: red;'>Streamlit is Awesome</p>")
     st.markdown("<p style='color: blue;'>Streamlit is Awesome Markdown</p>", unsafe_allow_html=True)

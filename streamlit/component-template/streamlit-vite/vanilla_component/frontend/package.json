@@ -10,6 +10,6 @@
     "streamlit-component-lib": "^1.4.0"
   },
   "devDependencies": {
-    "vite": "^2.7.1"
+    "vite": "^2.7.13"
   }
 }

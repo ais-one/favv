@@ -7,11 +7,11 @@
     "serve": "vite preview"
   },
   "devDependencies": {
-    "vite": "^2.7.1"
+    "vite": "^2.7.13"
   },
   "dependencies": {
-    "@antv/g6": "^4.5.0",
-    "@es-labs/esm": "^0.0.12",
+    "@antv/g6": "^4.5.3",
+    "@es-labs/esm": "^0.0.13",
     "streamlit-component-lib": "^1.4.0"
   }
 }

@@ -8,10 +8,10 @@
   },
   "dependencies": {
     "streamlit-component-lib": "^1.4.0",
-    "vue": "^3.2.24"
+    "vue": "^3.2.27"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.10.2",
-    "vite": "^2.7.1"
+    "@vitejs/plugin-vue": "^2.0.1",
+    "vite": "^2.7.13"
   }
 }
