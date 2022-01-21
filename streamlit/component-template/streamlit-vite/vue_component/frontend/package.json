@@ -1,5 +1,5 @@
 {
-  "name": "sample_vue_component",
+  "name": "vue_component",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
@@ -8,10 +8,10 @@
   },
   "dependencies": {
     "streamlit-component-lib": "^1.4.0",
-    "vue": "^3.2.20"
+    "vue": "^3.2.27"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.9.3",
-    "vite": "^2.6.11"
+    "@vitejs/plugin-vue": "^2.0.1",
+    "vite": "^2.7.13"
   }
 }

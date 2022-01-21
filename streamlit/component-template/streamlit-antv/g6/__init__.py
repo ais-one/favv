@@ -1,5 +1,6 @@
 import os
 import streamlit.components.v1 as components
+import json
 
 _RELEASE = True
 
@@ -8,8 +9,8 @@ if not _RELEASE:
 else:
   _component_func = components.declare_component("streamlit-antv_g6", path=os.path.join(os.path.dirname(os.path.abspath(__file__)), "frontend/dist"))
 
-def st_antv_g6(name, config, nodes, edges, key=None):
-  component_value = _component_func(name=name, config=config, nodes=nodes, edges=edges, key=key, default=0)
+def st_antv_g6(config, nodes, edges, options=None, key=None):
+  component_value = _component_func(config=config, nodes=nodes, edges=edges, options=options, key=key, default=0)
   return component_value
 
 if not _RELEASE:
@@ -23,11 +24,11 @@ if not _RELEASE:
     dataset = pd.read_csv(csv_file_path, index_col=0)
     return dataset
 
-  df = load_dataset("vanilla_component/g6test.txt")
+  df = load_dataset("g6/test-data.txt")
   nodes = []
   edges = []
   for col in df.columns:
-    print(col)
+    # print(col)
     nodes.append({ "id": col, "label": col })
   for i in range(df.shape[0]): #iterate over rows
     # nodes.append
@@ -39,25 +40,32 @@ if not _RELEASE:
         edge["return"] = True
       elif i == j: #, it is loop
         edge["type"] = "loop"
-      # print(f'{i}, {j} = {value}', end="\t")
-      print(edge)
+      # NOSONAR print(f'{i}, {j} = {value}', end="\t")
+      # print(edge)
       edges.append(edge)
-    print()
+    # print()
   st.write(df.shape)
   st.dataframe(df)
 
-  # nodes = [
+  # NOSONAR nodes = [
   #   { "id": "node1", "x": 50, "y": 350, "label": "A", },
   #   { "id": "node2", "x": 250, "y": 150, "label": "B", },
   #   { "id": "node3", "x": 450, "y": 350, "label": "C", },
   # ]
   # edges = []
-
   # for x in range(8):
   #   edges.append({ "source": "node1", "target": "node2", "label": f'{x}th edge of A-B', })
   # for x in range(5):
   #   edges.append({ "source": "node2", "target": "node3", "label": f'{x}th edge of B-C', })
 
+  # Additional options
+  options = {
+    'selectNodes': 3, # 0 (no selection), 1 (single select), n (multi select)
+    'selectEdges': 3, # 0 (no selection), 1 (single select), n (multi select)
+    'clickClearAll': False # True = clear all nodes if clicking on canvas
+  }
+
+  # G6 configurations
   config = {
     "width": 1280,
     "height": 800,
@@ -65,9 +73,10 @@ if not _RELEASE:
     "fitCenter": True,
     "linkCenter": True,
     "layout": {
-      "type": "random",
+      "type": "grid",
       "width": 1280,
       "height": 800,
+      "onLayoutEnd": json.dumps(['__#fn#__', 'alert("loaded chart with key=" + window.stProps.key());'])
     },
     "defaultNode": {
       "type": "circle",
@@ -93,9 +102,9 @@ if not _RELEASE:
   }
 
   st.subheader("Component Test")
-  rv = st_antv_g6(name="NameViteVanilla", key="K1", config=config, nodes=nodes, edges=edges)
-  st_antv_g6(name="NameViteVanilla", key="K2", config=config, nodes=nodes, edges=edges)
-  st_antv_g6(name="NameViteVanilla", key="K3", config=config, nodes=nodes, edges=edges)
+  rv = st_antv_g6(key="K1", config=config, nodes=nodes, edges=edges, options=options)
   st.write(rv)
-  # st.markdown("You've clicked %s times!" % int(rv['numClicks']))
-  # st.markdown(f'Selected Node Is: {rv['selectedNode']}')
+  rv2 = st_antv_g6(key="K2", config=config, nodes=nodes, edges=edges, options=options)
+  st.write(rv2)
+  rv3 = st_antv_g6(key="K3", config=config, nodes=nodes, edges=edges, options=options)
+  st.write(rv3)

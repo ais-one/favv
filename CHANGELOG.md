@@ -19,6 +19,13 @@
 
 ## DONE
 - V0.0.7
+  - 2022-01-21
+    - [streamlit] add example on cascading dropdown, update streamlit version
+  - 2021-12-02
+    - [streamlit] add example on preserving state between page changes
+  - 2021-11-10
+    - [streamlit] improve on streamlit-antv
+    - [chore] update documentation
   - 2021-11-05
     - [streamlit] refactor for multiple custom components
   - 2021-10-25

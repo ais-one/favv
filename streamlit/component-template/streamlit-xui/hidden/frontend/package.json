@@ -1,5 +1,5 @@
 {
-  "name": "streamlit-xui_placeholder-frontend",
+  "name": "streamlit-xui_hidden-frontend",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --force",
@@ -7,7 +7,7 @@
     "serve": "vite preview"
   },
   "devDependencies": {
-    "vite": "^2.6.11"
+    "vite": "^2.7.13"
   },
   "dependencies": {
     "streamlit-component-lib": "^1.4.0"

@@ -80,3 +80,15 @@ def app_run():
     if st.checkbox("Show Raw Data", False):
         st.subheader('Raw Data')
         st.write(data)
+
+    # set your session states here...
+    if 'cc1' in st.session_state:
+        st.session_state.cc1 = st.session_state.cc1 # this is not useless, it sets the session data...
+    if 'cc2' in st.session_state:
+        st.session_state.cc2 = st.session_state.cc2
+    if 'cc3' in st.session_state:
+        st.session_state.cc3 = st.session_state.cc3
+    if 'my_hours_per_week' in st.session_state:
+        st.session_state.my_hours_per_week = st.session_state.my_hours_per_week
+    if 'my_amount' in st.session_state:
+        st.session_state.my_amount = st.session_state.my_amount

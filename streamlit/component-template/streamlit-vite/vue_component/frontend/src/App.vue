@@ -23,6 +23,8 @@ export default {
 
     const onRender = (event) => {
       const data = event.detail
+      count.value = data.args['default']
+
       msg.value = `Hello, ` + data.args['name']
       Streamlit.setFrameHeight()
     }

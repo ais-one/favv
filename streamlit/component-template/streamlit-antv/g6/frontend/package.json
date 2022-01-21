@@ -1,5 +1,5 @@
 {
-  "name": "streanlit-antv_g6",
+  "name": "streamlit-antv_g6",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
@@ -7,10 +7,11 @@
     "serve": "vite preview"
   },
   "devDependencies": {
-    "vite": "^2.6.11"
+    "vite": "^2.7.13"
   },
   "dependencies": {
-    "@antv/g6": "^4.3.11",
+    "@antv/g6": "^4.5.3",
+    "@es-labs/esm": "^0.0.13",
     "streamlit-component-lib": "^1.4.0"
   }
 }

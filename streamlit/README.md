@@ -33,7 +33,7 @@ pip install streamlit-aggrid
 ## Running
 
 ```
-cd app_car_accidents
+cd app
 streamlit run app.py
 # --logger.level=debug
 ```

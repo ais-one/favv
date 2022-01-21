@@ -13,18 +13,9 @@ import os
 ## CUSTOM COMPONENTS
 
 # https://docs.streamlit.io/en/stable/publish_streamlit_components.html
-base_dir = os.path.dirname(os.path.abspath(__file__))
-_vanilla_component = components.declare_component("vanilla_component", os.path.join(base_dir, "..", "component-template", "streamlit-vite", "vanilla_component" , "frontend" ,"dist"))
-_vue_component = components.declare_component("vue_component", path=os.path.join(base_dir, "..", "component-template", "streamlit-vite", "vue_component" , "frontend" ,"dist"))
-
-## SESSIONS
-def init_sessions():
-  if 'my_hours_per_week' not in st.session_state:
-    st.session_state.my_hours_per_week = 40
-  if 'my_amount' not in st.session_state:
-    st.session_state.my_amount = 5
-  if 'expander_form' not in st.session_state:
-    st.session_state['expander_form'] = False
+# base_dir = os.path.dirname(os.path.abspath(__file__))
+# _vanilla_component = components.declare_component("vanilla_component", os.path.join(base_dir, "..", "component-template", "streamlit-vite", "vanilla_component" , "frontend" ,"dist"))
+# _vue_component = components.declare_component("vue_component", path=os.path.join(base_dir, "..", "component-template", "streamlit-vite", "vue_component" , "frontend" ,"dist"))
 
 ## METHODS
 def form3_callback():
@@ -34,14 +25,9 @@ def form3_callback():
     st.write(st.session_state.my_hours_per_week)
 
 ## APP RUN
-init_sessions()
 def app_run():
   logger.info('In Demos')
   st.title("Demos")
-
-  # init_sessions()
-  if 'expander_form' in st.session_state:
-    st.write(st.session_state.expander_form)
 
   config = {
     "container": "container",
@@ -82,14 +68,12 @@ def app_run():
   # rv0 = g6(name="NameViteVanilla", config=config, nodes=nodes, edges=edges, key="c0")
   # st.write(rv0)
 
-  rv1 = _vue_component(key="c1", name="ViteVue1") # create your component
-  st.write(rv1)
-
-  rv2 = _vanilla_component(key="c2", name="ViteVanilla")
-  st.write(rv2)
-
-  rv3 = _vue_component(key="c4", name="ViteVue2")
-  st.write(rv3)
+  # rv1 = _vue_component(key="cc1", name="ViteVue1", default=st.session_state.cc1) # create your component
+  # st.write(rv1)
+  # rv2 = _vanilla_component(key="cc2", name="ViteVanilla", default=st.session_state.cc2)
+  # st.write(rv2)
+  # rv3 = _vue_component(key="cc3", name="ViteVue2", default=st.session_state.cc3)
+  # st.write(rv3)
 
   with st.expander('File Demos'):
     st.subheader("CSV Files")
@@ -145,9 +129,9 @@ def app_run():
     with st.form(key='form3'):
       c1, c2, c3 = st.columns([3, 2, 1])
       with c1:
-        amount = st.number_input("Hourly Rate in $", 0, 50000, key='my_amount')
+        amount = st.number_input("Hourly Rate in $", 0, 50000, key='my_amount', value=st.session_state.my_amount)
       with c2:
-        hours_per_week = st.number_input("Hours Per Week", 1, 120, key='my_hours_per_week')
+        hours_per_week = st.number_input("Hours Per Week", 1, 120, key='my_hours_per_week', value=st.session_state.my_hours_per_week)
       with c3:
         st.text("Salary")
         submit_salary = st.form_submit_button(label="Calculate", on_click=form3_callback)
@@ -156,6 +140,27 @@ def app_run():
       weekly = [amount * hours_per_week]
       df = pd.DataFrame({ 'hourly': amount, 'daily': daily, 'weekly': weekly })
       st.dataframe(df)
+
+  with st.expander('Cascading/Dependent Dropdown'):
+    st.subheader("The Americas")
+
+    list_americas = ["North America", "South America"]
+    list_na = ["United States", "Canada"]
+    list_sa = ["Brazil", "Argentina", "Chile"]
+
+    map_americas = {
+      "North America": list_na,
+      "South America": list_sa
+    }
+
+    america = st.selectbox("Select Americas Region", list_americas)
+    country_list = map_americas[america]
+
+    country = st.selectbox("Select Country In Americas Region", country_list)
+
+    if st.button("Selected Options"):
+      st.write(america)
+      st.write(country)
 
   with st.expander('Streamlit Components Static'):
     stc.html("<p style='color: red;'>Streamlit is Awesome</p>")

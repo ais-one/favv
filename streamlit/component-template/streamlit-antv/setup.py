@@ -5,7 +5,7 @@ from os.path import join
 
 setuptools.setup(
   name="streamlit-antv", # should match the package folder
-  version="0.0.1",
+  version="0.0.2",
   author="Aaron Gong",
   author_email="aaronjxz@gmail.com",
   license='MIT License', # should match your chosen license

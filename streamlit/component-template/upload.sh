@@ -8,10 +8,12 @@ if [ ! $2 ]; then # test or prod
   exit
 fi
 
-echo "Ensure that frontend folders are build"
+echo "Ensure that your venv is activated"
+echo "Ensure that frontend folders are built"
 echo "Ensure that version number in setup.py is incremented"
 echo "Ensure that _RELEASE flag in __init__.py files are True"
 echo "For convenience, you can use .pypirc file in you local machine..."
+echo "Clear older version in the python dist"
 
 # navigate to the folder
 cd $1

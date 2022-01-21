@@ -1,0 +1,6 @@
+.git
+npm-debug.log
+docker-compose*.yml
+component-template
+**/node_modules
+**/dist
