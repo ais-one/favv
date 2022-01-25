@@ -148,19 +148,41 @@ def app_run():
     list_na = ["United States", "Canada"]
     list_sa = ["Brazil", "Argentina", "Chile"]
 
+    list_na_us = ["New York", "Florida", "Seattle"]
+    list_na_ca = ["Toronto", "Vancouver"]
+
+    list_sa_br = ["Rio de Janeiro", "Sao Paulo", "Brasilia"]
+    list_sa_ar = ["Buenos Aires", "Cordoba"]
+    list_sa_cl = ["Santiago", "Vina del Mar"]
+
+    # TBD To improve... dictionary to array of keys
+    # combine for each level
+
     map_americas = {
       "North America": list_na,
       "South America": list_sa
     }
 
-    america = st.selectbox("Select Americas Region", list_americas)
+    map_city =  {
+      "United States": list_na_us,
+      "Canada": list_na_ca,
+      "Brazil": list_sa_br,
+      "Argentina": list_sa_ar,
+      "Chile": list_sa_cl
+    }
+
+    america = st.selectbox("Select Region", list_americas)
     country_list = map_americas[america]
 
-    country = st.selectbox("Select Country In Americas Region", country_list)
+    country = st.selectbox("Select Country", country_list)
+    city_list = map_city[country]
+
+    city = st.selectbox("Select City", city_list)
 
     if st.button("Selected Options"):
       st.write(america)
       st.write(country)
+      st.write(city)
 
   with st.expander('Streamlit Components Static'):
     stc.html("<p style='color: red;'>Streamlit is Awesome</p>")

@@ -19,6 +19,8 @@
 
 ## DONE
 - V0.0.7
+  - 2022-01-25
+    - [streamlit] cascading dropdown example make 3 levels
   - 2022-01-21
     - [streamlit] add example on cascading dropdown, update streamlit version
   - 2021-12-02
