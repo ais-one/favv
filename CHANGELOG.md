@@ -19,6 +19,8 @@
 
 ## DONE
 - V0.0.7
+  - 2022-01-26
+    - [streamlit] improve cascading dropdown example, make it more readable
   - 2022-01-25
     - [streamlit] cascading dropdown example make 3 levels
   - 2022-01-21

@@ -144,40 +144,21 @@ def app_run():
   with st.expander('Cascading/Dependent Dropdown'):
     st.subheader("The Americas")
 
-    list_americas = ["North America", "South America"]
-    list_na = ["United States", "Canada"]
-    list_sa = ["Brazil", "Argentina", "Chile"]
-
-    list_na_us = ["New York", "Florida", "Seattle"]
-    list_na_ca = ["Toronto", "Vancouver"]
-
-    list_sa_br = ["Rio de Janeiro", "Sao Paulo", "Brasilia"]
-    list_sa_ar = ["Buenos Aires", "Cordoba"]
-    list_sa_cl = ["Santiago", "Vina del Mar"]
-
-    # TBD To improve... dictionary to array of keys
-    # combine for each level
-
     map_americas = {
-      "North America": list_na,
-      "South America": list_sa
+      "North America": {
+        "United States": ["New York", "Florida", "Seattle"],
+        "Canada": ["Toronto", "Vancouver"]
+      },
+      "South America": {
+        "Brazil": ["Rio de Janeiro", "Sao Paulo", "Brasilia"],
+        "Argentina": ["Buenos Aires", "Cordoba"],
+        "Chile": ["Santiago", "Vina del Mar"]
+      }
     }
 
-    map_city =  {
-      "United States": list_na_us,
-      "Canada": list_na_ca,
-      "Brazil": list_sa_br,
-      "Argentina": list_sa_ar,
-      "Chile": list_sa_cl
-    }
-
-    america = st.selectbox("Select Region", list_americas)
-    country_list = map_americas[america]
-
-    country = st.selectbox("Select Country", country_list)
-    city_list = map_city[country]
-
-    city = st.selectbox("Select City", city_list)
+    america = st.selectbox("Select Region", list(map_americas.keys()))
+    country = st.selectbox("Select Country", list(map_americas[america].keys()))
+    city = st.selectbox("Select City", list(map_americas[america][country])) # last item does not need keys
 
     if st.button("Selected Options"):
       st.write(america)
