@@ -1,13 +1,69 @@
 import streamlit as st
+import requests
+import json
 
-qp = st.experimental_get_query_params()
-print(qp)
+def sso_logout():
+  try:
+    del st.session_state['token']
+  except:
+    pass
 
-try:
-  query_token = qp['token'][0]
-  st.session_state.token = query_token # this will set if there is a query_token
-except:
-  pass
+def sso_get_token_query(query_name='token'):
+  try:
+    qp = st.experimental_get_query_params()
+    st.write(qp['token'][0])
+    return qp['token'][0]
+  except Exception as err:
+    # st.write(f"Unexpected {err=}, {type(err)=}")
+    return ''
+
+def sso_login(token, verify_url, params=None, headers=None):
+  st.write('SSO Login...', token)
+  try:
+    if (headers == None):
+      headers = {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    res = requests.get(
+      verify_url,
+      params=params,
+      headers=headers,
+    )
+    if (res.status_code != 200):
+      sso_logout()
+      return False
+    else:
+      if 'token' not in st.session_state:
+        st.session_state['token'] = token
+      return True
+  except Exception as err:
+    # st.write(f"Unexpected {err=}, {type(err)=}")
+    sso_logout()
+    return False
+
+st.write('Start SSO Test')
+
+VERIFY_URL='http://127.0.0.1:3000/verify'
+LOGIN_URL='http://127.0.0.1:3000/login'
+
+token = sso_get_token_query()
+isLoggedIn = sso_login(
+  token=token,
+  verify_url=VERIFY_URL,
+  params={ 'token': token }
+)
+
+if (isLoggedIn != True):
+  login_url=LOGIN_URL
+  st.write('Login Fail')
+  st.write(f'''
+    <a target="_self" href="{login_url}"><button>Login</button></a>
+  ''', unsafe_allow_html=True)
+  st.stop()
+else:
+  st.write('SSO pass: my first hello world')
+
 
 ## MANUAL REDIRECT
 # if st.button('Go to Streamlit'):
@@ -30,7 +86,7 @@ except:
 # if token error or no token, redirect to IDP
 # else pass continue
 
-"""
+todo = """
 # https://pyjwt.readthedocs.io/en/latest/usage.html
 
 pip install pyjwt[crypto]
@@ -82,11 +138,11 @@ key = serialization.load_ssh_public_key(public_key.encode())
 jwt.decode(jwt=token, key=key, algorithms=['RS256', ])
 """
 
-def main():
-  st.write('hello jwt')
-  st.write(st.session_state.token)
-  username = st.text_input("Username")
-  st.write(username)
+# def main():
+#   st.write('hello jwt')
+#   st.write(st.session_state.token)
+#   username = st.text_input("Username")
+#   st.write(username)
 
-if __name__ == '__main__':
-  main()
+# if __name__ == '__main__':
+#   main()
