@@ -11,8 +11,8 @@ def sso_logout():
 def sso_get_token_query(query_name='token'):
   try:
     qp = st.experimental_get_query_params()
-    st.write(qp['token'][0])
-    return qp['token'][0]
+    st.write(qp[query_name][0])
+    return qp[query_name][0]
   except Exception as err:
     # st.write(f"Unexpected {err=}, {type(err)=}")
     return ''
@@ -47,7 +47,7 @@ st.write('Start SSO Test')
 VERIFY_URL='http://127.0.0.1:3000/verify'
 LOGIN_URL='http://127.0.0.1:3000/login'
 
-token = sso_get_token_query()
+token = sso_get_token_query(query_name='token')
 isLoggedIn = sso_login(
   token=token,
   verify_url=VERIFY_URL,
@@ -63,6 +63,10 @@ if (isLoggedIn != True):
   st.stop()
 else:
   st.write('SSO pass: my first hello world')
+  st.write(f'''
+    <a target="_self" href="/"><button>Logout</button></a>
+  ''', unsafe_allow_html=True)
+  st.stop()
 
 
 ## MANUAL REDIRECT
