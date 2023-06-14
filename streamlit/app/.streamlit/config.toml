@@ -5,3 +5,9 @@ backgroundColor="#ffffff"
 secondaryBackgroundColor="#e8eef9"
 textColor="#000000"
 font="sans serif"
+
+[server]
+port=9002
+# sslCertFile='C:\\Users\\aaron\\test\\favv\\streamlit\\app\\cert.pem'
+# sslKeyFile='C:\\Users\\aaron\\test\\favv\\streamlit\\app\\key.pem'
+# streamlit run app.py --server.sslCertFile=cert.pem --server.sslKeyFile=key.pem
