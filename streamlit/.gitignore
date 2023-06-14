@@ -5,5 +5,7 @@
 
 dev
 
+app/*.pem
+
 __pycache__
 
